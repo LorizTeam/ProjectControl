@@ -1,0 +1,27 @@
+nav.top-nav a.page-title {
+    font-size: 30px;
+}
+header, main, footer {
+    padding-left: 300px;
+    line-height: 64px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+ul.side-nav.fixed li.logo {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+ul.side-nav.fixed li.logo p{
+	margin: 0px;
+	line-height: 5px;
+	font-size: 1.5em;
+}
+.dashboard-list li{
+	opacity: 0;
+}
