@@ -3,22 +3,22 @@
 <header>
 	<nav class="top-nav light-blue darken-3" style="padding-left:10px;">
 		<div class="nav-warpper">
-			<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+			<a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 			<a class="page-title">Dashboard</a>
 			
 		</div>
 	</nav>
 	<ul id="slide-out" class="side-nav fixed collapsible"  data-collapsible="accordion" >
-		<li class="logo  light-blue-text text-darken-3">
+		<li class="logo  light-blue-text text-darken-3 ">
 			<i class="large material-icons ">web</i><p>Project Controller</p>
 		</li>
-		<li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">view_module</i>Project</div>
+		<li >
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li><a href="#"><i class="material-icons">view_list</i>Project List</a></li>
-	      		<li><a href="#"><i class="material-icons">playlist_add</i>Add Project</a></li>
-	      		<li><a href="#"><i class="material-icons">shuffle</i>Random Project</a></li>
+	      		<li class="m1-1"><a class="waves-effect waves-light" href="project.jsp"><i class="material-icons">view_list</i>Project List</a></li>
+	      		<li class="m1-2"><a class="waves-effect waves-light" href="project-add.jsp"><i class="material-icons">playlist_add</i>Add Project</a></li>
+
 	      	</ul>
 	      </div>
 	    </li>
@@ -73,9 +73,14 @@
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li><a href="#"><i class="material-icons">perm_identity</i>Name OfUser</a></li>
-	      		<li><a href="#"><i class="material-icons">power_settings_new</i>Logout</a></li>
+	      		<li><a href="login.jsp"><i class="material-icons">power_settings_new</i>Logout</a></li>
 	      	</ul>
 	      </div>
 	    </li>
     </ul>
 </header>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script>
+		$(".button-collapse").sideNav();
+		</script>
