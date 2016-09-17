@@ -12,6 +12,11 @@
 	<body>
 		<%@include file="menu.jsp" %>
 		<main>
+		<div class="nav-wrapper bread">
+		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
+		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		      </div>
+		</div>
         <ul id="dashboard-list" class="row">
         	<li class=" col s12 m4">
         		<div class="card blue-grey darken-1 z-depth-2 small">
@@ -74,11 +79,8 @@
 				</div>
         	</li>
         </ul>
-			
-
-
 		</main>
-		<div class="fixed-action-btn horizontal">
+		<div class="fixed-action-btn horizontal click-to-toggle">
 	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
 	        <ul>
 		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
@@ -88,18 +90,11 @@
 		    </ul>
 	    </div>
 
-
-		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="js/materialize.js"></script>
 		<script type="text/javascript">
-			$(".button-collapse").sideNav();
 		 $(document).ready(function(){
-			    $('.collapsible').collapsible();
-			    $(".button-collapse").sideNav();
 			    Materialize.showStaggeredListSlideDown('#dashboard-list');
-			    
 		  });
-
 		</script>
+		
 	</body>
 </html>

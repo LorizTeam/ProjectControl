@@ -5,11 +5,22 @@ header, main, footer {
     padding-left: 300px;
     line-height: 64px;
 }
-
+main .bread{
+	line-height: 40px;
+}
+main .div-container{
+	line-height: 30px;
+}
+td,th{
+	padding:5px;
+}
 @media only screen and (max-width : 992px) {
   header, main, footer {
     padding-left: 0;
   }
+  #frm-login{
+	margin-top:100px;
+}
 }
 
 ul.side-nav.fixed li.logo {
@@ -24,4 +35,13 @@ ul.side-nav.fixed li.logo p{
 }
 .dashboard-list li{
 	opacity: 0;
+}
+#frm-login{
+	margin-top:140px;
+}
+.div-container{
+	margin:20px 10px;
+}
+.modal-content .row{
+	margin-bottom: 0px;
 }
