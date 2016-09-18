@@ -21,9 +21,9 @@
 		    </div>
 		    <div class="div-container ">
 			   <div class="container">
+			   <h4 class="center-align">Add Project</h4>
 			    <div class="card " style="padding:10px;">
-				     <h4 class="center-align">Add Project</h4>
-				     
+			    <h5 class="cyan-text text-darken-1">Project Details</h5>
 			      <div class="row">
 				    <form class="col s12">
 				      <div class="row">
@@ -45,15 +45,15 @@
 						    <label>Teacher Adviser</label>
 						</div>
 						
-						<div class="input-field col s12">
+						<div class="input-field col s6">
 						  <i class="material-icons prefix">recent_actors</i>
 						  <input type="text" id="autocomplete-input" class="autocomplete">
 						  <label for="autocomplete-input">Student1</label>
 						</div>
-						<div class="input-field col s12">
+						<div class="input-field col s6">
 						  <i class="material-icons prefix">recent_actors</i>
 						  <input type="text" id="autocomplete-input2" class="autocomplete">
-						  <label for="autocomplete-input">Student2</label>
+						  <label for="autocomplete-input2">Student2</label>
 						</div>
 				      </div>
 				    </form>
