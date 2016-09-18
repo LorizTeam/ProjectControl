@@ -8,12 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
-		<style>
-			#stu-table_filter,#stu-table_length{
-				display:none;
-			}
-		</style>
+		
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -49,56 +44,17 @@
 						    </select>
 						    <label>Teacher Adviser</label>
 						</div>
-						<div class="input-field col s12 m4 offset-m8">
-							<i class="material-icons prefix right">search</i>
-					        <input type="text" id="icon_search" class="validate"/>
-					        <label for="icon_search">Search</label>
+						
+						<div class="input-field col s12">
+						  <i class="material-icons prefix">recent_actors</i>
+						  <input type="text" id="autocomplete-input" class="autocomplete">
+						  <label for="autocomplete-input">Student1</label>
 						</div>
-				       	<table class="highlight responsive-table " id="stu-table">
-				    	<thead>
-				    		<tr>
-				    			<th>Choose</th>
-				    			<th>Student ID</th>
-				    			<th>Student Name</th>
-				    			<th>Faculty</th>
-				    			<th>Branch</th>
-				    		</tr>
-				    		
-				    	</thead>
-				    	<tbody>
-				    		<tr>
-				    			<td>
-							      <input type="checkbox" value="56013506" id="56013506" />
-							      <label for="56013506"></label>
-							    </td>
-				    			<td>56013506</td>
-				    			<td>student name</td>
-				    			<td>ICT</td>
-				    			<td>IT</td>
-				    		</tr>
-				    		<tr>
-				    			<td>
-							      <input type="checkbox" value="56013507" id="56013507" />
-							      <label for="56013507"></label>
-							    </td>
-				    			<td>56013507</td>
-				    			<td>student name</td>
-				    			<td>ICT</td>
-				    			<td>IT</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>
-							      <input type="checkbox" value="56013508" id="56013508" />
-							      <label for="56013508"></label>
-							    </td>
-				    			<td>56013508</td>
-				    			<td>student name</td>
-				    			<td>ICT</td>
-				    			<td>IT</td>
-				    		</tr>
-				    	</tbody>
-				    </table>
+						<div class="input-field col s12">
+						  <i class="material-icons prefix">recent_actors</i>
+						  <input type="text" id="autocomplete-input2" class="autocomplete">
+						  <label for="autocomplete-input">Student2</label>
+						</div>
 				      </div>
 				    </form>
 				  </div>
@@ -120,7 +76,6 @@
 		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
 		    </ul>
 	    </div>
-		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m1').addClass('active');
@@ -128,10 +83,13 @@
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Add Project');
 			 $('select').material_select();
-			var table =  $('#stu-table').DataTable();
-			 $('#icon_search').on( 'keyup', function () {
-				    table.search( this.value ).draw();
-				});
+			 $('input.autocomplete').autocomplete({
+				    data:{
+				        "Noppol kongsattra": null,
+				        "Manuwat Chaichana": null
+				      }
+			 });
+			 
 		});
 		</script>
 		

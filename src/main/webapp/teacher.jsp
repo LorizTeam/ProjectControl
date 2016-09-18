@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Project Controller : Project List</title>
+		<title>Project Controller : Teacher List</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
@@ -21,20 +21,15 @@
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
 		        <a href="index.jsp" class="breadcrumb">Dash board</a>
-		        <a href="#!" class="breadcrumb">Project</a>
+		        <a href="#!" class="breadcrumb">Teacher</a>
 		      </div>
 		    </div>
 		    <div class="div-container">
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="project-add.jsp">
-	      					<i class="material-icons left">add</i>Add Project
+			    		<a class="waves-effect waves-light btn-large col s12 " href="teacher-add.jsp">
+	      					<i class="material-icons left">add</i>Add Teacher
 	      				</a>
-			    	</div>
-			    	<div class="col s12 m6">
-			    		<button type="button" class="waves-effect waves-light light-green darken-3 btn-large col s12">
-			    			<i class="material-icons left">shuffle</i>Random Project
-			    		</button>
 			    	</div>
 			    	
 			    </div>
@@ -50,10 +45,7 @@
 				    	<thead>
 				    		<tr>
 				    			<th>No.</th>
-				    			<th>Project Name TH</th>
-				    			<th>Student</th>
-				    			<th>Adviser</th>
-				    			<th>Score</th>
+				    			<th>Teacher Name</th>
 				    			<th>Course</th>
 				    			<th>Faculty</th>
 				    			<th>Creation Date</th>
@@ -63,10 +55,7 @@
 				    	<tbody>
 				    		<tr>
 				    			<td>1</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค1</td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>40/100</td>
+				    			<td>Teacher name</td>
 				    			<td>HUM3002-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -74,10 +63,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>2</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค2</td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
+				    			<td>Teacher name</td>
 				    			<td>ICT442-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -85,10 +71,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>3</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค3</td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
+				    			<td>Teacher name</td>
 				    			<td>ICT443-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -114,10 +97,10 @@
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
-			 $('.m1').addClass('active');
-			 $('.m1-1').addClass('active');
+			 $('.m3').addClass('active');
+			 $('.m3-1').addClass('active');
 			 $('.collapsible').collapsible();
-			 $('.page-title').text('Project');
+			 $('.page-title').text('Teacher');
 			 $('select').material_select();
 			 var table =  $('#project-table').DataTable();
 			 $('#icon_search').on( 'keyup', function () {

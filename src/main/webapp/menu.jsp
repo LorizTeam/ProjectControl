@@ -18,25 +18,25 @@
 	      	<ul>
 	      		<li class="m1-1"><a class="waves-effect waves-light" href="project.jsp"><i class="material-icons">view_list</i>Project List</a></li>
 	      		<li class="m1-2"><a class="waves-effect waves-light" href="project-add.jsp"><i class="material-icons">playlist_add</i>Add Project</a></li>
-
+				<li><a href="#"><i class="material-icons">shuffle</i>Random Project</a></li>
 	      	</ul>
 	      </div>
 	    </li>
 	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">recent_actors</i>Studen</div>
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Studen</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li><a href="#"><i class="material-icons">recent_actors</i>Student List</a></li>
-	      		<li><a href="#"><i class="material-icons">note_add</i>Add Student</a></li>
+	      		<li class="m2-1"><a href="Student.jsp"><i class="material-icons">recent_actors</i>Student List</a></li>
+	      		<li class="m2-2"><a href="student-add.jsp"><i class="material-icons">note_add</i>Add Student</a></li>
 	      	</ul>
 	      </div>
 	    </li>
 	     <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">supervisor_account</i>Teacher</div>
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>Teacher</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li><a href="#"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
-	      		<li><a href="#"><i class="material-icons">note_add</i>Add Teacher</a></li>
+	      		<li class="m3-1"><a href="teacher.jsp"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
+	      		<li class="m3-2"><a href="teacher-add.jsp"><i class="material-icons">note_add</i>Add Teacher</a></li>
 	      	</ul>
 	      </div>
 	    </li>
@@ -50,11 +50,11 @@
 	      </div>
 	    </li>
 	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">assignment_ind</i>Employee</div>
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m5"><i class="material-icons">assignment_ind</i>Employee</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li><a href="#"><i class="material-icons">assignment_ind</i>Employee List</a></li>
-	      		<li><a href="#"><i class="material-icons">note_add</i>Add Employee</a></li>
+	      		<li class="m5-1"><a href="employee.jsp"><i class="material-icons">assignment_ind</i>Employee List</a></li>
+	      		<li class="m5-2"><a href="employee-add.jsp"><i class="material-icons">note_add</i>Add Employee</a></li>
 	      	</ul>
 	      </div>
 	    </li>
