@@ -21,8 +21,8 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-			   <div class="container">
-			   <h4 class="center-align">Project Details</h4>
+			   <div class="container"> 
+			   <h4 class="center-align light-blue-text text-darken-1">Project Details</h4>
 			   
 			    <div class="card " style="padding:10px;">
 			    <h5 class="cyan-text text-darken-1">Project Details</h5><br>
