@@ -63,7 +63,7 @@
 				    	<tbody>
 				    		<tr>
 				    			<td>1</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค1</td>
+				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค1</a></td>
 				    			<td>student name</td>
 				    			<td>aj.rorh</td>
 				    			<td>40/100</td>
@@ -74,7 +74,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>2</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค2</td>
+				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค2</a></td>
 				    			<td>student name</td>
 				    			<td>aj.rorh</td>
 				    			<td>50/100</td>
@@ -85,7 +85,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>3</td>
-				    			<td>ทดลองเพิ่มชื่อโปรเจค3</td>
+				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค3</a></td>
 				    			<td>student name</td>
 				    			<td>aj.rorh</td>
 				    			<td>50/100</td>

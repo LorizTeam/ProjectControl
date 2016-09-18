@@ -25,7 +25,7 @@
 			    <div class="card " style="padding:10px;">
 			    <h5 class="cyan-text text-darken-1">Project Details</h5>
 			      <div class="row">
-				    <form class="col s12">
+				    <div class="col s12">
 				      <div class="row">
 				        <div class="input-field col s12">
 				          <input  id="first_name" type="text" class="validate">
@@ -45,24 +45,34 @@
 						    <label>Teacher Adviser</label>
 						</div>
 						
-						<div class="input-field col s6">
-						  <i class="material-icons prefix">recent_actors</i>
-						  <input type="text" id="autocomplete-input" class="autocomplete">
-						  <label for="autocomplete-input">Student1</label>
-						</div>
-						<div class="input-field col s6">
-						  <i class="material-icons prefix">recent_actors</i>
-						  <input type="text" id="autocomplete-input2" class="autocomplete">
-						  <label for="autocomplete-input2">Student2</label>
-						</div>
 				      </div>
-				    </form>
+				    </div>
 				  </div>
-			      <div class="center-align">
-			      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
-			      <button type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</button>
-			      </div>
+			     
 		    </div>
+		    <div class="card " style="padding:10px;">
+		    	<h5 class="cyan-text text-darken-1">Student</h5>
+		    	<div class="row">
+					<div class="input-field col s12">
+						<div class="chips ">
+							 
+						</div>
+					</div>
+					<div class="input-field col s6 auc">
+					  <i class="material-icons prefix">recent_actors</i>
+					  <input type="text" id="autocomplete-input2" class="autocomplete">
+					  <label for="autocomplete-input2">Add Student</label>
+					</div>
+					<div class=" col s6 ">
+					   <button type="button" class="modal-action modal-close waves-effect waves-green btn addstu">add Student</button>
+					   <button id="chkData">check Data</button>
+					</div>
+				</div>
+		    </div>
+		     <div class="center-align">
+		      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
+		      <button type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</button>
+		      </div>
 		    </div>
 		  </div>  
 		    
@@ -85,11 +95,37 @@
 			 $('select').material_select();
 			 $('input.autocomplete').autocomplete({
 				    data:{
-				        "Noppol kongsattra": null,
-				        "Manuwat Chaichana": null
+				        "56013506 Noppol kongsattra. ": null,
+				        "56013509 Manuwat Chaichana. ": null
 				      }
 			 });
-			 
+			 $('#autocomplete-input2').on('keyup', function (e) {
+		            // Capture Enter
+		            if (e.which === 13&&$('#autocomplete-input2').val()!='') {
+		            	$('.chips').append('<div class="chip">'+$('#autocomplete-input2').val()+'<i class="close material-icons">close</i></div>');
+		            	$('#autocomplete-input2').val('');
+		            	
+		              return;
+		            }
+			 });
+			 $('.addstu').on('click', function(){
+				 
+				 if ($('#autocomplete-input2').val()!='') {
+				 
+	            	$('.chips').append('<div class="chip">'+$('#autocomplete-input2').val()+'<i class="close material-icons">close</i></div>');
+	            	$('#autocomplete-input2').val('');
+	            	
+	              return;
+				 }
+			 });
+			$('#chkData').on('click', function(){
+				 
+				 var datachip = $('.chips').text();
+				 datachip = datachip.replace(/close/g,'');
+				 alert(datachip.trim());
+				 
+				
+			 });
 		});
 		</script>
 		
