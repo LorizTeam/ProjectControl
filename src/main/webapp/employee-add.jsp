@@ -64,11 +64,11 @@
 									<input id="last_nameen" type="text" class="validate">
 									<label for="last_nameen">Last Name (EN)</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<input id="Identification" type="text" class="validate">
 									<label for="Identification">Identification</label>
 								</div>
-								<div class="input-field col s3">
+								<div class="input-field col s6 m3">
 									<select>
 										<option value="" disabled selected>Choose your option</option>
 										<option value="1">Identification number</option>
@@ -76,7 +76,7 @@
 									</select>
 									<label>Identification Type</label>
 								</div>
-								<div class="input-field col s5">
+								<div class="input-field col s6 m5">
 									<input id="Tel" type="text" class="validate">
 									<label for="Tel">Tel</label>
 								</div>
@@ -97,11 +97,11 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
-								<div class="input-field col s2">
+								<div class="input-field col s6 m2">
 									<input  id="addr_No" type="text" class="validate">
 									<label for="addr_No">No.</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<input id="Bloc" type="text" class="validate">
 									<label for="Bloc">Bloc</label>
 								</div>
@@ -117,7 +117,7 @@
 									<input id="Road" type="text" class="validate">
 									<label for="Road">Road</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<select>
 										<option value="" disabled selected>Choose your option</option>
 										<option value="1">Identification number</option>
@@ -125,7 +125,7 @@
 									</select>
 									<label>Province</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<select>
 										<option value="" disabled selected>Choose your option</option>
 										<option value="1">Identification number</option>
@@ -133,7 +133,7 @@
 									</select>
 									<label>District(Amphur)</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<select>
 										<option value="" disabled selected>Choose your option</option>
 										<option value="1">Identification number</option>
@@ -141,7 +141,7 @@
 									</select>
 									<label>District</label>
 								</div>
-								<div class="input-field col s4">
+								<div class="input-field col s6 m4">
 									<input id="Zipcode" type="text" class="validate">
 									<label for="Zipcode">Zipcode</label>
 								</div>

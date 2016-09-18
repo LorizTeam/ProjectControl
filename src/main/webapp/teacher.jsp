@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="css/responsive.dataTables.css"/>
 		<style>
 			#project-table_filter,#project-table_length{
 				display:none;
@@ -41,21 +42,21 @@
 				        <label for="icon_search">Search</label>
 					</div>
 					</div>
-				    <table id="project-table" class="highlight  " >
+				    <table id="project-table" class=" responsive highlight" >
 				    	<thead>
 				    		<tr>
-				    			<th>No.</th>
-				    			<th>Teacher Name</th>
-				    			<th>Course</th>
-				    			<th>Faculty</th>
-				    			<th>Creation Date</th>
+				    			<th data-priority="2">No.</th>
+				    			<th data-priority="1">Teacher Name</th>
+				    			<th data-priority="1">Course</th>
+				    			<th data-priority="1">Faculty</th>
+				    			<th data-priority="2">Creation Date</th>
 				    		</tr>
 				    		
 				    	</thead>
 				    	<tbody>
 				    		<tr>
 				    			<td>1</td>
-				    			<td>Teacher name</td>
+				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
 				    			<td>HUM3002-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -63,7 +64,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>2</td>
-				    			<td>Teacher name</td>
+				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
 				    			<td>ICT442-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -71,7 +72,7 @@
 				    		</tr>
 				    		<tr>
 				    			<td>3</td>
-				    			<td>Teacher name</td>
+				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
 				    			<td>ICT443-ชื่อวิชาเรียน</td>
 				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
 				    			<td>20/10/2016</td>
@@ -95,6 +96,7 @@
 		    </ul>
 	    </div>
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+		<script src="js/dataTables.responsive.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m3').addClass('active');

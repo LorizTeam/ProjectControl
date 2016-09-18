@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="css/responsive.dataTables.css"/>
 		<style>
 			#project-table_filter,#project-table_length{
 				display:none;
@@ -46,17 +47,17 @@
 				        <label for="icon_search">Search</label>
 					</div>
 					</div>
-				    <table id="project-table" class="highlight  " >
+				    <table id="project-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th>No.</th>
-				    			<th>Project Name TH</th>
-				    			<th>Student</th>
-				    			<th>Adviser</th>
-				    			<th>Score</th>
-				    			<th>Course</th>
-				    			<th>Faculty</th>
-				    			<th>Creation Date</th>
+				    			<th data-priority="1">No.</th>
+				    			<th data-priority="1">Project Name TH</th>
+				    			<th data-priority="1">Student</th>
+				    			<th data-priority="2">Adviser</th>
+				    			<th data-priority="3">Score</th>
+				    			<th data-priority="2">Course</th>
+				    			<th data-priority="3">Faculty</th>
+				    			<th data-priority="3">Creation Date</th>
 				    		</tr>
 				    		
 				    	</thead>
@@ -112,6 +113,7 @@
 		    </ul>
 	    </div>
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+		<script src="js/dataTables.responsive.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m1').addClass('active');
