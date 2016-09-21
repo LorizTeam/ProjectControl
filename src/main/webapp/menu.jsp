@@ -23,7 +23,7 @@
 	      </div>
 	    </li>
 	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Studen</div>
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Student</div>
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li class="m2-1"><a href="Student.jsp"><i class="material-icons">recent_actors</i>Student List</a></li>
