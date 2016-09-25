@@ -11,19 +11,20 @@
 	</head>
 	<body>
 	<div class="container">
+	
        	<div class="row">
 	        <ul id="frm-login" class="col s12  offset-m3 m6 frm-login">
 	        	<li>
 		          <div  class="card blue-grey darken-1">
 		            <div class="card-content white-text center-align">
 		              <span class="card-title "><i class="large material-icons ">web</i><p>Project Control Login</p></span>
-		              <form class="row" method="post" action="index.jsp">
+		              <form class="row" method="post" action="Login">
 			              <div class="input-field col s12 left-align">
-					          <input id="Username" type="text" class="validate" required />
+					          <input id="Username" name="username" type="text" class="validate" required />
 					          <label for="Username">User name</label>
 					      </div>
 					      <div class="input-field col s12 left-align">
-					          <input id="password" type="password" class="validate" required/>
+					          <input id="password" name="password" type="password" class="validate" required/>
 					          <label for="password">password</label>
 					      </div>
 					      <div class=" col s12 center-align ">
