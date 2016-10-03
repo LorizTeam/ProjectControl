@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <header>
 	<nav class="top-nav light-blue darken-3" style="padding-left:10px;">
 		<div class="nav-warpper">
@@ -73,7 +74,8 @@
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li><a href="#"><i class="material-icons">perm_identity</i>Name OfUser</a></li>
-	      		<li><a href="login.jsp"><i class="material-icons">power_settings_new</i>Logout</a></li>
+	      		<s:url action="Logout" var="LogoutAction" />
+	      		<li><a href='<s:property value="LogoutAction"/>'><i class="material-icons">power_settings_new</i>Logout</a></li>
 	      	</ul>
 	      </div>
 	    </li>

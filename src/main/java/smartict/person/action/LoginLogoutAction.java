@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import smartict.person.data.LoginData;
 
-public class LoginAction extends ActionSupport {
+public class LoginLogoutAction extends ActionSupport {
 	
 	String username, password;
 
@@ -54,9 +54,15 @@ public class LoginAction extends ActionSupport {
 			forwardText = "success";
 		}
 		
-		
-		
 		return forwardText;
 	}
 	
+	public String Logout(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		
+		System.out.println("Logout !!!");
+		session.invalidate();
+		return "login";
+	}
 }

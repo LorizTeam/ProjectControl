@@ -15,8 +15,12 @@
 		<!-- 	++++++	 Top menu 	 ++++++	  -->
 		
     	
-    	<action name="Login" class="smartict.person.action.LoginAction" method="Login">
+    	<action name="Login" class="smartict.person.action.LoginLogoutAction" method="Login">
       		<result name="success">/index.jsp</result>
+      		<result name="login">/login.jsp</result>
+    	</action>
+    	
+    	<action name="Logout" class="smartict.person.action.LoginLogoutAction" method="Logout">
       		<result name="login">/login.jsp</result>
     	</action>
     	<!-- 				++++++	 Treatment Waiting 	 ++++++	  		-->
