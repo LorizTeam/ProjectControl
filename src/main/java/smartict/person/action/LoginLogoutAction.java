@@ -1,9 +1,13 @@
 package smartict.person.action;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -11,8 +15,9 @@ import smartict.model.PersonModel;
 import smartict.person.data.LoginData;
 import smartict.person.data.PersonData;
 
-public class LoginLogoutAction extends ActionSupport {
+public class LoginLogoutAction extends ActionSupport implements SessionAware{
 	
+	private Map<String,Object> sessionMap;
 	String username, password, firstname, lastname;
 
 	public String getUsername() {
@@ -46,18 +51,19 @@ public class LoginLogoutAction extends ActionSupport {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
+	
+	public void setSession(Map<String, Object> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+	
 	public String Login(){
-		HttpServletRequest request = ServletActionContext.getRequest();
-		HttpSession session = request.getSession();
-		session.invalidate();
-		session = request.getSession();
+		
 		String forwardText = "login";
 		LoginData loginDB = new LoginData();
 		PersonData personDB = new PersonData();
 		boolean hasUser = false;
 		if(loginDB.isTeacherUser(username, password)){
-			session.setAttribute("type", "1");
+			sessionMap.put("type", "1");
 			
 			PersonModel persModel = new PersonModel();
 			persModel = personDB.getTeacherDetail(username, password);
@@ -66,7 +72,7 @@ public class LoginLogoutAction extends ActionSupport {
 			
 			forwardText = "success";
 		}else if(loginDB.isStudentUser(username, password)){
-			session.setAttribute("type", "2");
+			sessionMap.put("type", "2");
 			
 			PersonModel persModel = new PersonModel();
 			persModel = personDB.getStudentDetail(username, password);
@@ -75,7 +81,7 @@ public class LoginLogoutAction extends ActionSupport {
 			
 			forwardText = "success";
 		}else if(loginDB.isEmployeeUser(username, password)){
-			session.setAttribute("type", "3");
+			sessionMap.put("type", "3");
 			
 			PersonModel persModel = new PersonModel();
 			persModel = personDB.getEmployeeDetail(username, password);
@@ -85,10 +91,10 @@ public class LoginLogoutAction extends ActionSupport {
 			forwardText = "success";
 		}
 		
-		session.setAttribute("username", username);
-		session.setAttribute("password", password);
-		session.setAttribute("firstname", firstname);
-		session.setAttribute("lastname", lastname);
+		sessionMap.put("username", username);
+		sessionMap.put("password", password);
+		sessionMap.put("firstname", firstname);
+		sessionMap.put("lastname", lastname);
 		
 		return forwardText;
 	}
@@ -96,9 +102,8 @@ public class LoginLogoutAction extends ActionSupport {
 	public String Logout(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		
-		System.out.println("Logout !!!");
 		session.invalidate();
+		System.out.println("Logout !!!");
 		return "login";
 	}
 }
