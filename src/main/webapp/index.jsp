@@ -18,8 +18,8 @@
 		      </div>
 		</div>
         <ul id="dashboard-list" class="row">
-        	<li class=" col s12 m4">
-        		<div class="card blue-grey darken-1 z-depth-2 small">
+        	<li class=" col s12 m4 ">
+        		<div class="card blue-grey darken-1 z-depth-2 small ">
 					<div class="card-content white-text center-align">
 						<span class="card-title">Project </span>
 						<h2>0</h2>

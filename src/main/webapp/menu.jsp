@@ -46,7 +46,7 @@
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li class="m4-1"><a href="#"><i class="material-icons">description</i>File List</a></li>
-	      		<li class="m4-1"><a href="#"><i class="material-icons">work</i>File Group List</a></li>
+	      		<li class="m4-2"><a href="file-group.jsp"><i class="material-icons">work</i>File Group List</a></li>
 	      	</ul>
 	      </div>
 	    </li>
@@ -63,9 +63,9 @@
 	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m6"><i class="material-icons">settings</i>Setting</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li class="m6-1"><a href="#"><i class="material-icons">assignment_ind</i>Branch</a></li>
-	      		<li class="m6-2"><a href="#"><i class="material-icons">note_add</i>Course</a></li>
-	      		<li class="m6-3"><a href="#"><i class="material-icons">assignment_ind</i>Faculty</a></li>
+	      		<li class="m6-1"><a href="faculty.jsp"><i class="material-icons">assignment_ind</i>Faculty</a></li>
+	      		<li class="m6-2"><a href="branch.jsp"><i class="material-icons">assignment_ind</i>Branch</a></li>
+	      		<li class="m6-3"><a href="course.jsp"><i class="material-icons">note_add</i>Course</a></li>
 	      	</ul>
 	      </div>
 	    </li>
