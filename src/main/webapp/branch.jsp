@@ -57,21 +57,21 @@
 				    			<td>1</td>
 				    			<td>รหัสสาขา</td>
 				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="Branch-detail.jsp">ชื่อสาขา TH</a></td>
+				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
 				    			<td>ชื่อสาขา EN</td>
 				    		</tr>
 				    		<tr>
 				    			<td>2</td>
 				    			<td>รหัสสาขา</td>
 				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="Branch-detail.jsp">ชื่อสาขา TH</a></td>
+				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
 				    			<td>ชื่อสาขา EN</td>
 				    		</tr>
 				    		<tr>
 				    			<td>3</td>
 				    			<td>รหัสสาขา</td>
 				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="Branch-detail.jsp">ชื่อสาขา TH</a></td>
+				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
 				    			<td>ชื่อสาขา EN</td>
 				    		</tr>
 				    	</tbody>

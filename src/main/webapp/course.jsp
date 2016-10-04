@@ -57,21 +57,21 @@
 				    			<td>1</td>
 				    			<td>รหัสรายวิชา</td>
 				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="Course-detail.jsp">ชื่อรายวิชา TH</a></td>
+				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
 				    			<td>ชื่อรายวิชา EN</td>
 				    		</tr>
 				    		<tr>
 				    			<td>2</td>
 				    			<td>รหัสรายวิชา</td>
 				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="Course-detail.jsp">ชื่อรายวิชา TH</a></td>
+				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
 				    			<td>ชื่อรายวิชา EN</td>
 				    		</tr>
 				    		<tr>
 				    			<td>3</td>
 				    			<td>รหัสรายวิชา</td>
 				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="Course-detail.jsp">ชื่อรายวิชา TH</a></td>
+				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
 				    			<td>ชื่อรายวิชา EN</td>
 				    		</tr>
 				    	</tbody>
