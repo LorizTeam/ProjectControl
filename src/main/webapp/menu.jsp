@@ -73,7 +73,7 @@
 	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">settings_power</i>Power</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li><a href="#"><i class="material-icons">perm_identity</i>Name OfUser</a></li>
+	      		<li><a href="#"><i class="material-icons">perm_identity</i> <s:property value="%{#session.firstname}"/> <s:property value="%{#session.lastname}"/></a></li>
 	      		<s:url action="Logout" var="LogoutAction" />
 	      		<li><a href='<s:property value="LogoutAction"/>'><i class="material-icons">power_settings_new</i>Logout</a></li>
 	      	</ul>
