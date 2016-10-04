@@ -22,20 +22,20 @@
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
 		        <a href="index.jsp" class="breadcrumb">Dash board</a>
-		        <a href="#!" class="breadcrumb">Project</a>
+		        <a href="#!" class="breadcrumb">Project Random</a>
 		      </div>
 		    </div>
 		    <div class="div-container">
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="project-add.jsp">
-	      					<i class="material-icons left">add</i>Add Project
+			    		<a class="waves-effect waves-light btn-large col s12 " href="project.jsp">
+	      					<i class="material-icons left">view_list</i>Project List
 	      				</a>
 			    	</div>
 			    	<div class="col s12 m6">
-			    		<a href="project-random.jsp" class="waves-effect waves-light light-green darken-3 btn-large col s12">
-			    			<i class="material-icons left">shuffle</i>Random Project
-			    		</a>
+			    		<button type="button" class="waves-effect waves-light light-green darken-3 btn-large col s12">
+			    			<i class="material-icons left">replay</i>Random Project Again
+			    		</button>
 			    	</div>
 			    	
 			    </div>
@@ -117,7 +117,7 @@
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m1').addClass('active');
-			 $('.m1-1').addClass('active');
+			 $('.m1-3').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Project');
 			 $('select').material_select();

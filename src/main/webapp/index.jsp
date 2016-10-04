@@ -25,8 +25,8 @@
 						<h2>0</h2>
 					</div>
 					<div class="card-action center-align blue-grey-text text-darken-4">
-						<a href="#">Project List</a>
-						<a href="#">Add Project</a>
+						<a href="project.jsp">Project List</a>
+						<a href="project-add.jsp">Add Project</a>
 					</div>
 				</div>
         	</li>
@@ -37,8 +37,8 @@
 						<h2>0</h2>
 					</div>
 					<div class="card-action center-align">
-						<a href="#">Student List</a>
-						<a href="#">Add Student</a>
+						<a href="Student.jsp">Student List</a>
+						<a href="student-add.jsp">Add Student</a>
 					</div>
 				</div>
         	</li>
@@ -49,8 +49,8 @@
 						<h2>0</h2>
 					</div>
 					<div class="card-action center-align">
-						<a href="#">Teacher List</a>
-						<a href="#">Add Teacher</a>
+						<a href="teacher.jsp">Teacher List</a>
+						<a href="teacher-add.jsp">Add Teacher</a>
 					</div>
 				</div>
         	</li>
@@ -61,8 +61,8 @@
 						<h2>0</h2>
 					</div>
 					<div class="card-action center-align">
-						<a href="#">Course List</a>
-						<a href="#">Add Course</a>
+						<a href="course.jsp">Course List</a>
+						<a href="course-add.jsp">Add Course</a>
 					</div>
 				</div>
         	</li>
@@ -73,8 +73,8 @@
 						<h2>0</h2>
 					</div>
 					<div class="card-action center-align">
-						<a href="#">Employee List</a>
-						<a href="#">Add Employee</a>
+						<a href="employee.jsp">Employee List</a>
+						<a href="employee-add.jsp">Add Employee</a>
 					</div>
 				</div>
         	</li>
