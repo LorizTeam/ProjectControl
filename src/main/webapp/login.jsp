@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,8 +16,16 @@
        	<div class="row">
 	        <ul id="frm-login" class="col s12  offset-m3 m6 frm-login">
 	        	<li>
+	        	
 		          <div  class="card blue-grey darken-1">
+		          	
 		            <div class="card-content white-text center-align">
+		            <s:if test="alertStatus != null ">
+		            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+		            		<s:property value="alertMessage"/>
+		            	</div>
+					</s:if>
+		            
 		              <span class="card-title "><i class="large material-icons ">web</i><p>Project Control Login</p></span>
 		              <form class="row" method="post" action="Login">
 			              <div class="input-field col s12 left-align">
@@ -34,7 +43,7 @@
 		            </div>
 		            
 		          </div>
-		          <div class="card-panel red lighten-3  red-text text-darken-4"> Username or password incorrect  &#10071;</div>
+		          
 	          	</li>
 	        </ul>
 	      </div>
@@ -43,7 +52,10 @@
 		<script type="text/javascript" src="js/materialize.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
+			 
 			    Materialize.showStaggeredListSlideDown('#frm-login');
+			    
+			    $('#alertMessage').delay(3500).fadeOut('slow');
 		  });
 		</script>
 	</body>

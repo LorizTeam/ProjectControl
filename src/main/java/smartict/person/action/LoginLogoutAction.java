@@ -18,7 +18,8 @@ import smartict.person.data.PersonData;
 public class LoginLogoutAction extends ActionSupport implements SessionAware{
 	
 	private Map<String,Object> sessionMap;
-	String username, password, firstname, lastname;
+	String username, password, firstname, lastname,
+	alertStatus, alertMessage;
 
 	public String getUsername() {
 		return username;
@@ -52,6 +53,22 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 		this.lastname = lastname;
 	}
 	
+	public String getAlertStatus() {
+		return alertStatus;
+	}
+
+	public void setAlertStatus(String alertStatus) {
+		this.alertStatus = alertStatus;
+	}
+
+	public String getAlertMessage() {
+		return alertMessage;
+	}
+
+	public void setAlertMessage(String alertMessage) {
+		this.alertMessage = alertMessage;
+	}
+
 	public void setSession(Map<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
@@ -89,6 +106,9 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 			lastname = persModel.getLastname();
 			
 			forwardText = "success";
+		}else{
+			alertStatus = "green green-text";
+			alertMessage = "Username หรือ Password ผิดพลาด";
 		}
 		
 		sessionMap.put("username", username);
@@ -103,7 +123,8 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		session.invalidate();
-		System.out.println("Logout !!!");
+		alertStatus = "green green-text";
+		alertMessage = "ออกจากระบบสำเร็จ";
 		return "login";
 	}
 }
