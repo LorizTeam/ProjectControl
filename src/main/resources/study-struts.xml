@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <!-- version 1.2 -->
+<struts>
+ 	
+    <constant name="struts.devMode" value="true" />
+    
+    <package name="Study" extends="struts-default">
+ 		<global-results>
+		    <result name="login">/login.jsp</result>
+		    <result name="noaccess">/noaccess.jsp</result>
+		</global-results>
+		
+		<!-- 	++++++	 Fac 	 ++++++	  -->
+		<action name="addFaculty" class="smartict.study.action.FacultyAction" method="addFaculty">
+      		<result name="success">/faculty.jsp</result>
+    	</action>
+    	
+    	<action name="viewAllFaculty" class="smartict.study.action.FacultyAction" method="viewAllFaculty">
+      		<result name="success">/faculty.jsp</result>
+    	</action>
+    	
+    	<action name="viewFaculty" class="smartict.study.action.FacultyAction" method="viewFaculty">
+      		<result name="success">/faculty-detail.jsp</result>
+    	</action>
+    	
+    	<action name="updateFaculty" class="smartict.study.action.FacultyAction" method="updateFaculty">
+      		<result name="success">/faculty-detail.jsp</result>
+    	</action>
+    	<!-- 			 Fac 		-->
+    	
+    </package>
+</struts>

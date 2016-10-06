@@ -27,4 +27,6 @@
     	<!-- 				++++++	 Treatment Waiting 	 ++++++	  		-->
     	
     </package>
+    
+    <include file="study-struts.xml"></include>
 </struts>

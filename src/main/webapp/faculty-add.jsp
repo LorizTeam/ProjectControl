@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +21,7 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post">
+				<form class="container" method="post" action="addFaculty">
 				<h4 class="center-align light-blue-text text-darken-1">Add Faculty</h4>
 				
 				<div class="card " style="padding:10px;">
@@ -29,15 +30,15 @@
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col s12 m4">
-									<input  id="first_name" type="text" class="validate">
+									<s:textfield  id="facModel.code" name="facModel.code" class="validate"/>
 									<label for="first_name">Faculty Code</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<input id="last_name" type="text" class="validate">
+									<s:textfield  id="facModel.nameth" name="facModel.nameth" class="validate"/>
 									<label for="last_name">Faculty Name (TH)</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<input  id="first_nameen" type="text" class="validate">
+									<s:textfield  id="facModel.nameen" name="facModel.nameen" class="validate"/>
 									<label for="first_nameen">Faculty Name(EN)</label>
 								</div>
 							</div>

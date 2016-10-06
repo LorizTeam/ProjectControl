@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +21,7 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post">
+				<form class="container" method="post" action="updateFaculty">
 				<h4 class="center-align light-blue-text text-darken-1">Faculty Detail</h4>
 				
 				<div class="card " style="padding:10px;">
@@ -29,16 +30,16 @@
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col s12 m4">
-									<input  id="first_name" type="text" class="validate ip" disabled>
-									<label for="first_name">Faculty Code</label>
+									<s:textfield id="facModel.code" class="validate ip" readonly="true" name="facModel.code" />
+									<label for="code">Faculty Code</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<input id="last_name" type="text" class="validate ip" disabled>
-									<label for="last_name">Faculty Name (TH)</label>
+									<s:textfield id="facModel.nameth" class="validate ip" readonly="true" name="facModel.nameth" />
+									<label for="nameth">Faculty Name (TH)</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<input  id="first_nameen" type="text" class="validate ip" disabled>
-									<label for="first_nameen">Faculty Name(EN)</label>
+									<s:textfield id="facModel.nameen" class="validate ip" readonly="true" name="facModel.nameen" />
+									<label for="nameen">Faculty Name(EN)</label>
 								</div>
 							</div>
 						</div>
@@ -47,7 +48,7 @@
 				
 				<div class="center-align">
 					<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
-					<a href="faculty.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+					<a href="viewAllFaculty" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 				</div>
 		    </form>
 		  </div>  
@@ -72,11 +73,14 @@
 			
 			 $('#btn-e').on('click',function(){
 				 if($('#btn-e').val()==0){
-					$('.ip').removeAttr('disabled');
+					$('.ip').removeAttr('readonly');
 					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
+
 				}else{
-					$('.ip').attr('disabled','disabled');
+					
+					$('.ip').attr('readonly','true');
 					$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
+					$('#btn-e').attr('type','submit');
 				}
 			 }); 
 		});

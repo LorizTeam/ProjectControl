@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,7 +45,6 @@
 				    <table id="Faculty-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
 				    			<th data-priority="1">Faculty ID</th>
 				    			<th data-priority="1">Faculty Code</th>
 				    			<th data-priority="1">Faculty Name TH</th>
@@ -53,27 +53,17 @@
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td>รหัสคณะ</td>
-				    			<td>โค๊ดคณะ</td>
-				    			<td><a href="faculty-detail.jsp">ชื่อคณะ TH</a></td>
-				    			<td>ชื่อคณะ EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td>รหัสคณะ</td>
-				    			<td>โค๊ดคณะ</td>
-				    			<td><a href="faculty-detail.jsp">ชื่อคณะ TH</a></td>
-				    			<td>ชื่อคณะ EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td>รหัสคณะ</td>
-				    			<td>โค๊ดคณะ</td>
-				    			<td><a href="faculty-detail.jsp">ชื่อคณะ TH</a></td>
-				    			<td>ชื่อคณะ EN</td>
-				    		</tr>
+				    		<s:iterator value="listFacModel">
+					    		<tr>
+					    			<td><s:property value="id"/> </td>
+					    			<td><s:property value="code"/> </td>
+					    			<s:url action="viewFaculty" var="link" escapeAmp="false">
+					    				<s:param name="facModel.code"> <s:property value="code"/> </s:param>
+					    			</s:url>
+					    			<td><a href='<s:property value="link"/>'><s:property value="nameth"/></a> </td>
+					    			<td><s:property value="nameen"/> </td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>
