@@ -30,15 +30,15 @@
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col s12 m4">
-									<s:textfield  id="facModel.code" name="facModel.code" class="validate"/>
+									<s:textfield  id="facModel.code" name="facModel.code" pattern="[A-z0-9]{1,}" title="ใส่ได้เฉพาะภาษาอังกฤษและตัวเลข" class="validate"/>
 									<label for="first_name">Faculty Code</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<s:textfield  id="facModel.nameth" name="facModel.nameth" class="validate"/>
+									<s:textfield  id="facModel.nameth" name="facModel.nameth" pattern="[ก-๙0-9]{1,}" title="ใส่ได้เฉพาะภาษาไทยและตัวเลข" class="validate"/>
 									<label for="last_name">Faculty Name (TH)</label>
 								</div>
 								<div class="input-field col s12 m4">
-									<s:textfield  id="facModel.nameen" name="facModel.nameen" class="validate"/>
+									<s:textfield  id="facModel.nameen" name="facModel.nameen" pattern="[A-z0-9]{1,}" title="ใส่ได้เฉพาะภาษาอังกฤษและตัวเลข" class="validate"/>
 									<label for="first_nameen">Faculty Name(EN)</label>
 								</div>
 							</div>

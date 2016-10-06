@@ -27,6 +27,15 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m6">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			    <div class="row" >
 			    	<div class="col s12 m6">
 			    		<a class="waves-effect waves-light btn-large col s12 " href="faculty-add.jsp">
@@ -97,6 +106,7 @@
 			 $('#icon_search').on( 'keyup', function () {
 				    table.search( this.value ).draw();
 				});
+			 
 		  });
 		</script>
 		

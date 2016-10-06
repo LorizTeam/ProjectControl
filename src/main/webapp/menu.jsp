@@ -84,5 +84,10 @@
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.js"></script>
 		<script>
-		$(".button-collapse").sideNav();
+		$(document).ready(function(){
+			$(".button-collapse").sideNav();
+			$('#alertMessage').delay(3500).fadeOut('slow');
+		});
+		
+		
 		</script>
