@@ -66,6 +66,8 @@ public class FacultyAction extends ActionSupport implements SessionAware{
 			alertStatus = "green green-text";
 			alertMessage = "เพิ่มข้อมูลคณะสำเร็จ";
 			forwardText = "success";
+			FacultyModel setfacModel = new FacultyModel(0,"","","");
+			listFacModel = facDB.getListFaculty(setfacModel);
 		}else{
 			alertStatus = "red red-text";
 			alertMessage = "เพิ่มข้อมูลคณะไม่สำเร็จ";
@@ -95,7 +97,7 @@ public class FacultyAction extends ActionSupport implements SessionAware{
 			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
 			return "login";
 		}
-		FacultyModel setfacModel = new FacultyModel(0,facModel.getCode(),"","");
+		FacultyModel setfacModel = new FacultyModel(facModel.getId(),"","","");
 		listFacModel = facDB.getListFaculty(setfacModel);
 		if(listFacModel.size() > 0){
 			facModel = (FacultyModel) listFacModel.get(0);
@@ -114,6 +116,23 @@ public class FacultyAction extends ActionSupport implements SessionAware{
 		if(facDB.updateFaculty(facModel)){
 			alertStatus = "green green-text";
 			alertMessage = "เพิ่มข้อมูลคณะสำเร็จ";
+		}
+		
+		return forwardText;
+	}
+	
+	public String deleteFaculty(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		if(facDB.deleteFaculty(facModel)){
+			alertStatus = "green green-text";
+			alertMessage = "ลบข้อมูลคณะสำเร็จ";
+			FacultyModel setfacModel = new FacultyModel(0,"","","");
+			listFacModel = facDB.getListFaculty(setfacModel);
 		}
 		
 		return forwardText;

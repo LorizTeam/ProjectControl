@@ -28,5 +28,13 @@ public class MasterIDCODE {
 	public void setNameen(String nameen) {
 		this.nameen = nameen;
 	}
+	public MasterIDCODE(){}
+	public MasterIDCODE(int id, String code, String nameth, String nameen) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nameth = nameth;
+		this.nameen = nameen;
+	}
 	
 }

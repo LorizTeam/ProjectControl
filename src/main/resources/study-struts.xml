@@ -29,7 +29,38 @@
     	<action name="updateFaculty" class="smartict.study.action.FacultyAction" method="updateFaculty">
       		<result name="success">/faculty-detail.jsp</result>
     	</action>
+    	
+    	<action name="deleteFaculty" class="smartict.study.action.FacultyAction" method="deleteFaculty">
+      		<result name="success">/faculty.jsp</result>
+    	</action>
     	<!-- 			 Fac 		-->
+    	
+    	<!-- 			Branch			 -->
+    	<action name="inputBranchData" class="smartict.study.action.BranchAction" method="inputBranchData">
+      		<result name="success">/branch-add.jsp</result>
+    	</action>
+    	
+    	<action name="addBranch" class="smartict.study.action.BranchAction" method="addBranch">
+      		<result name="success">/branch.jsp</result>
+      		<result name="inputbranch">/branch-add.jsp</result>
+    	</action>
+    	
+    	<action name="viewAllBranch" class="smartict.study.action.BranchAction" method="viewAllBranch">
+      		<result name="success">/branch.jsp</result>
+    	</action>
+    	
+    	<action name="viewBranchDetail" class="smartict.study.action.BranchAction" method="viewBranchDetail">
+      		<result name="success">/branch-detail.jsp</result>
+    	</action>
+    	
+    	<action name="updateBranch" class="smartict.study.action.BranchAction" method="updateBranch">
+      		<result name="success">/branch-detail.jsp</result>
+    	</action>
+    	
+    	<action name="deleteBranch" class="smartict.study.action.BranchAction" method="deleteBranch">
+      		<result name="success">/branch.jsp</result>
+    	</action>
+    	<!-- 			Branch			 -->
     	
     </package>
 </struts>

@@ -26,9 +26,18 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="branch-add.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="inputBranchData">
 	      					<i class="material-icons left">add</i>Add Branch
 	      				</a>
 			    	</div>
@@ -44,36 +53,31 @@
 				    <table id="Branch-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
 				    			<th data-priority="1">Branch ID</th>
 				    			<th data-priority="1">Branch Code</th>
 				    			<th data-priority="1">Branch Name TH</th>
 				    			<th data-priority="1">Branch Name EN</th>
+				    			<th data-priority="1">Faculty Name TH</th>
 				    		</tr>
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td>รหัสสาขา</td>
-				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
-				    			<td>ชื่อสาขา EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td>รหัสสาขา</td>
-				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
-				    			<td>ชื่อสาขา EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td>รหัสสาขา</td>
-				    			<td>โค๊ดสาขา</td>
-				    			<td><a href="branch-detail.jsp">ชื่อสาขา TH</a></td>
-				    			<td>ชื่อสาขา EN</td>
-				    		</tr>
+				    		<s:iterator value="listBranchModel">
+				    			<tr>
+					    			<td><s:property value="id"/> </td>
+					    			<td><s:property value="code"/></td>
+					    			<td>
+					    				<s:url action="viewBranchDetail" var="linkurl">
+					    					<s:param name="braModel.id"><s:property value='id'/></s:param>
+					    				</s:url>
+					    				<a href='<s:property value="linkurl"/>'><s:property value="nameth"/></a>
+					    			</td>
+					    			<td>
+					    				<s:property value="nameen"/>
+					    			</td>
+					    			<td><s:property value="facultyNameTh"/></td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>

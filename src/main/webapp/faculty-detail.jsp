@@ -30,6 +30,7 @@
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col s12 m4">
+									<s:hidden name="facModel.id"/>
 									<s:textfield id="facModel.code" class="validate ip" readonly="true" name="facModel.code" />
 									<label for="code">Faculty Code</label>
 								</div>
@@ -47,7 +48,11 @@
 				</div>
 				
 				<div class="center-align">
-					<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
+					<button type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
+					<s:url action="deleteFaculty" var="delLink">
+						<s:param name="facModel.id"><s:property value="facModel.id"/></s:param>
+					</s:url>
+					<a href='<s:property value="delLink"/>' class="waves-effect waves-red  red btn ">Delete</a>
 					<a href="viewAllFaculty" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 				</div>
 		    </form>

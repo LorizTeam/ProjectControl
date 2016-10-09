@@ -29,7 +29,7 @@
 		    <div class="div-container">
 		    	<s:if test="alertStatus != null ">
 		    		<div class="row" >
-		    			<div class="col s12 m6">
+		    			<div class="col s12 m12">
 			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
 			            		<s:property value="alertMessage"/>
 			            	</div>
@@ -67,7 +67,7 @@
 					    			<td><s:property value="id"/> </td>
 					    			<td><s:property value="code"/> </td>
 					    			<s:url action="viewFaculty" var="link" escapeAmp="false">
-					    				<s:param name="facModel.code"> <s:property value="code"/> </s:param>
+					    				<s:param name="facModel.id"> <s:property value="id"/> </s:param>
 					    			</s:url>
 					    			<td><a href='<s:property value="link"/>'><s:property value="nameth"/></a> </td>
 					    			<td><s:property value="nameen"/> </td>

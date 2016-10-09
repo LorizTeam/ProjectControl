@@ -107,7 +107,7 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 			
 			forwardText = "success";
 		}else{
-			alertStatus = "green green-text";
+			alertStatus = "red red-text";
 			alertMessage = "Username หรือ Password ผิดพลาด";
 		}
 		

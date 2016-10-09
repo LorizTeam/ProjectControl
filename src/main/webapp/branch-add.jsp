@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +21,16 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post">
+				<form class="container" action="addBranch" method="post">
+				<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 				<h4 class="center-align light-blue-text text-darken-1">Add Branch</h4>
 				
 				<div class="card " style="padding:10px;">
@@ -29,24 +39,20 @@
 						<div class="col s12">
 							<div class="row">
 								<div class="input-field col 12 m6">
-									<select>
-										<option value="" disabled selected>Choose Your Faculty</option>
-										<option value="1">ICT</option>
-										<option value="2">BUS</option>
-									</select>
+									<s:select list="mapFacModel" name="braModel.facultyId"></s:select>
 									<label>Faculty</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input  id="first_name" type="text" class="validate">
-									<label for="first_name">Branch Code</label>
+									<s:textfield id="code" type="text"  class="validate" name="braModel.code"/>
+									<label for="code">Branch Code</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input id="last_name" type="text" class="validate">
-									<label for="last_name">Branch Name (TH)</label>
+									<s:textfield id="nameth" type="text"  class="validate" name="braModel.nameth"/>
+									<label for="nameth">Branch Name (TH)</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input  id="first_nameen" type="text" class="validate">
-									<label for="first_nameen">Branch Name(EN)</label>
+									<s:textfield id="nameen" type="text"  class="validate" name="braModel.nameen"/>
+									<label for="nameen">Branch Name(EN)</label>
 								</div>
 							</div>
 						</div>
