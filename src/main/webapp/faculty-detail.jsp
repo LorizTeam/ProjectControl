@@ -22,6 +22,15 @@
 		    </div>
 		    <div class="div-container ">
 				<form class="container" method="post" action="updateFaculty">
+				<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 				<h4 class="center-align light-blue-text text-darken-1">Faculty Detail</h4>
 				
 				<div class="card " style="padding:10px;">

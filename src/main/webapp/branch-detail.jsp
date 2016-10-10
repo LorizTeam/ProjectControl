@@ -20,7 +20,9 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-		    	<s:if test="alertStatus != null ">
+		    	
+				<form class="container" action="updateBranch" method="post">
+				<s:if test="alertStatus != null ">
 		    		<div class="row" >
 		    			<div class="col s12 m12">
 			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
@@ -29,7 +31,6 @@
 		            	</div>
 		    		</div>
 				</s:if>
-				<form class="container" action="updateBranch" method="post">
 				<h4 class="center-align light-blue-text text-darken-1">Branch Detail</h4>
 				
 				<div class="card " style="padding:10px;">
@@ -37,8 +38,8 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
-								<div class="input-field col s12 se"style="display:none;">
-									<s:select list="mapFacModel" name="braModel.facultyId"  readonly="true" value="braModel.facultyId"></s:select>
+								<div class="input-field col s12">
+									<s:select list="mapFacModel" class="validate ip" name="braModel.facultyId"  readonly="true" value="braModel.facultyId"></s:select>
 									<label>Faculty</label>
 								</div>
 								<div class="input-field col s12 m6">
@@ -90,8 +91,6 @@
 			
 			 $('#btn-e').on('click',function(){
 			 	if($('#btn-e').val()==0){
-			 		$('.s').hide();
-					$('.se').show();
 					$('.ip').removeAttr('readonly');
 					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
 

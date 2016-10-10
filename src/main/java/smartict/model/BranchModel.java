@@ -38,6 +38,11 @@ public class BranchModel extends MasterIDCODE {
 	
 	public BranchModel(){}
 
+	public BranchModel(int braId, String code, String nameth, String  nameen) {
+		super(braId, code, nameth, nameen);
+		
+	}
+
 	public BranchModel(int braId, String code, String nameth, String  nameen, 
 						int facId, String facNameTH, String facNameEn, String facCode) {
 		super(braId, code, nameth, nameen);
@@ -46,6 +51,5 @@ public class BranchModel extends MasterIDCODE {
 		this.facultyNameEn = facNameEn;
 		this.facultyCode = facCode;
 	}
-	
 	
 }

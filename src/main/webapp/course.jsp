@@ -26,9 +26,18 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="course-add.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="inputCourseData">
 	      					<i class="material-icons left">add</i>Add Course
 	      				</a>
 			    	</div>
@@ -44,36 +53,32 @@
 				    <table id="Course-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
+				    			
 				    			<th data-priority="1">Course ID</th>
 				    			<th data-priority="1">Course Code</th>
 				    			<th data-priority="1">Course Name TH</th>
 				    			<th data-priority="1">Course Name EN</th>
+				    			<th data-priority="1">Branch Name TH</th>
 				    		</tr>
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td>รหัสรายวิชา</td>
-				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
-				    			<td>ชื่อรายวิชา EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td>รหัสรายวิชา</td>
-				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
-				    			<td>ชื่อรายวิชา EN</td>
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td>รหัสรายวิชา</td>
-				    			<td>โค๊ดรายวิชา</td>
-				    			<td><a href="course-detail.jsp">ชื่อรายวิชา TH</a></td>
-				    			<td>ชื่อรายวิชา EN</td>
-				    		</tr>
+				    		<s:iterator value="listCourseModel">
+				    			<tr>
+					    			<td><s:property value="id"/> </td>
+					    			<td><s:property value="code"/></td>
+					    			<td>
+					    				<s:url action="viewCourseDetail" var="linkurl">
+					    					<s:param name="couModel.id"><s:property value='id'/></s:param>
+					    				</s:url>
+					    				<a href='<s:property value="linkurl"/>'><s:property value="nameth"/></a>
+					    			</td>
+					    			<td>
+					    				<s:property value="nameen"/>
+					    			</td>
+					    			<td><s:property value="branchNameTh"/></td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>

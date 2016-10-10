@@ -20,37 +20,40 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post">
+				<form class="container" action="updateCourse" method="post">
+				<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 				<h4 class="center-align light-blue-text text-darken-1">Course Detail</h4>
 				
 				<div class="card " style="padding:10px;">
 					<h5 class="cyan-text text-darken-1">Course Details</h5>
+					
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
-								<div class="input-field col s12 s">
-								    <input id="Faculty" type="text" class="validate " value="ICT"disabled>
-						          	<label for="Faculty">Teacher Faculty</label>
-								</div>
-								<div class="input-field col s12 se"style="display:none;">
-									<select>
-										<option value="" disabled selected>Choose Your Faculty</option>
-										<option value="1">ICT</option>
-										<option value="2">BUS</option>
-									</select>
-									<label>Faculty</label>
+								<div class="input-field col 12 m6">
+									<s:select list="mapBraModel" class="validate ip" name="couModel.branchId" readonly="true" value="couModel.branchId" ></s:select>
+									<label>Branch</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input  id="first_name" type="text" class="validate ip"disabled>
-									<label for="first_name">Course Code</label>
+									<s:hidden name="couModel.id" />
+									<s:textfield id="code" type="text" class="validate ip" readonly="true" name="couModel.code"/>
+									<label for="code">Course Code</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input id="last_name" type="text" class="validate ip"disabled>
-									<label for="last_name">Course Name (TH)</label>
+									<s:textfield id="nameth" type="text" class="validate ip" readonly="true" name="couModel.nameth"/>
+									<label for="nameth">Course Name (TH)</label>
 								</div>
 								<div class="input-field col s12 m6">
-									<input  id="first_nameen" type="text" class="validate ip"disabled>
-									<label for="first_nameen">Course Name(EN)</label>
+									<s:textfield id="nameen" type="text" class="validate ip" readonly="true" name="couModel.nameen"/>
+									<label for="nameen">Course Name(EN)</label>
 								</div>
 							</div>
 						</div>
@@ -59,7 +62,11 @@
 				
 				<div class="center-align">
 					<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
-			    	<a href="course.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+			    	<s:url action="deleteCourse" var="delLink">
+						<s:param name="couModel.id"><s:property value="couModel.id"/></s:param>
+					</s:url>
+					<a href='<s:property value="delLink"/>' class="waves-effect waves-red  red btn ">Delete</a>
+			    	<a href="viewAllCourse" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 				</div>
 		    </form>
 		  </div>  
@@ -82,20 +89,17 @@
 			 $('.page-title').text('Course Detail');
 			 $('select').material_select();
 			 $('#btn-e').on('click',function(){
-					if($('#btn-e').val()==0){
-						
-						$('.s').hide();
-						$('.se').show();
-						$('.ip').removeAttr('disabled');
-						$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
-					}else{
+			 	if($('#btn-e').val()==0){
+					$('.ip').removeAttr('readonly');
+					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
 
-						$('.s').show();
-						$('.se').hide();
-						$('.ip').attr('disabled','disabled');
-						$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
-					}
-				});
+				}else{
+					
+					$('.ip').attr('readonly','true');
+					$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
+					$('#btn-e').attr('type','submit');
+				}
+			});
 			 
 		});
 		</script>

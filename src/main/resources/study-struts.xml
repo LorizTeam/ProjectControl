@@ -62,5 +62,32 @@
     	</action>
     	<!-- 			Branch			 -->
     	
+    	<!-- 			Course			 -->
+    	<action name="inputCourseData" class="smartict.study.action.CourseAction" method="inputCourseData">
+      		<result name="success">/course-add.jsp</result>
+    	</action>
+    	
+    	<action name="addCourse" class="smartict.study.action.CourseAction" method="addCourse">
+      		<result name="success">/course.jsp</result>
+      		<result name="inputbranch">/course-add.jsp</result>
+    	</action>
+    	
+    	<action name="viewAllCourse" class="smartict.study.action.CourseAction" method="viewAllCourse">
+      		<result name="success">/course.jsp</result>
+    	</action>
+    	
+    	<action name="viewCourseDetail" class="smartict.study.action.CourseAction" method="viewCourseDetail">
+      		<result name="success">/course-detail.jsp</result>
+    	</action>
+    	
+    	<action name="updateCourse" class="smartict.study.action.CourseAction" method="updateCourse">
+      		<result name="success">/course-detail.jsp</result>
+    	</action>
+    	
+    	<action name="deleteCourse" class="smartict.study.action.CourseAction" method="deleteCourse">
+      		<result name="success">/course.jsp</result>
+    	</action>
+    	<!-- 			Course			 -->
+    	
     </package>
 </struts>
