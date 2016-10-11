@@ -1,5 +1,6 @@
 package smict.project.action;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -25,6 +26,20 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	String inputStudentId, inputTeacherId, alertStatus, alertMessage;;
 	Validate cValidate = new Validate();
 	Map<String, String> mapTeacher, mapCourse, mapStudent;
+	List<ProjectModel> listProModel;
+	
+	public String viewProjectAll(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		listProModel = projectDB.getListProject();
+		
+		return forwardText;
+	}
 	
 	public String inputProjectData(){
 		String forwardText = "success";
@@ -99,6 +114,8 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "เพิ่มข้อมูล Project สำเร็จ";
 			forwardText = "success";
 		}
+		
+		listProModel = projectDB.getListProject();
 		
 		return forwardText;
 	}
@@ -182,6 +199,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 	public void setProModel(ProjectModel proModel) {
 		this.proModel = proModel;
+	}
+
+	public List<ProjectModel> getListProModel() {
+		return listProModel;
+	}
+
+	public void setListProModel(List<ProjectModel> listProModel) {
+		this.listProModel = listProModel;
 	}
 
 }

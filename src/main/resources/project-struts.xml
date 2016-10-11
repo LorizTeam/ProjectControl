@@ -22,6 +22,10 @@
       		<result name="success">/project.jsp</result>
       		<result name="input">/project-add.jsp</result>
     	</action>
+    	
+    	<action name="viewProjectAll" class="smict.project.action.ProjectAction" method="viewProjectAll">
+      		<result name="success">/project.jsp</result>
+    	</action>
     	<!-- 	++++++	 Project 	 ++++++	  -->
     	
     </package>

@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class ProjectModel {
+public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
-	project_status_id, course_id;
-	String project_nameth, project_nameen;
+	project_status_id, course_id, faclulty_id;
+	String project_nameth, project_nameen, course_nameth, course_nameen,
+			showScoreProject, faclulty_nameth, faclulty_nameen;
 	Double exam_score;
 	DateTime createdatetime;
 	
@@ -89,19 +90,60 @@ public class ProjectModel {
 	public void setExam_score(Double exam_score) {
 		this.exam_score = exam_score;
 	}
-	public DateTime getCreatedatetime() {
-		return createdatetime;
-	}
-	public void setCreatedatetime(DateTime createdatetime) {
-		this.createdatetime = createdatetime;
-	}
-
 	public List<StudentModel> getListStudent() {
 		return listStudent;
 	}
 
 	public void setListStudent(List<StudentModel> listStudent) {
 		this.listStudent = listStudent;
+	}
+
+	public String getCourse_nameth() {
+		return course_nameth;
+	}
+
+	public void setCourse_nameth(String course_nameth) {
+		this.course_nameth = course_nameth;
+	}
+
+	public String getCourse_nameen() {
+		return course_nameen;
+	}
+
+	public void setCourse_nameen(String course_nameen) {
+		this.course_nameen = course_nameen;
+	}
+
+	public String getShowScoreProject() {
+		return showScoreProject;
+	}
+
+	public void setShowScoreProject(String showScoreProject) {
+		this.showScoreProject = showScoreProject;
+	}
+
+	public int getFaclulty_id() {
+		return faclulty_id;
+	}
+
+	public void setFaclulty_id(int faclulty_id) {
+		this.faclulty_id = faclulty_id;
+	}
+
+	public String getFaclulty_nameth() {
+		return faclulty_nameth;
+	}
+
+	public void setFaclulty_nameth(String faclulty_nameth) {
+		this.faclulty_nameth = faclulty_nameth;
+	}
+
+	public String getFaclulty_nameen() {
+		return faclulty_nameen;
+	}
+
+	public void setFaclulty_nameen(String faclulty_nameen) {
+		this.faclulty_nameen = faclulty_nameen;
 	}
 	
 	

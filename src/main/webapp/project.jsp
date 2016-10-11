@@ -38,7 +38,7 @@
 		    	<form action="#" method="post">
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="project-add.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="inputProjectData">
 	      					<i class="material-icons left">add</i>Add Project
 	      				</a>
 			    	</div>
@@ -62,7 +62,7 @@
 				    		<tr>
 				    			<th data-priority="1">No.</th>
 				    			<th data-priority="1">Project Name TH</th>
-				    			<th data-priority="1">Student</th>
+				    			<th data-priority="1">Project Name EN</th>
 				    			<th data-priority="2">Adviser</th>
 				    			<th data-priority="3">Score</th>
 				    			<th data-priority="2">Course</th>
@@ -72,38 +72,19 @@
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค1</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>40/100</td>
-				    			<td>HUM3002-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค2</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
-				    			<td>ICT442-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td><a href="project-detail.jsp"> ทดลองเพิ่มชื่อโปรเจค3</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
-				    			<td>ICT443-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    		</tr>
+				    		<s:iterator value="listProModel">
+				    			<tr>
+					    			<td><s:property value="id"/> </td>
+					    			<td><a href="project-detail.jsp"> <s:property value="project_nameth"/></a></td>
+					    			<td><s:property value="project_nameen"/></td>
+					    			<td><s:property value="firstname"/></td>
+					    			<td><s:property value="showScoreProject"/></td>
+					    			<td><s:property value="course_nameth"/></td>
+					    			<td><s:property value="faclulty_nameth"/></td>
+					    			<td><s:property value="createdatetime"/></td>
+					    		</tr>
+				    		</s:iterator>
+				    		
 				    	</tbody>
 				    </table>
 			    </div>
