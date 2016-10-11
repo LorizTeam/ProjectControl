@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/select2.css">
 		
 	</head>
 	<body>
@@ -28,20 +29,24 @@
 				    <div class="col s12">
 				      <div class="row">
 				        <div class="input-field col s12">
-				          <input  id="first_name" type="text" class="validate">
+				          <s:textfield name="proModel.project_nameth" class="validate" />
 				          <label for="first_name">Project Name(TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <input id="last_name" type="text" class="validate">
+				          <s:textfield name="proModel.project_nameen" class="validate" />
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
-						    <select >
-						      <option value="" disabled selected>Choose Project Teacher</option>
-						      <option value="1">aj.benz</option>
-						      <option value="2">aj.rorh</option>
-						      <option value="3">aj.ring</option>
-						    </select>
+				          <s:textfield name="proModel.score_pass" class="validate" />
+				          <label for="last_name">Score Pass</label>
+				        </div>
+				        
+				        <div class="input-field col s12">
+						    <s:select list="mapCourse" name="proModel.course_id"></s:select>
+						    <label>Course</label>
+						</div>
+				        <div class="input-field col s12">
+						    <s:select list="mapTeacher" name="proModel.teacher_id"></s:select>
 						    <label>Teacher Adviser</label>
 						</div>
 						
@@ -88,12 +93,25 @@
 	    </div>
 		<script type="text/javascript">
 		 $(document).ready(function(){
+			 
 			 $('.m1').addClass('active');
 			 $('.m1-2').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Add Project');
 			 $('select').material_select();
+			 
+			 var obj = null;
+			 $.ajax({
+		        type: "post",
+		        url: "ajax/ajax-ajax-student.jsp", //this is my servlet 
+		        data: {method_type:"get"},
+		        async:false, 
+		        success: function(result){
+		        	obj = jQuery.parseJSON(result);
+			    } 
+		     });
 			 $('input.autocomplete').autocomplete({
+				 
 				    data:{
 				        "56013506 Noppol kongsattra. ": null,
 				        "56013509 Manuwat Chaichana. ": null

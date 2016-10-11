@@ -9,9 +9,9 @@ public class PersonModel {
 			addr_bloc, addr_village, addr_alley, addr_road, 
 			addr_provinceid, addr_aumphurid, addr_districtid, addr_zipcode, 
 			tel_number, email, line_id, username,
-			password;
-	Date startdate;
-	DateTime createdatetime;
+			password, identification_type_name, prename_name_short, province_name, 
+			amphur_name, district_name;
+	Date startdate, createdatetime;
 	int prename_id, identification_type_id;
 	
 	
@@ -20,6 +20,43 @@ public class PersonModel {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public PersonModel(String firstname, String lastname, String identification, String addr_no, String addr_bloc,
+			String addr_village, String addr_alley, String addr_road, String addr_provinceid, String addr_aumphurid,
+			String addr_districtid, String addr_zipcode, String tel_number, String email, String line_id,
+			String username, String password, String identification_type_name, String prename_name_short,
+			String province_name, String amphur_name, String district_name, Date startdate, Date createdatetime,
+			int prename_id, int identification_type_id) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.identification = identification;
+		this.addr_no = addr_no;
+		this.addr_bloc = addr_bloc;
+		this.addr_village = addr_village;
+		this.addr_alley = addr_alley;
+		this.addr_road = addr_road;
+		this.addr_provinceid = addr_provinceid;
+		this.addr_aumphurid = addr_aumphurid;
+		this.addr_districtid = addr_districtid;
+		this.addr_zipcode = addr_zipcode;
+		this.tel_number = tel_number;
+		this.email = email;
+		this.line_id = line_id;
+		this.username = username;
+		this.password = password;
+		this.identification_type_name = identification_type_name;
+		this.prename_name_short = prename_name_short;
+		this.province_name = province_name;
+		this.amphur_name = amphur_name;
+		this.district_name = district_name;
+		this.startdate = startdate;
+		this.createdatetime = createdatetime;
+		this.prename_id = prename_id;
+		this.identification_type_id = identification_type_id;
+	}
+
+
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -128,10 +165,10 @@ public class PersonModel {
 	public void setStartdate(Date startdate) {
 		this.startdate = startdate;
 	}
-	public DateTime getCreatedatetime() {
+	public Date getCreatedatetime() {
 		return createdatetime;
 	}
-	public void setCreatedatetime(DateTime createdatetime) {
+	public void setCreatedatetime(Date createdatetime) {
 		this.createdatetime = createdatetime;
 	}
 	public int getPrename_id() {
@@ -145,6 +182,46 @@ public class PersonModel {
 	}
 	public void setIdentification_type_id(int identification_type_id) {
 		this.identification_type_id = identification_type_id;
+	}
+
+	public String getIdentification_type_name() {
+		return identification_type_name;
+	}
+
+	public void setIdentification_type_name(String identification_type_name) {
+		this.identification_type_name = identification_type_name;
+	}
+
+	public String getPrename_name_short() {
+		return prename_name_short;
+	}
+
+	public void setPrename_name_short(String prename_name_short) {
+		this.prename_name_short = prename_name_short;
+	}
+
+	public String getProvince_name() {
+		return province_name;
+	}
+
+	public void setProvince_name(String province_name) {
+		this.province_name = province_name;
+	}
+
+	public String getAmphur_name() {
+		return amphur_name;
+	}
+
+	public void setAmphur_name(String amphur_name) {
+		this.amphur_name = amphur_name;
+	}
+
+	public String getDistrict_name() {
+		return district_name;
+	}
+
+	public void setDistrict_name(String district_name) {
+		this.district_name = district_name;
 	}
 	
 	

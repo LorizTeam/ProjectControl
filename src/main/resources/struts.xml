@@ -29,4 +29,5 @@
     </package>
     
     <include file="study-struts.xml"></include>
+    <include file="project-struts.xml"></include>
 </struts>

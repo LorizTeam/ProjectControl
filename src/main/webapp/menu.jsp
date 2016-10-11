@@ -18,7 +18,7 @@
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li class="m1-1"><a class="waves-effect waves-light" href="project.jsp"><i class="material-icons">view_list</i>Project List</a></li>
-	      		<li class="m1-2"><a class="waves-effect waves-light" href="project-add.jsp"><i class="material-icons">playlist_add</i>Add Project</a></li>
+	      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
 				<li class="m1-3"><a class="waves-effect waves-light" href="project-random.jsp"><i class="material-icons">shuffle</i>Random Project</a></li>
 	      	</ul>
 	      </div>
@@ -83,6 +83,7 @@
 </header>
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="js/materialize.js"></script>
+		<script type="text/javascript" src="js/select2.js"></script>
 		<script>
 		$(document).ready(function(){
 			$(".button-collapse").sideNav();
