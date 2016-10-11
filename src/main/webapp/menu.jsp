@@ -19,7 +19,7 @@
 	      	<ul>
 	      		<li class="m1-1"><a class="waves-effect waves-light" href="project.jsp"><i class="material-icons">view_list</i>Project List</a></li>
 	      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
-				<li class="m1-3"><a class="waves-effect waves-light" href="project-random.jsp"><i class="material-icons">shuffle</i>Random Project</a></li>
+				<li class="m1-3"><a class="waves-effect waves-light" href="project-sequence.jsp"><i class="material-icons">shuffle</i>Random Project</a></li>
 	      	</ul>
 	      </div>
 	    </li>
