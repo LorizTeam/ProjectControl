@@ -29,6 +29,9 @@ public class BranchData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +54,9 @@ public class BranchData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,6 +78,9 @@ public class BranchData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasDeleteBranch = true;
 			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,6 +120,10 @@ public class BranchData {
 				listBraModel.add(new BranchModel(rs.getInt("branch_id"), rs.getString("branch_code"), rs.getString("branch_nameth"), rs.getString("branch_nameen"), 
 									rs.getInt("faculty_id"), rs.getString("faculty_code"), rs.getString("faculty_nameth"), rs.getString("faculty_nameen")));
 			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,6 +164,10 @@ public class BranchData {
 				mapBra.put(rs.getString("branch_id"), rs.getString("branch_nameth"));
 				
 			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

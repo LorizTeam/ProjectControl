@@ -27,7 +27,9 @@ public class PersonData {
 				persModel.setFirstname(rs.getString("firstname"));
 				persModel.setLastname(rs.getString("lastname"));
 			}
-			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,7 +54,9 @@ public class PersonData {
 				persModel.setFirstname(rs.getString("firstname"));
 				persModel.setLastname(rs.getString("lastname"));
 			}
-			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +81,9 @@ public class PersonData {
 				persModel.setFirstname(rs.getString("firstname"));
 				persModel.setLastname(rs.getString("lastname"));
 			}
-			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

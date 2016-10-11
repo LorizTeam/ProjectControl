@@ -28,6 +28,10 @@ public class CourseData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +54,9 @@ public class CourseData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,6 +78,9 @@ public class CourseData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasDeleteCourse = true;
 			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +120,9 @@ public class CourseData {
 				listcouModel.add(new CourseModel(rs.getInt("course_id"), rs.getString("course_code"), rs.getString("course_nameth"), rs.getString("course_nameen"), 
 									rs.getInt("branch_id"), rs.getString("branch_code"), rs.getString("branch_nameth"), rs.getString("branch_nameen")));
 			}
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,6 +163,9 @@ public class CourseData {
 				mapBra.put(rs.getString("course_id"), rs.getString("course_nameth"));
 				
 			}
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

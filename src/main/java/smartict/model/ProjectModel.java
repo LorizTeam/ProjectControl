@@ -1,5 +1,7 @@
 package smartict.model;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class ProjectModel {
@@ -8,6 +10,8 @@ public class ProjectModel {
 	String project_nameth, project_nameen;
 	Double exam_score;
 	DateTime createdatetime;
+	
+	List<StudentModel> listStudent;
 	
 	public ProjectModel() {
 		super();
@@ -90,6 +94,14 @@ public class ProjectModel {
 	}
 	public void setCreatedatetime(DateTime createdatetime) {
 		this.createdatetime = createdatetime;
+	}
+
+	public List<StudentModel> getListStudent() {
+		return listStudent;
+	}
+
+	public void setListStudent(List<StudentModel> listStudent) {
+		this.listStudent = listStudent;
 	}
 	
 	

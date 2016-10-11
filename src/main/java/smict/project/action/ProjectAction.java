@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import smartict.model.CourseModel;
 import smartict.model.ProjectModel;
+import smartict.person.data.StudentData;
 import smartict.person.data.TeacherData;
 import smartict.study.data.CourseData;
 import smict.project.data.ProjectData;
@@ -18,9 +19,30 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	ProjectModel proModel;
 	ProjectData projectDB = new ProjectData();
 	TeacherData teachDB = new TeacherData();
+	StudentData studentDB = new StudentData();
 	CourseData courseDB = new CourseData();
-	Map<String, String> mapTeacher, mapCourse;
+	String inputStudentId, inputTeacherId;
 	
+	Map<String, String> mapTeacher, mapCourse, mapStudent;
+	
+	public String inputProjectData(){
+
+		mapTeacher = teachDB.getMapTeacher();
+		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
+		mapCourse = courseDB.getMapCourse(couModel);
+		mapStudent = studentDB.getMapStudent();
+		
+		String[] studentId, teacherId;
+		studentId = inputStudentId.split(",");
+		teacherId = inputTeacherId.split(",");
+		
+		
+		
+		return "success";
+	}
+	
+	
+	//GetSet
 	public Map<String, String> getMapTeacher() {
 		return mapTeacher;
 	}
@@ -40,13 +62,31 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	public void setMapCourse(Map<String, String> mapCourse) {
 		this.mapCourse = mapCourse;
 	}
-
-	public String inputProjectData(){
-		System.out.println("Input Method");
-		
-		mapTeacher = teachDB.getMapTeacher();
-		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
-		mapCourse = courseDB.getMapCourse(couModel);
-		return "success";
+	public Map<String, String> getMapStudent() {
+		return mapStudent;
 	}
+
+	public void setMapStudent(Map<String, String> mapStudent) {
+		this.mapStudent = mapStudent;
+	}
+	
+	public String getInputStudentId() {
+		return inputStudentId;
+	}
+
+
+	public void setInputStudentId(String inputStudentId) {
+		this.inputStudentId = inputStudentId;
+	}
+
+
+	public String getInputTeacherId() {
+		return inputTeacherId;
+	}
+
+
+	public void setInputTeacherId(String inputTeacherId) {
+		this.inputTeacherId = inputTeacherId;
+	}
+
 }

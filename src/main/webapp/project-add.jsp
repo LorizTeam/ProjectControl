@@ -37,9 +37,14 @@
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
+				          <s:textfield name="proModel.exam_score" class="validate" />
+				          <label for="last_name">Full Score</label>
+				        </div>
+				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score_pass" class="validate" />
 				          <label for="last_name">Score Pass</label>
 				        </div>
+				        
 				        
 				        <div class="input-field col s12">
 						    <s:select list="mapCourse" name="proModel.course_id"></s:select>
@@ -59,18 +64,17 @@
 		    	<h5 class="cyan-text text-darken-1">Student</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
-						<div class="chips ">
-							 
-						</div>
-					</div>
-					<div class="input-field col s6 auc">
-					  <i class="material-icons prefix">recent_actors</i>
-					  <input type="text" id="autocomplete-input2" class="autocomplete">
+					  <s:select list="mapStudent" name="inputStudentId" multiple="true"></s:select>
 					  <label for="autocomplete-input2">Add Student</label>
 					</div>
-					<div class=" col s6 ">
-					   <button type="button" class="modal-action modal-close waves-effect waves-green btn addstu">add Student</button>
-					   <button id="chkData">check Data</button>
+				</div>
+		    </div>
+		    <div class="card " style="padding:10px;">
+		    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
+		    	<div class="row">
+					<div class="input-field col s12">
+					  <s:select list="mapTeacher" name="inputTeacherId" multiple="true"></s:select>
+					  <label for="autocomplete-input2">Add Student</label>
 					</div>
 				</div>
 		    </div>
@@ -98,51 +102,7 @@
 			 $('.m1-2').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Add Project');
-			 $('select').material_select();
-			 
-			 var obj = null;
-			 $.ajax({
-		        type: "post",
-		        url: "ajax/ajax-ajax-student.jsp", //this is my servlet 
-		        data: {method_type:"get"},
-		        async:false, 
-		        success: function(result){
-		        	obj = jQuery.parseJSON(result);
-			    } 
-		     });
-			 $('input.autocomplete').autocomplete({
-				 
-				    data:{
-				        "56013506 Noppol kongsattra. ": null,
-				        "56013509 Manuwat Chaichana. ": null
-				      }
-			 });
-			 $('#autocomplete-input2').on('keyup', function (e) {
-		            // Capture Enter
-		            if (e.which === 13&&$('#autocomplete-input2').val()!='') {
-		            	$('.chips').append('<div class="chip">'+$('#autocomplete-input2').val()+'<i class="close material-icons">close</i></div>');
-		            	$('#autocomplete-input2').val('');
-		            	
-		              return;
-		            }
-			 });
-			 $('.addstu').on('click', function(){
-				 
-				 if ($('#autocomplete-input2').val()!='') {
-				 
-	            	$('.chips').append('<div class="chip">'+$('#autocomplete-input2').val()+'<i class="close material-icons">close</i></div>');
-	            	$('#autocomplete-input2').val('');
-	            	
-	              return;
-				 }
-			 });
-			$('#chkData').on('click', function(){
-				 
-				 var datachip = $('.chips').text();
-				 datachip = datachip.replace(/close/g,'');
-				 alert(datachip.trim());
-				 
-				
+			 $('select').select2({
 			 });
 		});
 		</script>

@@ -28,6 +28,10 @@ public class FacultyData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +54,10 @@ public class FacultyData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasAddFaculty = true;
 			}
+			
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,6 +79,10 @@ public class FacultyData {
 			if(stmt.executeUpdate(sql) > 0){
 				hasDeleteFaculty = true;
 			}
+			
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,6 +125,10 @@ public class FacultyData {
 				facModel.setNameen(rs.getString("faculty_nameen"));
 				listFacModel.add(facModel);
 			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,6 +169,10 @@ public class FacultyData {
 				mapFac.put(rs.getString("faculty_id"), rs.getString("faculty_nameth"));
 				
 			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
