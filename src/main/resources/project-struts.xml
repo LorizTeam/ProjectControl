@@ -17,6 +17,11 @@
 		<action name="inputProjectData" class="smict.project.action.ProjectAction" method="inputProjectData">
       		<result name="success">/project-add.jsp</result>
     	</action>
+    	
+    	<action name="addProject" class="smict.project.action.ProjectAction" method="addProject">
+      		<result name="success">/project.jsp</result>
+      		<result name="input">/project-add.jsp</result>
+    	</action>
     	<!-- 	++++++	 Project 	 ++++++	  -->
     	
     </package>

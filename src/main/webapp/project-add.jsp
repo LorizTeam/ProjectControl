@@ -22,6 +22,16 @@
 		    </div>
 		    <div class="div-container ">
 			   <div class="container">
+			   <s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
+			   <form action="addProject" method="post">
 			   <h4 class="center-align light-blue-text text-darken-1">Add Project</h4>
 			    <div class="card " style="padding:10px;">
 			    <h5 class="cyan-text text-darken-1">Project Details</h5>
@@ -82,6 +92,7 @@
 		      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
 		      <button type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</button>
 		      </div>
+		      </form>
 		    </div>
 		  </div>  
 		    

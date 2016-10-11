@@ -26,6 +26,16 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
+		    	<form action="#" method="post">
 			    <div class="row" >
 			    	<div class="col s12 m6">
 			    		<a class="waves-effect waves-light btn-large col s12 " href="project-add.jsp">
@@ -97,7 +107,7 @@
 				    	</tbody>
 				    </table>
 			    </div>
-			  
+			  </form>
 		    </div>
 		    
 		    

@@ -11,6 +11,7 @@ import smartict.model.ProjectModel;
 import smartict.person.data.StudentData;
 import smartict.person.data.TeacherData;
 import smartict.study.data.CourseData;
+import smartict.util.Validate;
 import smict.project.data.ProjectData;
 
 public class ProjectAction extends ActionSupport implements SessionAware {
@@ -21,27 +22,93 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	TeacherData teachDB = new TeacherData();
 	StudentData studentDB = new StudentData();
 	CourseData courseDB = new CourseData();
-	String inputStudentId, inputTeacherId;
-	
+	String inputStudentId, inputTeacherId, alertStatus, alertMessage;;
+	Validate cValidate = new Validate();
 	Map<String, String> mapTeacher, mapCourse, mapStudent;
 	
 	public String inputProjectData(){
-
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		getMapAddProject();
+		
+		return forwardText;
+	}
+	
+	public String addProject(){
+		String forwardText = "";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		if(!cValidate.Check_String_notnull_notempty(proModel.getProject_nameth())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลชื่อ Project ภาษาไทย";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.Check_String_notnull_notempty(proModel.getProject_nameen())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลชื่อ Project ภาษาอังกฤษ";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.DoubleIsZero(proModel.getExam_score())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลคะแนนเต็ม";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getScore_pass())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกคะแนนที่ทำให้สามารถผ่านโปรเจคได้";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getTeacher_id())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลอาจารย์ที่ปรึกษา";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getCourse_id())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลคอร์สการเรียนให้แก่โปรเจค";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.Check_String_notnull_notempty(inputStudentId)){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลนักเรียนที่อยู่ในโปรเจค";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.Check_String_notnull_notempty(inputTeacherId)){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลอาจารย์ผู้คุมสอบ";
+			getMapAddProject();
+			return "input";
+		}
+		
+		int projectId = projectDB.addProject(proModel);
+		if( projectId > 0 ){
+			
+			projectDB.updateProjectToStudent(projectId, inputStudentId.split(","));
+			projectDB.addProjectExaminer(projectId, inputTeacherId.split(","));
+			
+			alertStatus = "green green-text";
+			alertMessage = "เพิ่มข้อมูล Project สำเร็จ";
+			forwardText = "success";
+		}
+		
+		return forwardText;
+	}
+	
+	public void getMapAddProject(){
 		mapTeacher = teachDB.getMapTeacher();
 		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
 		mapCourse = courseDB.getMapCourse(couModel);
 		mapStudent = studentDB.getMapStudent();
-		
-		String[] studentId, teacherId;
-		studentId = inputStudentId.split(",");
-		teacherId = inputTeacherId.split(",");
-		
-		
-		
-		return "success";
 	}
-	
-	
 	//GetSet
 	public Map<String, String> getMapTeacher() {
 		return mapTeacher;
@@ -87,6 +154,34 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 	public void setInputTeacherId(String inputTeacherId) {
 		this.inputTeacherId = inputTeacherId;
+	}
+
+
+	public String getAlertStatus() {
+		return alertStatus;
+	}
+
+
+	public void setAlertStatus(String alertStatus) {
+		this.alertStatus = alertStatus;
+	}
+
+
+	public String getAlertMessage() {
+		return alertMessage;
+	}
+
+
+	public void setAlertMessage(String alertMessage) {
+		this.alertMessage = alertMessage;
+	}
+
+	public ProjectModel getProModel() {
+		return proModel;
+	}
+
+	public void setProModel(ProjectModel proModel) {
+		this.proModel = proModel;
 	}
 
 }

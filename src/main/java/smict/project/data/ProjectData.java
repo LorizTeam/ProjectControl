@@ -44,6 +44,56 @@ public class ProjectData {
 		return projectId;
 	}
 	
+	public void updateProjectToStudent(int projectId, String[] arrayStudentId){
+		
+		for(String studentId : arrayStudentId){
+			
+			String sql = "update student set project_id = "+projectId+" where student_id = '"+studentId+"'";
+			
+			try {
+				Connection conn = agent.getConnectMYSql();
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sql);
+				
+				if(!stmt.isClosed()) stmt.close();
+				if(!conn.isClosed()) conn.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void addProjectExaminer(int projectId, String[] arrayTeacherId){
+		
+		String sql = "insert into project_examiner (project_id, teacher_id) values ";
+		int count = 0;
+		for(String teacherId : arrayTeacherId){
+			if(count > 0) sql+=",";
+			sql +="("+projectId+","+teacherId+")";
+			count++;
+		}
+		
+		
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public int getProjectId(){
 		String sql ="select * from project ORDER BY project.project_id DESC limit 1";
 		int projectId = 0;

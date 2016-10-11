@@ -9,6 +9,12 @@ public class Validate {
 		
 		return false;
 	}
+	public boolean DoubleIsZero(Double receiveDouble){
+		
+		if(receiveDouble > 0) return true;
+		
+		return false;
+	}
 	public boolean CheckRegexNumberOnly(String textforCheck){
 		boolean resultcheck = false;
 		if(textforCheck.equals("")){
