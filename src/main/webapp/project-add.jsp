@@ -47,17 +47,17 @@
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.exam_score" class="validate" />
+				          <s:textfield name="proModel.exam_fullscore" class="validate" />
 				          <label for="last_name">Full Score</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score_pass" class="validate" />
+				          <s:textfield name="proModel.score_pass" id="scorepass" class="validate" />
 				          <label for="last_name">Score Pass</label>
 				        </div>
 				        
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>
-							<s:select style="width: 100%" list="mapCourse" name="proModel.course_id"></s:select>
+							<s:select style="width: 100%"  list="mapCourse" name="proModel.course_id"></s:select>
 							<hr>
 						 </div>
 				        <div class=" col s12">
@@ -75,7 +75,7 @@
 		    	<h5 class="cyan-text text-darken-1">Student</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
-					  <s:select style="width: 100%" list="mapStudent" name="inputStudentId" multiple="true"></s:select>
+					  <s:select style="width: 100%" list="mapStudent" id="ddl_student" name="inputStudentId" multiple="true"></s:select>
 					  
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 		    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
-					  <s:select style="width: 100%" list="mapTeacher" name="inputTeacherId" multiple="true"></s:select>
+					  <s:select style="width: 100%" list="mapExaminer" id="ddl_examiner" name="inputTeacherId" multiple="true"></s:select>
 					  
 					</div>
 				</div>
@@ -114,8 +114,12 @@
 			 $('.m1-2').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Add Project');
-			 $('select').select2({
-			 });
+			 $("#ddl_student option:first").attr('disabled', 'disabled');
+			 $("#ddl_examiner option:first").attr('disabled', 'disabled');
+			 $('select').material_select();
+			 
+			 
+			 //$("#target option:first").attr('selected','selected');
 		});
 		</script>
 		

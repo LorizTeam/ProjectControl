@@ -25,6 +25,7 @@ public class StudentData {
 			Connection conn = agent.getConnectMYSql();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
+				mapStudent.put("", "Choose your option");
 			while (rs.next()) {
 				
 				mapStudent.put(rs.getString("student_id"), rs.getString("prename_name_short")+" "+rs.getString("firstname")+" "+rs.getString("lastname"));

@@ -43,7 +43,7 @@
 	      				</a>
 			    	</div>
 			    	<div class="col s12 m6">
-			    		<a href="project-random.jsp" class="waves-effect waves-light light-green darken-3 btn-large col s12">
+			    		<a href="randomSequenceProject" class="waves-effect waves-light light-green darken-3 btn-large col s12">
 			    			<i class="material-icons left">shuffle</i>Random Project
 			    		</a>
 			    	</div>
@@ -74,8 +74,11 @@
 				    	<tbody>
 				    		<s:iterator value="listProModel">
 				    			<tr>
-					    			<td><s:property value="id"/> </td>
-					    			<td><a href="project-detail.jsp"> <s:property value="project_nameth"/></a></td>
+					    			<td><s:property value="project_id"/> </td>
+					    			<s:url action="viewProjectDetail" var="urlLink">
+					    				<s:param name='proModel.project_id'><s:property value="project_id"/></s:param>
+					    			</s:url>
+					    			<td><a href='<s:property value="urlLink"/>'> <s:property value="project_nameth"/></a></td>
 					    			<td><s:property value="project_nameen"/></td>
 					    			<td><s:property value="firstname"/></td>
 					    			<td><s:property value="showScoreProject"/></td>

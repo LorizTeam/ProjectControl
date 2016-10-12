@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
 
 public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
-	project_status_id, course_id, faclulty_id;
+	project_status_id, course_id, faclulty_id, exam_fullscore;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
 			showScoreProject, faclulty_nameth, faclulty_nameen;
 	Double exam_score;
@@ -144,6 +144,14 @@ public class ProjectModel extends PersonModel {
 
 	public void setFaclulty_nameen(String faclulty_nameen) {
 		this.faclulty_nameen = faclulty_nameen;
+	}
+
+	public int getExam_fullscore() {
+		return exam_fullscore;
+	}
+
+	public void setExam_fullscore(int exam_fullscore) {
+		this.exam_fullscore = exam_fullscore;
 	}
 	
 	

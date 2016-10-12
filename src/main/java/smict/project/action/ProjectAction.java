@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.jfree.chart.labels.IntervalCategoryItemLabelGenerator;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,8 +26,9 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	CourseData courseDB = new CourseData();
 	String inputStudentId, inputTeacherId, alertStatus, alertMessage;;
 	Validate cValidate = new Validate();
-	Map<String, String> mapTeacher, mapCourse, mapStudent;
+	Map<String, String> mapTeacher, mapCourse, mapStudent, mapExaminer;
 	List<ProjectModel> listProModel;
+	List<String> listExaminer, listStudent;
 	
 	public String viewProjectAll(){
 		String forwardText = "success";
@@ -38,9 +40,21 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		
 		listProModel = projectDB.getListProject();
 		
-		for(int i =0;i<10;i++){
-			System.out.println("Random number :"+projectDB.getRandomInteger(1, 20));
+		return forwardText;
+	}
+	
+	public String viewProjectDetail(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
 		}
+		
+		listExaminer = projectDB.getListExaminerInProject(proModel);
+		listStudent = projectDB.getListStudentInProject(proModel);
+		proModel = projectDB.getProjectModelValue(proModel);
+		getMapAddProject();
 		return forwardText;
 	}
 	
@@ -53,6 +67,50 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		}
 		
 		getMapAddProject();
+		
+		return forwardText;
+	}
+	
+	public String randomProject(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		List<String> listProjectId = projectDB.getProjectWaitingExam();
+		if(listProjectId.size() == 0){
+			alertStatus = "red red-text";
+			alertMessage = "ทุกโปรเจคได้ทำการสอบไปหมดแล้ว";
+			return "login";
+		}else{
+			
+			projectDB.clearExamNumberWithProjectExamScoreEmpty();
+			for(int i = 0; i < listProjectId.size();i++){
+				List<Integer> listMinMax = projectDB.getNumberProjectMinMax();
+				
+				boolean isRandomAgain = true;
+				do{
+					int randomNumber = projectDB.getRandomInteger(listMinMax.get(0), listMinMax.get(1));
+					if(projectDB.isAvailableUseExamNumber(randomNumber)){
+						proModel = new ProjectModel();
+						proModel.setExam_number(randomNumber);
+						proModel.setProject_id(Integer.parseInt(listProjectId.get(i)));
+						projectDB.updateProjectExamNumber(proModel);
+						isRandomAgain = false;
+						System.out.println("Here In Loop . . . ");
+					}
+					
+					
+					
+				}while(isRandomAgain);
+				
+			}
+			
+		}
+		
+		listProModel = projectDB.getListProject();
 		
 		return forwardText;
 	}
@@ -75,7 +133,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณากรอกข้อมูลชื่อ Project ภาษาอังกฤษ";
 			getMapAddProject();
 			return "input";
-		}else if(!cValidate.DoubleIsZero(proModel.getExam_score())){
+		}else if(!cValidate.checkIntegerNotZero(proModel.getExam_fullscore())){
 			alertStatus = "red red-text";
 			alertMessage = "กรุณากรอกข้อมูลคะแนนเต็ม";
 			getMapAddProject();
@@ -128,6 +186,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
 		mapCourse = courseDB.getMapCourse(couModel);
 		mapStudent = studentDB.getMapStudent();
+		mapExaminer = teachDB.getMapTeacherForMultiselect();
 	}
 	//GetSet
 	public Map<String, String> getMapTeacher() {
@@ -210,6 +269,30 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 	public void setListProModel(List<ProjectModel> listProModel) {
 		this.listProModel = listProModel;
+	}
+
+	public Map<String, String> getMapExaminer() {
+		return mapExaminer;
+	}
+
+	public void setMapExaminer(Map<String, String> mapExaminer) {
+		this.mapExaminer = mapExaminer;
+	}
+
+	public List<String> getListExaminer() {
+		return listExaminer;
+	}
+
+	public void setListExaminer(List<String> listExaminer) {
+		this.listExaminer = listExaminer;
+	}
+
+	public List<String> getListStudent() {
+		return listStudent;
+	}
+
+	public void setListStudent(List<String> listStudent) {
+		this.listStudent = listStudent;
 	}
 
 }

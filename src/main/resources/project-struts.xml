@@ -26,6 +26,15 @@
     	<action name="viewProjectAll" class="smict.project.action.ProjectAction" method="viewProjectAll">
       		<result name="success">/project.jsp</result>
     	</action>
+    	
+    	<action name="viewProjectDetail" class="smict.project.action.ProjectAction" method="viewProjectDetail">
+      		<result name="success">/project-detail.jsp</result>
+    	</action>
+    	
+    	<action name="randomSequenceProject" class="smict.project.action.ProjectAction" method="randomProject">
+      		<result name="success">/project.jsp</result>
+    	</action>
+    	
     	<!-- 	++++++	 Project 	 ++++++	  -->
     	
     </package>

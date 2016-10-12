@@ -38,22 +38,20 @@
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
-						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" readonly="true"></s:select>
+				          <s:textfield name="proModel.exam_fullscore" class="validate ip" />
+				          <label for="last_name">Full Score</label>
+				        </div>
+				        <div class="input-field col s12">
+				          <s:textfield name="proModel.score_pass" class="validate ip" />
+				          <label for="last_name">Score Pass</label>
+				        </div>
+				        <div class="input-field col s12">
+						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" value="proModel.course_id" readonly="true"></s:select>
 						    <label>Course</label>
 						</div>
 				        <div class="input-field col s12">
-						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" readonly="true"></s:select>
+						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" value="proModel.teacher_id"  readonly="true"></s:select>
 						    <label>Teacher Adviser</label>
-						</div>
-						<div class="input-field col s12">
-							<div class="chips ">
-								 <div class="chip">
-								  56013506 Noppol kongsattra.
-								  </div>
-								  <div class="chip">
-								  56013509 Manuwat Chaichana.
-								  </div>
-							</div>
 						</div>
 						<div class="input-field col s6 auc"style="display:none;">
 						  <i class="material-icons prefix">recent_actors</i>
@@ -63,7 +61,26 @@
 				      </div>
 				    </form>
 				  </div>
+				  <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Student</h5>
+				    	<div class="row">
+							<div class="input-field col s12">
+							  <s:select style="width: 100%" list="mapStudent" id="ddl_student" value="listStudent" name="inputStudentId" multiple="true"></s:select>
+							  
+							</div>
+						</div>
+				    </div>
+				    <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
+				    	<div class="row">
+							<div class="input-field col s12">
+							  <s:select style="width: 100%" list="mapExaminer" id="ddl_examiner" value="listExaminer" name="inputTeacherId" multiple="true"></s:select>
+							  
+							</div>
+						</div>
+				    </div>
 			      <div class="center-align">
+			     
 			      <button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
 			      <a href="project.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 			      </div>
@@ -83,26 +100,14 @@
 	    </div>
 		<script type="text/javascript">
 		 $(document).ready(function(){
+			 
 			 $('.m1').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Project Details');
+			 $("#ddl_student option:first").attr('disabled', 'disabled');
+			 $("#ddl_examiner option:first").attr('disabled', 'disabled');
 			 $('select').material_select();
-			 $('input.autocomplete').autocomplete({
-			    data:{
-			    	 "56013506 Noppol kongsattra. ": null,
-				     "56013509 Manuwat Chaichana. ": null
-			      }
-			 });
 			 
-			 $('#autocomplete-input2').on('keyup', function (e) {
-		            // Capture Enter
-		            if (e.which === 13) {
-		            	$('.chips').append('<div class="chip">'+$('#autocomplete-input2').val()+'<i class="close material-icons">close</i></div>');
-		            	$('#autocomplete-input2').val('');
-		            	
-		              return;
-		            }
-			 });
 			
 			$('#btn-e').on('click',function(){
 				if($('#btn-e').val()==0){
