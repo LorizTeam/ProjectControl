@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/select2.css">
-		
+	
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -55,14 +55,15 @@
 				          <label for="last_name">Score Pass</label>
 				        </div>
 				        
-				        
-				        <div class="input-field col s12">
-						    <s:select list="mapCourse" name="proModel.course_id"></s:select>
-						    <label>Course</label>
-						</div>
-				        <div class="input-field col s12">
-						    <s:select list="mapTeacher" name="proModel.teacher_id"></s:select>
-						    <label>Teacher Adviser</label>
+				        <div class="col s12">
+				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>
+							<s:select style="width: 100%" list="mapCourse" name="proModel.course_id"></s:select>
+							<hr>
+						 </div>
+				        <div class=" col s12">
+				        	<p style="margin-bottom: 0; color:#26a69a !important;">Teacher Adviser</p>
+						    <s:select style="width: 100%" list="mapTeacher" name="proModel.teacher_id"></s:select>
+						    <hr>
 						</div>
 						
 				      </div>
@@ -74,8 +75,8 @@
 		    	<h5 class="cyan-text text-darken-1">Student</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
-					  <s:select list="mapStudent" name="inputStudentId" multiple="true"></s:select>
-					  <label for="autocomplete-input2">Add Student</label>
+					  <s:select style="width: 100%" list="mapStudent" name="inputStudentId" multiple="true"></s:select>
+					  
 					</div>
 				</div>
 		    </div>
@@ -83,8 +84,8 @@
 		    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
-					  <s:select list="mapTeacher" name="inputTeacherId" multiple="true"></s:select>
-					  <label for="autocomplete-input2">Add Student</label>
+					  <s:select style="width: 100%" list="mapTeacher" name="inputTeacherId" multiple="true"></s:select>
+					  
 					</div>
 				</div>
 		    </div>
