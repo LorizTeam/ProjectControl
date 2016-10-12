@@ -30,24 +30,20 @@
 				    <form class="col s12">
 				      <div class="row">
 				        <div class="input-field col s12">
-				          <input  id="first_name" type="text" class="validate ip" value="ร้านขายของ" disabled>
+				          <s:textfield name="proModel.project_nameth" id="project_nameth" class="validate ip" readonly="true"/>
 				          <label for="first_name">Project Name(TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <input id="last_name" type="text" class="validate ip" value="Store"disabled>
+				          <s:textfield name="proModel.project_nameen" id="project_nameen" class="validate ip" readonly="true"/>
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
-				        <div class="input-field col s12 s">
-						    <input id="Teacher" type="text" class="validate " value="Aj.Pong"disabled>
-				          	<label for="Teacher">Teacher Adviser</label>
+				        <div class="input-field col s12">
+						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" readonly="true"></s:select>
+						    <label>Course</label>
 						</div>
-						<div class="input-field col s12 se"style="display:none;">
-							<select>
-								<option value="" disabled selected>Choose your option</option>
-								<option value="1">aj.aod</option>
-								<option value="1">aj.kob</option>
-							</select>
-							<label>Teacher</label>
+				        <div class="input-field col s12">
+						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" readonly="true"></s:select>
+						    <label>Teacher Adviser</label>
 						</div>
 						<div class="input-field col s12">
 							<div class="chips ">

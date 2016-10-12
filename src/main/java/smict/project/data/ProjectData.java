@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.concurrent.ThreadLocalRandom;
 import smartict.model.FacultyModel;
 import smartict.model.ProjectModel;
 import smartict.util.DBConnect;
@@ -173,5 +173,11 @@ public class ProjectData {
 		}
 		
 		return projectId;
+	}
+	
+	public int getRandomInteger(int minInt, int maxInt){
+		int randomInt = 0;
+		randomInt = ThreadLocalRandom.current().nextInt(minInt, maxInt + 1);
+		return randomInt;
 	}
 }

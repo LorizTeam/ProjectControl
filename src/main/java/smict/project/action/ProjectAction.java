@@ -38,6 +38,9 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		
 		listProModel = projectDB.getListProject();
 		
+		for(int i =0;i<10;i++){
+			System.out.println("Random number :"+projectDB.getRandomInteger(1, 20));
+		}
 		return forwardText;
 	}
 	

@@ -91,7 +91,7 @@
 		    </div>
 		     <div class="center-align">
 		      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
-		      <button type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</button>
+		      <a href="viewProjectAll" type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</a>
 		      </div>
 		      </form>
 		    </div>
