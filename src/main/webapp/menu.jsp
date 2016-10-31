@@ -19,7 +19,7 @@
 	      	<ul>
 	      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>Project List</a></li>
 	      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
-				<li class="m1-3"><a class="waves-effect waves-light" href="project-sequence.jsp"><i class="material-icons">shuffle</i>Sequence Project</a></li>
+				<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
 	      	</ul>
 	      </div>
 	    </li>
@@ -27,8 +27,8 @@
 	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Student</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li class="m2-1"><a href="Student.jsp"><i class="material-icons">recent_actors</i>Student List</a></li>
-	      		<li class="m2-2"><a href="student-add.jsp"><i class="material-icons">note_add</i>Add Student</a></li>
+	      		<li class="m2-1"><a href="viewAllStudent"><i class="material-icons">recent_actors</i>Student List</a></li>
+	      		<li class="m2-2"><a href="inputStudent"><i class="material-icons">note_add</i>Add Student</a></li>
 	      	</ul>
 	      </div>
 	    </li>

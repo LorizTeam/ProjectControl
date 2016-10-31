@@ -6,12 +6,13 @@ import org.joda.time.DateTime;
 
 public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
-	project_status_id, course_id, faclulty_id, exam_fullscore;
+		addExamScoreStatusId, project_status_id, course_id, faclulty_id, 
+		exam_fullscore;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
 			showScoreProject, faclulty_nameth, faclulty_nameen;
 	Double exam_score;
 	DateTime createdatetime;
-	
+	boolean canAddExamScore;
 	List<StudentModel> listStudent;
 	
 	public ProjectModel() {
@@ -153,11 +154,25 @@ public class ProjectModel extends PersonModel {
 	public void setExam_fullscore(int exam_fullscore) {
 		this.exam_fullscore = exam_fullscore;
 	}
-	
-	
-	
-	
-	
-	
 
+	public int getAddExamScoreStatusId() {
+		return addExamScoreStatusId;
+	}
+
+	public void setAddExamScoreStatusId(int addExamScoreStatusId) {
+		this.addExamScoreStatusId = addExamScoreStatusId;
+	}
+
+	public void setCreatedatetime(DateTime createdatetime) {
+		this.createdatetime = createdatetime;
+	}
+
+	public boolean isCanAddExamScore() {
+		return canAddExamScore;
+	}
+
+	public void setCanAddExamScore(boolean canAddExamScore) {
+		this.canAddExamScore = canAddExamScore;
+	}
+	
 }

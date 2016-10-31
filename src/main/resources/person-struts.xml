@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <!-- version 1.2 -->
+<struts>
+ 	
+    <constant name="struts.devMode" value="true" />
+    
+    <package name="person" extends="struts-default">
+ 		<global-results>
+		    <result name="login">/login.jsp</result>
+		    <result name="noaccess">/noaccess.jsp</result>
+		</global-results>
+		
+		<!-- 	++++++	 Student 	 ++++++	  -->
+		<action name="viewAllStudent" class="smartict.person.action.StudentAction" method="viewAllStudent">
+      		<result name="success">/Student.jsp</result>
+    	</action>
+    	
+    	<action name="inputStudent" class="smartict.person.action.StudentAction" method="inputStudentData">
+      		<result name="success">/student-add.jsp</result>
+    	</action>
+    	<!-- 	++++++	 Student 	 ++++++	  -->
+    	
+    </package>
+</struts>

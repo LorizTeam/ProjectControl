@@ -46,37 +46,23 @@
 				    	<thead>
 				    		<tr>
 				    			<th data-priority="2">No.</th>
+				    			<th data-priority="1">Prefix Name</th>
 				    			<th data-priority="1">Student Name</th>
 				    			<th data-priority="1">Course</th>
 				    			<th data-priority="1">Faculty</th>
-				    			<th data-priority="2">Creation Date</th>
 				    		</tr>
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td><a href="student-detail.jsp">student name</a></td>
-				    			<td>HUM3002-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td><a href="student-detail.jsp">student name</a></td>
-				    			<td>ICT442-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td><a href="student-detail.jsp">student name</a></td>
-				    			<td>ICT443-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    		</tr>
+				    		<s:iterator value="listStudent">
+				    			<tr>
+					    			<td><s:property value="student_id"/>  </td>
+					    			<td><a href="student-detail.jsp"><s:property value="prename_name_short"/></a></td>
+					    			<td><s:property value="firstname"/> <s:property value="lastname"/></td>
+					    			<td><s:property value="branch_nameth"/></td>
+					    			<td><s:property value="faculty_nameth"/></td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>

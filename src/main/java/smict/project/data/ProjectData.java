@@ -20,7 +20,7 @@ public class ProjectData {
 	DateUtil dateUtil = new DateUtil();
 	Validate cValidate = new Validate();
 	
-	public List<ProjectModel> getListProject(){
+	public List<ProjectModel> getListProject(String orderBy){
 		
 		String sql = "SELECT "
 				+ "project.project_id,"
@@ -37,7 +37,11 @@ public class ProjectData {
 				+ "INNER JOIN pre_name ON pre_name.prename_id = teacher.prename_id  "
 				+ "INNER JOIN course on course.course_id = project.course_id "
 				+ "INNER JOIN branch on branch.branch_id = course.branch_id "
-				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id";
+				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id ";
+		
+			if(cValidate.Check_String_notnull_notempty(orderBy)){
+				sql += "order by "+orderBy;
+			}
 		
 		List<ProjectModel> listProModel = new ArrayList<ProjectModel>();
 		try {
@@ -305,6 +309,75 @@ public class ProjectData {
 		return listMinMax;
 	}
 	
+	public ProjectModel getTeacherAddExamScoreStatus(ProjectModel proModel){
+		String sql = "SELECT * from project_examiner where project_id = "+proModel.getProject_id()+" and teacher_id = "+proModel.getTeacher_id();
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				proModel.setAddExamScoreStatusId(rs.getInt("addexam_statusid"));
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return proModel;
+	}
+	
+	public int getTeacherId(String username){
+		int teacherId = 0;
+		String sql = "SELECT * FROM `teacher` where username = '"+username+"'";
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				teacherId = rs.getInt("teacher_id");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return teacherId;
+	}
+	
+	public boolean isAvailableInput(String username, int projectId){
+		int teacherId = getTeacherId(username);
+		boolean canInput = false;
+		String sql = "select * from project_examiner where project_id = "+projectId+" and teacher_id = "+teacherId+" and addexam_statusid = '1'";
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				canInput = true;
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return canInput;
+	}
+	
 	public int addProject(ProjectModel proModel){
 		String sql = "insert into project (project_nameth, project_nameen, teacher_id,createdatetime, "
 						+ "exam_fullscore, score_pass, course_id) values "
@@ -330,6 +403,51 @@ public class ProjectData {
 		}
 		return projectId;
 	}
+	
+	public int addProjectExamScore(ProjectModel proModel){
+		String sql = "update project set exam_score = exam_score+"+proModel.getExam_score()+",project_status_id = 2 where project_id = "+proModel.getProject_id();
+		
+		int projectId = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				projectId = getProjectId();
+			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projectId;
+	}
+	
+	public void updateProjectExaminer(ProjectModel proModel){
+		String sql = "update project_examiner set addexam_statusid = 2,add_score = "+proModel.getExam_score()+" "
+				+ "where project_id = "+proModel.getProject_id()+" and teacher_id = "+proModel.getTeacher_id();
+		
+		int projectId = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void updateProjectToStudent(int projectId, String[] arrayStudentId){
 		

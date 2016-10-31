@@ -28,14 +28,14 @@
 		    <div class="div-container">
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="project.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="viewProjectAll">
 	      					<i class="material-icons left">view_list</i>Project List
 	      				</a>
 			    	</div>
 			    	<div class="col s12 m6">
-			    		<button type="button" class="waves-effect waves-light light-green darken-3 btn-large col s12">
+			    		<a type="button" href="randomSequenceProject" class="waves-effect waves-light light-green darken-3 btn-large col s12">
 			    			<i class="material-icons left">replay</i>Random Project Again
-			    		</button>
+			    		</a>
 			    	</div>
 			    	
 			    </div>
@@ -50,7 +50,7 @@
 				    <table id="project-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
+				    			<th data-priority="1">Queue</th>
 				    			<th data-priority="1">Project Name TH</th>
 				    			<th data-priority="1">Student</th>
 				    			<th data-priority="2">Adviser</th>
@@ -62,38 +62,21 @@
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td><a href="project-score.jsp"> ทดลองเพิ่มชื่อโปรเจค1</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>40/100</td>
-				    			<td>HUM3002-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td><a href="project-score.jsp"> ทดลองเพิ่มชื่อโปรเจค2</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
-				    			<td>ICT442-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td><a href="project-score.jsp"> ทดลองเพิ่มชื่อโปรเจค3</a></td>
-				    			<td>student name</td>
-				    			<td>aj.rorh</td>
-				    			<td>50/100</td>
-				    			<td>ICT443-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    		</tr>
+				    		<s:iterator value="listProModel" status="statusList">
+				    			<tr>
+					    			<td><s:property value="#statusList.count"/> </td>
+					    			<s:url action="viewProjectDetail" var="urlLink">
+					    				<s:param name='proModel.project_id'><s:property value="project_id"/></s:param>
+					    			</s:url>
+					    			<td><a href='<s:property value="urlLink"/>'> <s:property value="project_nameth"/></a></td>
+					    			<td><s:property value="project_nameen"/></td>
+					    			<td><s:property value="firstname"/></td>
+					    			<td><s:property value="showScoreProject"/></td>
+					    			<td><s:property value="course_nameth"/></td>
+					    			<td><s:property value="faclulty_nameth"/></td>
+					    			<td><s:property value="createdatetime"/></td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>
@@ -121,7 +104,9 @@
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Project');
 			 $('select').material_select();
-			 var table =  $('#project-table').DataTable();
+			 var table =  $('#project-table').DataTable({
+				 "bSort": false
+			 });
 			 $('#icon_search').on( 'keyup', function () {
 				    table.search( this.value ).draw();
 				});

@@ -86,7 +86,7 @@
 			 $('select').material_select();
 			
 			 $('#btn-e').on('click',function(){
-				 if($('#btn-e').val()==0){
+				if($('#btn-e').val()==0){
 					$('.ip').removeAttr('readonly');
 					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
 

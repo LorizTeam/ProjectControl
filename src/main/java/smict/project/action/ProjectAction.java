@@ -24,7 +24,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	TeacherData teachDB = new TeacherData();
 	StudentData studentDB = new StudentData();
 	CourseData courseDB = new CourseData();
-	String inputStudentId, inputTeacherId, alertStatus, alertMessage;;
+	String inputStudentId, inputTeacherId, alertStatus, alertMessage;
 	Validate cValidate = new Validate();
 	Map<String, String> mapTeacher, mapCourse, mapStudent, mapExaminer;
 	List<ProjectModel> listProModel;
@@ -38,7 +38,20 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject();
+		listProModel = projectDB.getListProject("project_id");
+		
+		return forwardText;
+	}
+	
+	public String viewProjectSequence(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		listProModel = projectDB.getListProject("exam_number");
 		
 		return forwardText;
 	}
@@ -50,14 +63,57 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
 			return "login";
 		}
-		
+		System.out.println("Username : "+sessionMap.get("username").toString());
 		listExaminer = projectDB.getListExaminerInProject(proModel);
 		listStudent = projectDB.getListStudentInProject(proModel);
 		proModel = projectDB.getProjectModelValue(proModel);
+		proModel.setCanAddExamScore(projectDB.isAvailableInput(sessionMap.get("username").toString(), proModel.getProject_id()));
 		getMapAddProject();
 		return forwardText;
 	}
 	
+	public String viewProjectDetailExam(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		if(sessionMap.get("type").equals("1")){
+			String username = sessionMap.get("username").toString();
+			proModel.setTeacher_id(projectDB.getTeacherId(username));
+		}
+		
+		listExaminer = projectDB.getListExaminerInProject(proModel);
+		listStudent = projectDB.getListStudentInProject(proModel);
+		proModel = projectDB.getProjectModelValue(proModel);
+		proModel = projectDB.getTeacherAddExamScoreStatus(proModel);
+		
+		getMapAddProject();
+		return forwardText;
+	}
+	
+	public String addExamScore(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		listExaminer = projectDB.getListExaminerInProject(proModel);
+		listStudent = projectDB.getListStudentInProject(proModel);
+		proModel = projectDB.getProjectModelValue(proModel);
+		proModel = projectDB.getTeacherAddExamScoreStatus(proModel);
+		projectDB.addProjectExamScore(proModel);
+		projectDB.updateProjectExaminer(proModel);
+		getMapAddProject();
+		
+		
+		return forwardText;
+	}
+		
 	public String inputProjectData(){
 		String forwardText = "success";
 		if(!sessionMap.containsKey("username")){
@@ -72,7 +128,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	}
 	
 	public String randomProject(){
-		String forwardText = "success";
+		String forwardText = "random";
 		if(!sessionMap.containsKey("username")){
 			alertStatus = "red red-text";
 			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
@@ -108,9 +164,11 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 				
 			}
 			
+			
+			
 		}
 		
-		listProModel = projectDB.getListProject();
+		listProModel = projectDB.getListProject("exam_number");
 		
 		return forwardText;
 	}
@@ -176,7 +234,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			forwardText = "success";
 		}
 		
-		listProModel = projectDB.getListProject();
+		listProModel = projectDB.getListProject("project_id");
 		
 		return forwardText;
 	}

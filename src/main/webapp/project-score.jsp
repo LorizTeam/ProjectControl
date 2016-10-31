@@ -23,63 +23,72 @@
 		    <div class="div-container ">
 			   <div class="container"> 
 			   <h4 class="center-align light-blue-text text-darken-1">Project Details</h4>
-			    
-			    <div class="card " style="padding:10px;">
-			    	<h5 class="cyan-text text-darken-1">Project Score</h5>
-			    	<div class="row">
-				    	<div class="input-field col s12">
-				          <input  id="score" type="text" class="validate ip" value="" >
-				          <label for="score">Project Score</label>
+			    <form action="addExamScore" method="post">
+				    <s:hidden name="proModel.project_id" id="project_id" class="validate ip"/>
+				    <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Project Score</h5>
+				    	<div class="row">
+					    	<div class="input-field col s12">
+					          <s:textfield name="proModel.exam_score" id="exam_score" class="validate ip"/>
+					          
+					          <label for="score">Project Score</label>
+					        </div>
 				        </div>
-			        </div>
-			    	<div class="center-align">
-				    	<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-green  btn ">Save</button>
-				    	<a href="project-random.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+				    	<div class="center-align">
+					    	<button  type="submit" id="btn-e" class="modal-action modal-close waves-effect waves-green  btn ">Save</button>
+					    	<a href="project-random.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+					    </div>
 				    </div>
-			    </div>
+			    </form>
 			    <div class="card " style="padding:10px;">
 			    <h5 class="cyan-text text-darken-1">Project Details</h5><br>
 			      <div class="row">
-				    <form class="col s12">
+				    
 				      <div class="row">
 				        <div class="input-field col s12">
-				          <input  id="first_name" type="text" class="validate ip" value="ร้านขายของ" readonly>
+				          <s:textfield name="proModel.project_nameth" id="project_nameth" class="validate ip" readonly="true"/>
 				          <label for="first_name">Project Name(TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <input id="last_name" type="text" class="validate ip" value="Store"readonly>
+				          <s:textfield name="proModel.project_nameen" id="project_nameen" class="validate ip" readonly="true"/>
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
-				        <div class="input-field col s12 s">
-						    <input id="Teacher" type="text" class="validate " value="Aj.Pong"readonly>
-				          	<label for="Teacher">Teacher Adviser</label>
+				        <div class="input-field col s12">
+				          <s:textfield name="proModel.exam_fullscore" class="validate ip" />
+				          <label for="last_name">Full Score</label>
+				        </div>
+				        <div class="input-field col s12">
+				          <s:textfield name="proModel.score_pass" class="validate ip" />
+				          <label for="last_name">Score Pass</label>
+				        </div>
+				        <div class="input-field col s12">
+						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" value="proModel.course_id" readonly="true"></s:select>
+						    <label>Course</label>
 						</div>
-						<div class="input-field col s12 se"style="display:none;">
-							<select>
-								<option value="" disabled selected>Choose your option</option>
-								<option value="1">aj.aod</option>
-								<option value="1">aj.kob</option>
-							</select>
-							<label>Teacher</label>
-						</div>
-						<div class="input-field col s12">
-							<div class="chips ">
-								 <div class="chip">
-								  56013506 Noppol kongsattra.
-								  </div>
-								  <div class="chip">
-								  56013509 Manuwat Chaichana.
-								  </div>
-							</div>
-						</div>
-						<div class="input-field col s6 auc"style="display:none;">
-						  <i class="material-icons prefix">recent_actors</i>
-						  <input type="text" id="autocomplete-input2" class="autocomplete">
-						  <label for="autocomplete-input2">Add Student</label>
+				        <div class="input-field col s12">
+						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" value="proModel.teacher_id"  readonly="true"></s:select>
+						    <label>Teacher Adviser</label>
 						</div>
 				      </div>
-				    </form>
 				  </div>
+				  <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Student</h5>
+				    	<div class="row">
+							<div class="input-field col s12">
+							  <s:select style="width: 100%" list="mapStudent" id="ddl_student" value="listStudent" name="inputStudentId" multiple="true"></s:select>
+							  
+							</div>
+						</div>
+				    </div>
+				    <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
+				    	<div class="row">
+							<div class="input-field col s12">
+							  <s:select style="width: 100%" list="mapExaminer" id="ddl_examiner" value="listExaminer" name="inputTeacherId" multiple="true"></s:select>
+							  
+							</div>
+						</div>
+				    </div>
 			     
 		    </div>
 		    </div>

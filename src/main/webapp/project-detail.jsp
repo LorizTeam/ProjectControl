@@ -25,7 +25,14 @@
 			   <h4 class="center-align light-blue-text text-darken-1">Project Details</h4>
 			   
 			    <div class="card " style="padding:10px;">
-			    <h5 class="cyan-text text-darken-1">Project Details</h5><br>
+			    <s:url action="viewProjectDetailExam" var="urlLink">
+	   				<s:param name='proModel.project_id'><s:property value="proModel.project_id"/></s:param>
+	   			</s:url>
+			    <h5 class="cyan-text text-darken-1">Project Details 
+				    <s:if test='proModel.canAddExamScore == true'>
+				    	<a href='<s:property value="urlLink"/>' class="modal-action modal-close waves-effect waves-light blue lighten-1 btn "><i class="material-icons">input</i> ให้คะแนนสอบ</a>
+				    </s:if>
+			    </h5><br>
 			      <div class="row">
 				    <form class="col s12">
 				      <div class="row">
@@ -53,11 +60,6 @@
 						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" value="proModel.teacher_id"  readonly="true"></s:select>
 						    <label>Teacher Adviser</label>
 						</div>
-						<div class="input-field col s6 auc"style="display:none;">
-						  <i class="material-icons prefix">recent_actors</i>
-						  <input type="text" id="autocomplete-input2" class="autocomplete">
-						  <label for="autocomplete-input2">Add Student</label>
-						</div>
 				      </div>
 				    </form>
 				  </div>
@@ -66,7 +68,6 @@
 				    	<div class="row">
 							<div class="input-field col s12">
 							  <s:select style="width: 100%" list="mapStudent" id="ddl_student" value="listStudent" name="inputStudentId" multiple="true"></s:select>
-							  
 							</div>
 						</div>
 				    </div>
@@ -82,7 +83,7 @@
 			      <div class="center-align">
 			     
 			      <button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
-			      <a href="project.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+			      <a href="viewProjectAll" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 			      </div>
 		    </div>
 		    </div>
@@ -111,22 +112,14 @@
 			
 			$('#btn-e').on('click',function(){
 				if($('#btn-e').val()==0){
-					
-					$('.chip').append('<i class="close material-icons">close</i>');
-					$('.s').hide();
-					$('.se').show();
-					$('.auc').show();
-					$('.ip').removeAttr('disabled');
+					$('.ip').removeAttr('readonly');
 					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
+
 				}else{
-			
 					
-					$('.close').remove();
-					$('.s').show();
-					$('.se').hide();
-					$('.auc').hide();
-					$('.ip').attr('disabled','disabled');
+					$('.ip').attr('readonly','true');
 					$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
+					$('#btn-e').attr('type','submit');
 				}
 			});
 			

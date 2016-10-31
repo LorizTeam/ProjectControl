@@ -20,25 +20,13 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post">
+				<form class="container" method="post" action="#">
 				<h4 class="center-align light-blue-text text-darken-1">Add Student</h4>
 				<div class="card " style="padding:10px;">
 					<h5 class="cyan-text text-darken-1">Branch Details</h5>
 					<div class="row">
-						<div class="input-field col s6">
-							<select>
-								<option value="" disabled selected>Choose your option</option>
-								<option value="1">Identification number</option>
-								<option value="2">Passport number</option>
-							</select>
-							<label>Faculty</label>
-						</div>
-						<div class="input-field col s6">
-							<select>
-								<option value="" disabled selected>Choose your option</option>
-								<option value="1">Identification number</option>
-								<option value="2">Passport number</option>
-							</select>
+						<div class="input-field col s12">
+							<s:select list="mapBranch" name="stdModel.branchId" ></s:select>
 							<label>Branch</label>
 						</div>
 					</div>
@@ -48,104 +36,43 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
+								<div class="input-field col s12">
+									<s:select list="mapPrename" name="stdModel.prename_id" id="ddlPrename" ></s:select>
+									<label>คำนำหน้าชื่อ</label>
+								</div>
 								<div class="input-field col s6">
-									<input  id="first_name" type="text" class="validate">
+									<s:textfield name="stdModel.firstname" required="true"/>
 									<label for="first_name">First Name(TH)</label>
 								</div>
 								<div class="input-field col s6">
-									<input id="last_name" type="text" class="validate">
+									<s:textfield name="stdModel.lastname" required="true"/>
 									<label for="last_name">Last Name (TH)</label>
 								</div>
 								<div class="input-field col s6">
-									<input  id="first_nameen" type="text" class="validate">
-									<label for="first_nameen">First Name(EN)</label>
-								</div>
-								<div class="input-field col s6">
-									<input id="last_nameen" type="text" class="validate">
-									<label for="last_nameen">Last Name (EN)</label>
-								</div>
-								<div class="input-field col s6 m4">
-									<input id="Identification" type="text" class="validate">
-									<label for="Identification">Identification</label>
-								</div>
-								<div class="input-field col s6 m3">
 									<select>
-										<option value="" disabled selected>Choose your option</option>
-										<option value="1">Identification number</option>
-										<option value="2">Passport number</option>
+										<option value="" disabled selected>โปรดเลือกรูปแบบรหัสประจำตัว</option>
+										<option value="1">รหัสประจำตัวประชาชน</option>
+										<option value="2">Passport</option>
 									</select>
 									<label>Identification Type</label>
 								</div>
-								<div class="input-field col s6 m5">
-									<input id="Tel" type="text" class="validate">
-									<label for="Tel">Tel</label>
-								</div>
 								<div class="input-field col s6">
-									<input id="mail" type="email" class="validate">
+									<s:textfield name="stdModel.identification_type_name" required="true"/>
+									<label for="Identification">Identification</label>
+								</div>
+								<div class="input-field col s12">
+									<s:textfield name="stdModel.email" required="true"/>
 									<label for="mail">E-mail</label>
 								</div>
 								<div class="input-field col s6">
-									<input id="LINE" type="text" class="validate">
-									<label for="LINE">ID LINE</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card " style="padding:10px;">
-					<h5 class="cyan-text text-darken-1">Address Details</h5>
-					<div class="row">
-						<div class="col s12">
-							<div class="row">
-								<div class="input-field col s2">
-									<input  id="addr_No" type="text" class="validate">
-									<label for="addr_No">No.</label>
-								</div>
-								<div class="input-field col s4">
-									<input id="Bloc" type="text" class="validate">
-									<label for="Bloc">Bloc</label>
-								</div>
-								<div class="input-field col s6">
-									<input  id="Village" type="text" class="validate">
-									<label for="Village">Village</label>
-								</div>
-								<div class="input-field col s6">
-									<input id="Alley" type="text" class="validate">
-									<label for="Alley">Alley</label>
-								</div>
-								<div class="input-field col s6">
-									<input id="Road" type="text" class="validate">
-									<label for="Road">Road</label>
-								</div>
-								<div class="input-field col s6 m4">
-									<select>
-										<option value="" disabled selected>Choose your option</option>
-										<option value="1">Identification number</option>
-										<option value="2">Passport number</option>
-									</select>
-									<label>Province</label>
-								</div>
-								<div class="input-field col 6 m4">
-									<select>
-										<option value="" disabled selected>Choose your option</option>
-										<option value="1">Identification number</option>
-										<option value="2">Passport number</option>
-									</select>
-									<label>District(Amphur)</label>
-								</div>
-								<div class="input-field col 6 m4">
-									<select>
-										<option value="" disabled selected>Choose your option</option>
-										<option value="1">Identification number</option>
-										<option value="2">Passport number</option>
-									</select>
-									<label>District</label>
-								</div>
-								<div class="input-field col 6 m4">
-									<input id="Zipcode" type="text" class="validate">
-									<label for="Zipcode">Zipcode</label>
+									<s:textfield name="stdModel.tel_number" required="true"/>
+									<label for="Tel">Tel</label>
 								</div>
 								
+								<div class="input-field col s6">
+									<s:textfield name="stdModel.line_id" />
+									<label for="LINE">ID LINE</label>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -169,6 +96,7 @@
 	    </div>
 		<script type="text/javascript">
 		 $(document).ready(function(){
+			 $("#ddlPrename option:first").attr('disabled', 'disabled');
 			 $('.m2').addClass('active');
 			 $('.m2-2').addClass('active');
 			 $('.collapsible').collapsible();

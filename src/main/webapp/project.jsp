@@ -115,7 +115,8 @@
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Project');
 			 $('select').material_select();
-			 var table =  $('#project-table').DataTable();
+			 var table =  $('#project-table').DataTable({
+			 });
 			 $('#icon_search').on( 'keyup', function () {
 				    table.search( this.value ).draw();
 				});

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 import smartict.model.PersonModel;
 import smartict.util.DBConnect;
@@ -93,5 +95,32 @@ public class PersonData {
 		}
 		
 		return persModel;
+	}
+	
+	public Map<String, String> getMapPrename(){
+		String sql ="SELECT * FROM pre_name";
+		Map<String, String> mapPrename = new HashMap<String, String>();
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			mapPrename.put("", "Choose your option");
+			while (rs.next()) {
+				
+				mapPrename.put(rs.getString("prename_id"), rs.getString("prename_name_short"));
+				
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mapPrename;
 	}
 }

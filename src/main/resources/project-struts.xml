@@ -31,9 +31,23 @@
       		<result name="success">/project-detail.jsp</result>
     	</action>
     	
-    	<action name="randomSequenceProject" class="smict.project.action.ProjectAction" method="randomProject">
-      		<result name="success">/project.jsp</result>
+    	<action name="viewProjectDetailExam" class="smict.project.action.ProjectAction" method="viewProjectDetailExam">
+      		<result name="success">/project-score.jsp</result>
     	</action>
+    	
+    	<action name="randomSequenceProject" class="smict.project.action.ProjectAction" method="randomProject">
+      		<result name="success">/project-sequence.jsp</result>
+      		<result name="random">/project-sequence.jsp</result>
+    	</action>
+    	
+    	<action name="viewProjectSequence" class="smict.project.action.ProjectAction" method="viewProjectSequence">
+      		<result name="success">/project-sequence.jsp</result>
+    	</action>
+    	
+    	<action name="addExamScore" class="smict.project.action.ProjectAction" method="addExamScore">
+      		<result name="success" type="redirectAction">viewProjectAll</result>
+    	</action>
+    	
     	
     	<!-- 	++++++	 Project 	 ++++++	  -->
     	
