@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 import java.io.IOException;
 import java.sql.*;
 
+import smartict.model.StudentModel;
 import smartict.model.TeacherModel;
 import smartict.util.DBConnect;
 import smartict.util.DateUtil;
@@ -27,9 +28,7 @@ public class TeacherData {
 		String sql ="SELECT * FROM teacher as teach "
 				+ "Inner JOIN identification_type identype on (teach.identification_type_id = identype.identification_type_id) "
 				+ "inner JOIN pre_name as pre on (teach.prename_id = pre.prename_id) "
-				+ "INNER JOIN provinces as province on (teach.addr_provinceid = province.PROVINCE_ID) "
-				+ "INNER JOIN amphures as aumphure on (teach.addr_aumphurid = aumphure.AMPHUR_ID) "
-				+ "INNER JOIN districts as district on (teach.addr_districtid = district.DISTRICT_ID) where ";
+				+ "where ";
 		
 		if(cValidate.checkIntegerNotZero(teachModel.getTeacher_id()) ){
 			sql += "teacher_id = "+teachModel.getTeacher_id()+ " and ";
@@ -45,14 +44,17 @@ public class TeacherData {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				
-				teachModel = new TeacherModel(rs.getString("firstname"), rs.getString("lastname"), rs.getString("identification"), rs.getString("addr_no"), 
- 						rs.getString("addr_bloc"), rs.getString("addr_village"), rs.getString("addr_alley"), rs.getString("addr_road"),
- 						rs.getString("addr_provinceid"), rs.getString("addr_aumphurid"), rs.getString("addr_districtid"), rs.getString("addr_zipcode"), 
- 						rs.getString("tel_number"), rs.getString("email"), rs.getString("line_id"), rs.getString("username"), 
- 						rs.getString("password"), rs.getString("identification_type_name"), rs.getString("prename_name_short"), rs.getString("province_name"), 
- 						rs.getString("amphur_name"), rs.getString("district_name"), rs.getDate("startdate"), rs.getDate("createdatetime"), 
- 						rs.getInt("prename_id"), rs.getInt("identification_type_id"), rs.getInt("teacher_id")
- 						);
+				teachModel = new TeacherModel();
+				teachModel.setTeacher_id(rs.getInt("teacher_id"));
+				teachModel.setFirstname(rs.getString("firstname"));
+				teachModel.setLastname(rs.getString("lastname"));
+				teachModel.setIdentification(rs.getString("identification"));
+				teachModel.setTel_number(rs.getString("tel_number"));
+				teachModel.setEmail(rs.getString("email"));
+				teachModel.setLine_id(rs.getString("line_id"));
+				teachModel.setPrename_name_short(rs.getString("prename_name_short"));
+				teachModel.setCreatedatetime(rs.getDate("createdatetime"));
+				
 				listTeacherModel.add(teachModel);
 				
 			}
@@ -127,5 +129,33 @@ public class TeacherData {
 		}
 		
 		return mapTeacher;
+	}
+	
+	public boolean hasAddTeacher(TeacherModel teaModel){
+		boolean hasAddTeacher = false;
+		String sql ="insert into teacher (teacher_id, firstname, lastname, identification, "
+				+ "identification_type_id, tel_number, email, line_id, "
+				+ "createdatetime, username, password, prename_id) "
+				+ "values "
+				+ "('"+teaModel.getTeacher_id()+"','"+teaModel.getFirstname()+"','"+teaModel.getLastname()+"','"+teaModel.getIdentification()+"',"
+				+ "'"+teaModel.getIdentification_type_id()+"','"+teaModel.getTel_number()+"','"+teaModel.getEmail()+"','"+teaModel.getLine_id()+"',"
+				+ "now(),'"+teaModel.getTeacher_id()+"','12345','"+teaModel.getPrename_id()+"')";
+		
+		
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasAddTeacher = true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hasAddTeacher;
 	}
 }

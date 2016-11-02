@@ -20,7 +20,16 @@
 		      </div>
 		    </div>
 		    <div class="div-container ">
-				<form class="container" method="post" action="#">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
+				<form class="container" method="post" action="AddStudent">
 				<h4 class="center-align light-blue-text text-darken-1">Add Student</h4>
 				<div class="card " style="padding:10px;">
 					<h5 class="cyan-text text-darken-1">Branch Details</h5>
@@ -36,9 +45,13 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
-								<div class="input-field col s12">
+								<div class="input-field col s6">
 									<s:select list="mapPrename" name="stdModel.prename_id" id="ddlPrename" ></s:select>
 									<label>คำนำหน้าชื่อ</label>
+								</div>
+								<div class="input-field col s6">
+									<s:textfield name="stdModel.student_id" required="true"/>
+									<label>รหัสนักศึกษา</label>
 								</div>
 								<div class="input-field col s6">
 									<s:textfield name="stdModel.firstname" required="true"/>
@@ -49,15 +62,15 @@
 									<label for="last_name">Last Name (TH)</label>
 								</div>
 								<div class="input-field col s6">
-									<select>
+									<select name="stdModel.identification_type_id">
 										<option value="" disabled selected>โปรดเลือกรูปแบบรหัสประจำตัว</option>
-										<option value="1">รหัสประจำตัวประชาชน</option>
+										<option value="1" selected>รหัสประจำตัวประชาชน</option>
 										<option value="2">Passport</option>
 									</select>
 									<label>Identification Type</label>
 								</div>
 								<div class="input-field col s6">
-									<s:textfield name="stdModel.identification_type_name" required="true"/>
+									<s:textfield name="stdModel.identification" required="true"/>
 									<label for="Identification">Identification</label>
 								</div>
 								<div class="input-field col s12">

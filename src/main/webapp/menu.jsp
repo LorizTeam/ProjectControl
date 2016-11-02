@@ -36,8 +36,8 @@
 	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>Teacher</div>
 	      <div class="collapsible-body">
 	      	<ul>
-	      		<li class="m3-1"><a href="teacher.jsp"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
-	      		<li class="m3-2"><a href="teacher-add.jsp"><i class="material-icons">note_add</i>Add Teacher</a></li>
+	      		<li class="m3-1"><a href="viewAllTeacher"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
+	      		<li class="m3-2"><a href="inputTeacher"><i class="material-icons">note_add</i>Add Teacher</a></li>
 	      	</ul>
 	      </div>
 	    </li>

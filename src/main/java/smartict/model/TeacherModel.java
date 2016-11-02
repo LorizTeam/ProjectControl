@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.joda.time.DateTime;
 
 public class TeacherModel extends PersonModel {
-	int teacher_id;
+	int teacher_id, oldteacher_id;
 
 	public TeacherModel() {
 		super();
@@ -39,6 +39,14 @@ public class TeacherModel extends PersonModel {
 
 	public void setTeacher_id(int teacher_id) {
 		this.teacher_id = teacher_id;
+	}
+
+	public int getOldteacher_id() {
+		return oldteacher_id;
+	}
+
+	public void setOldteacher_id(int oldteacher_id) {
+		this.oldteacher_id = oldteacher_id;
 	}
 	
 	

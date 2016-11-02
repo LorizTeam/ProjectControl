@@ -18,10 +18,43 @@
       		<result name="success">/Student.jsp</result>
     	</action>
     	
+    	<action name="viewStudentDetail" class="smartict.person.action.StudentAction" method="viewStudentDetail">
+      		<result name="success">/student-detail.jsp</result>
+    	</action>
+    	
     	<action name="inputStudent" class="smartict.person.action.StudentAction" method="inputStudentData">
       		<result name="success">/student-add.jsp</result>
     	</action>
+    	
+    	<action name="AddStudent" class="smartict.person.action.StudentAction" method="addStudent">
+      		<result name="success">/Student.jsp</result>
+      		<result name="failed">/student-add.jsp</result>
+    	</action>
+    	
+    	<action name="UpdateStudent" class="smartict.person.action.StudentAction" method="updateStudentDetail">
+      		<result name="success">/student-detail.jsp</result>
+    	</action>
+    	
+    	<action name="DeleteStudent" class="smartict.person.action.StudentAction" method="DeleteStudent">
+      		<result name="success">/Student.jsp</result>
+      		<result name="failed">/student-detail.jsp</result>
+    	</action>
     	<!-- 	++++++	 Student 	 ++++++	  -->
+    	
+    	<!-- 	++++++	 Teacher 	 ++++++	  -->
+    	<action name="viewAllTeacher" class="smartict.person.action.TeacherAction" method="viewAll">
+      		<result name="success">/teacher.jsp</result>
+    	</action>
+    	
+    	<action name="inputTeacher" class="smartict.person.action.TeacherAction" method="inputData">
+      		<result name="success">/teacher-add.jsp</result>
+    	</action>
+    	
+    	<action name="addTeacher" class="smartict.person.action.TeacherAction" method="addData">
+      		<result name="failed">/teacher-add.jsp</result>
+      		<result name="success">/teacher.jsp</result>
+    	</action>
+    	<!-- 	++++++	 Teacher 	 ++++++	  -->
     	
     </package>
 </struts>

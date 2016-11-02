@@ -34,6 +34,45 @@ public class StudentAction extends ActionSupport implements SessionAware {
 		return forwardText;
 	}
 	
+	public String viewStudentDetail(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		StudentData stdDB = new StudentData();
+		stdModel = stdDB.getStudentDetail(stdModel);
+		buildMapPrename();
+		buildMapBranch();
+		
+		return forwardText;
+	}
+	
+	public String updateStudentDetail(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		StudentData stdDB = new StudentData();
+		boolean hasUpdateStudent = stdDB.hasUpdateStudent(stdModel);
+		if(hasUpdateStudent){
+			alertStatus = "green green-text";
+			alertMessage = "ทำการแก้ไขข้อมูลสำเร็จ";
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "ไม่สามารถแก้ไขข้อมูลนักเรียนได้";
+		}
+		buildMapPrename();
+		buildMapBranch();
+		stdModel = stdDB.getStudentDetail(stdModel);
+		return forwardText;
+	}
+	
 	public String inputStudentData(){
 		String forwardText = "success";
 		if(!sessionMap.containsKey("username")){
@@ -56,8 +95,47 @@ public class StudentAction extends ActionSupport implements SessionAware {
 		}
 		
 		StudentData stdDB = new StudentData();
+		boolean hasAddStudent = stdDB.hasAddStudent(stdModel);
+		if(hasAddStudent){
+			alertStatus = "green green-text";
+			alertMessage = "ทำการเพิ่มข้อมูลสำเร็จ";
+			
+			listStudent = stdDB.getListStudentModel();
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "ไม่สามารถเพิ่มข้อมูลได้ กรุณาทำการใหม่อีกครั้ง";
+			buildMapBranch();
+			buildMapPrename();
+			forwardText = "failed";
+		}
 		
-		buildMapBranch();
+		
+		return forwardText;
+	}
+	
+	public String DeleteStudent(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		StudentData stdDB = new StudentData();
+		boolean hasDelete = stdDB.hasDelete(stdModel);
+		if(hasDelete){
+			alertStatus = "green green-text";
+			alertMessage = "ทำการลบข้อมูลสำเร็จ";
+			
+			listStudent = stdDB.getListStudentModel();
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "ไม่สามารถลบข้อมูลนักเรียนได้";
+			buildMapPrename();
+			buildMapBranch();
+			stdModel = stdDB.getStudentDetail(stdModel);
+			forwardText = "failed";
+		}
 		
 		return forwardText;
 	}

@@ -28,7 +28,7 @@
 		    <div class="div-container">
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="teacher-add.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="inputTeacher">
 	      					<i class="material-icons left">add</i>Add Teacher
 	      				</a>
 			    	</div>
@@ -45,38 +45,26 @@
 				    <table id="project-table" class=" responsive highlight" >
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="2">No.</th>
+				    			<th data-priority="1">Teacher ID</th>
 				    			<th data-priority="1">Teacher Name</th>
-				    			<th data-priority="1">Course</th>
-				    			<th data-priority="1">Faculty</th>
+				    			<th data-priority="1">Email</th>
+				    			<th data-priority="1">Telephone Number</th>
 				    			<th data-priority="2">Creation Date</th>
 				    		</tr>
 				    		
 				    	</thead>
 				    	<tbody>
-				    		<tr>
-				    			<td>1</td>
-				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
-				    			<td>HUM3002-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>2</td>
-				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
-				    			<td>ICT442-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    			
-				    		</tr>
-				    		<tr>
-				    			<td>3</td>
-				    			<td><a href="teacher-detail.jsp">Teacher name</a></td>
-				    			<td>ICT443-ชื่อวิชาเรียน</td>
-				    			<td>คณะชื่อคณะยาวๆๆๆ</td>
-				    			<td>20/10/2016</td>
-				    		</tr>
+				    		<s:iterator value="listTeacher">
+				    			<tr>
+					    			<td>
+					    			<a href='#'><s:property value="teacher_id"/></a>
+					    			</td>
+					    			<td><s:property value="prename_name_short"/> <s:property value="firstname"/> <s:property value="lastname"/></td>
+					    			<td><s:property value="email"/></td>
+					    			<td><s:property value="tel_number"/></td>
+					    			<td><s:property value="createdatetime"/></td>
+					    		</tr>
+				    		</s:iterator>
 				    	</tbody>
 				    </table>
 			    </div>

@@ -26,9 +26,18 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			    <div class="row" >
 			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="student-add.jsp">
+			    		<a class="waves-effect waves-light btn-large col s12 " href="inputStudent">
 	      					<i class="material-icons left">add</i>Add Student
 	      				</a>
 			    	</div>
@@ -45,7 +54,7 @@
 				    <table id="project-table" class="highlight  responsive" >
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="2">No.</th>
+				    			<th data-priority="1">No.</th>
 				    			<th data-priority="1">Prefix Name</th>
 				    			<th data-priority="1">Student Name</th>
 				    			<th data-priority="1">Course</th>
@@ -56,8 +65,13 @@
 				    	<tbody>
 				    		<s:iterator value="listStudent">
 				    			<tr>
-					    			<td><s:property value="student_id"/>  </td>
-					    			<td><a href="student-detail.jsp"><s:property value="prename_name_short"/></a></td>
+					    			<td>
+					    			<s:url action="viewStudentDetail" var="viewDetail" >
+					    				<s:param name="stdModel.student_id"><s:property value="student_id"/></s:param>
+					    			</s:url>
+					    			<a href='<s:property value="viewDetail"/>'><s:property value="student_id"/></a>
+					    			</td>
+					    			<td><s:property value="prename_name_short"/></td>
 					    			<td><s:property value="firstname"/> <s:property value="lastname"/></td>
 					    			<td><s:property value="branch_nameth"/></td>
 					    			<td><s:property value="faculty_nameth"/></td>
