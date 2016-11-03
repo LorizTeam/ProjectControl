@@ -73,6 +73,42 @@ public class TeacherData {
 		return listTeacherModel;
 	}
 	
+	public TeacherModel getTeacherDetail(TeacherModel teaModel){
+		String sql ="SELECT teacher.teacher_id, teacher.firstname, teacher.lastname, pre.prename_name_short, "
+							+ "teacher.tel_number, teacher.email, teacher.line_id, teacher.identification, "
+							+ "teacher.prename_id "
+				+ "FROM teacher "
+				+ "inner JOIN pre_name as pre on (teacher.prename_id = pre.prename_id) "
+				+ "where teacher.teacher_id = '"+teaModel.getTeacher_id()+"'";
+		
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				teaModel.setPrename_name_short(rs.getString("prename_name_short"));
+				teaModel.setTeacher_id(Integer.parseInt(rs.getString("teacher_id")));
+				teaModel.setFirstname(rs.getString("firstname"));
+				teaModel.setLastname(rs.getString("lastname"));
+				teaModel.setIdentification(rs.getString("identification"));
+				teaModel.setEmail(rs.getString("email"));
+				teaModel.setTel_number(rs.getString("tel_number"));
+				teaModel.setLine_id(rs.getString("line_id"));
+				teaModel.setPrename_id(rs.getInt("prename_id"));
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return teaModel;
+	}
+	
 	public Map<String, String> getMapTeacher(){
 		String sql ="SELECT * FROM teacher as teach inner JOIN pre_name as pre on (teach.prename_id = pre.prename_id)";
 		Map<String, String> mapTeacher = new HashMap<String, String>();
@@ -157,5 +193,51 @@ public class TeacherData {
 		}
 		
 		return hasAddTeacher;
+	}
+	
+	public boolean hasUpdateTeacher(TeacherModel teaModel){
+		boolean hasUpdateTeacher = false;
+		String sql ="update teacher set teacher_id = '"+teaModel.getTeacher_id()+"', firstname = '"+teaModel.getFirstname()+"', lastname = '"+teaModel.getLastname()+"', identification = '"+teaModel.getIdentification()+"', "
+				+ "identification_type_id = '"+teaModel.getIdentification_type_id()+"', tel_number = '"+teaModel.getTel_number()+"', email = '"+teaModel.getEmail()+"', line_id = '"+teaModel.getLine_id()+"', "
+				+ "prename_id = '"+teaModel.getPrename_id()+"' "
+				+ "where teacher_id = '"+teaModel.getOldteacher_id()+"'";
+		
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasUpdateTeacher = true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hasUpdateTeacher;
+	}
+	
+	public boolean hasDelete(TeacherModel teaModel){
+		boolean hasDeleteTeacher = false;
+		String sql ="delete from teacher where teacher_id = '"+teaModel.getTeacher_id()+"'";
+		
+		
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasDeleteTeacher = true;
+			}
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return hasDeleteTeacher;
 	}
 }

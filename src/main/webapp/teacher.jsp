@@ -26,6 +26,15 @@
 		      </div>
 		    </div>
 		    <div class="div-container">
+		    	<s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			    <div class="row" >
 			    	<div class="col s12 m6">
 			    		<a class="waves-effect waves-light btn-large col s12 " href="inputTeacher">
@@ -57,7 +66,10 @@
 				    		<s:iterator value="listTeacher">
 				    			<tr>
 					    			<td>
-					    			<a href='#'><s:property value="teacher_id"/></a>
+					    			<s:url action="viewTeacherDetail" var="urlLink" >
+					    				<s:param name="teaModel.teacher_id"><s:property value="teacher_id"/></s:param>
+					    			</s:url>
+					    			<a href='<s:property value="urlLink"/>'><s:property value="teacher_id"/></a>
 					    			</td>
 					    			<td><s:property value="prename_name_short"/> <s:property value="firstname"/> <s:property value="lastname"/></td>
 					    			<td><s:property value="email"/></td>
