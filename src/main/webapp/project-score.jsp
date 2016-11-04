@@ -36,7 +36,7 @@
 				        </div>
 				    	<div class="center-align">
 					    	<button  type="submit" id="btn-e" class="modal-action modal-close waves-effect waves-green  btn ">Save</button>
-					    	<a href="project-random.jsp" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
+					    	<a href="viewProjectAll" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 					    </div>
 				    </div>
 			    </form>

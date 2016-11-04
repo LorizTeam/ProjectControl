@@ -107,7 +107,9 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		proModel = projectDB.getProjectModelValue(proModel);
 		proModel = projectDB.getTeacherAddExamScoreStatus(proModel);
 		projectDB.addProjectExamScore(proModel);
+		proModel.setTeacher_id(Integer.parseInt(sessionMap.get("username").toString()));
 		projectDB.updateProjectExaminer(proModel);
+		projectDB.updateProjectStatus(proModel);
 		getMapAddProject();
 		
 		

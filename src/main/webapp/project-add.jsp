@@ -58,12 +58,10 @@
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>
 							<s:select style="width: 100%"  list="mapCourse" name="proModel.course_id"></s:select>
-							<hr>
 						 </div>
 				        <div class=" col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Teacher Adviser</p>
 						    <s:select style="width: 100%" list="mapTeacher" name="proModel.teacher_id"></s:select>
-						    <hr>
 						</div>
 						
 				      </div>

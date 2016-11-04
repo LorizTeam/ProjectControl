@@ -28,16 +28,16 @@ public class ProjectData {
 				+ "project.project_nameen,"
 				+ "CONCAT(pre_name.prename_name_short,' ',teacher.firstname,' ',teacher.lastname) as teachername,"
 				+ "CONCAT(project.exam_fullscore,'/',project.exam_score) as score,"
-				+ "course_nameth,"
-				+ "project.createdatetime,"
-				+ "faculty_nameth "
+				+ "course_nameth, project.createdatetime, faculty_nameth, (SELECT count(*) as personadded FROM project_examiner where project_id = project.project_id and addexam_statusid = 2) as personadded,"
+				+ "project_status.project_status_name "
 					+ "FROM "
 				+ "project "
 				+ "INNER JOIN teacher ON teacher.teacher_id = project.teacher_id "
 				+ "INNER JOIN pre_name ON pre_name.prename_id = teacher.prename_id  "
 				+ "INNER JOIN course on course.course_id = project.course_id "
 				+ "INNER JOIN branch on branch.branch_id = course.branch_id "
-				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id ";
+				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id "
+				+ "INNER JOIN project_status on project_status.project_status_id = project.project_status_id ";
 		
 			if(cValidate.Check_String_notnull_notempty(orderBy)){
 				sql += "order by "+orderBy;
@@ -59,6 +59,8 @@ public class ProjectData {
 				proModel.setCourse_nameth(rs.getString("course_nameth"));
 				proModel.setCreatedatetime(rs.getDate("createdatetime"));
 				proModel.setFaclulty_nameth(rs.getString("faculty_nameth"));
+				proModel.setPersonadded(rs.getInt("personadded"));
+				proModel.setProject_status_name(rs.getString("project_status_name"));
 				listProModel.add(proModel);
 			}
 			
@@ -74,6 +76,123 @@ public class ProjectData {
 		}
 		
 		return listProModel;
+	}
+	
+	public void updateProjectStatus(ProjectModel proModel){
+		int scorePass = getScorePass(proModel);
+		int currectScore = currentProjectScore(proModel);
+		if(scorePass < currectScore){
+			
+			String sql = "update project set project_status_id = 4 where project_id = "+proModel.getProject_id();
+			
+			try {
+				Connection conn = agent.getConnectMYSql();
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sql);
+				
+				if(!stmt.isClosed()) stmt.close();
+				if(!conn.isClosed()) conn.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public int getScorePass(ProjectModel proModel){
+		String sql = "SELECT * from project where project_id = "+proModel.getProject_id();
+		int scorePass = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				scorePass = rs.getInt("score_pass");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return scorePass;
+	}
+	
+	public boolean isAvailableAddExamScore(ProjectModel proModel){
+		boolean isAvailable = false;
+		if(currentProjectScore(proModel) <= 500 && !isMaxPersonAddExamScore(proModel)){
+			isAvailable = true;
+		}
+		
+		return true;
+	}
+	
+	public int currentProjectScore(ProjectModel proModel){
+		String sql = "SELECT * from project where project_id = "+proModel.getProject_id();
+		int currentScore = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				currentScore = rs.getInt("exam_score");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return currentScore;
+	}
+	
+	public boolean isMaxPersonAddExamScore(ProjectModel proModel){
+		boolean isMax = false;
+		if(getCurrentPersonAddedExamscore(proModel) == 6){
+			isMax = true;
+		}
+		return isMax;
+	}
+	
+	public int getCurrentPersonAddedExamscore(ProjectModel proModel){
+		String sql = "SELECT count(*) as personadded FROM project_examiner where project_id = "+proModel.getProject_id()+" and addexam_statusid = 2";
+		int personadded = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				personadded = rs.getInt("personadded");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return personadded;
 	}
 	
 	public List<ProjectModel> getListProjectSequence(){
