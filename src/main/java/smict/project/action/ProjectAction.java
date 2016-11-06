@@ -38,7 +38,29 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject("project_id");
+		listProModel = projectDB.getListProject("project_id", "", "");
+		
+		return forwardText;
+	}
+	
+	public String viewMyProjectHeaderProject(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		String studentId, teacherId; 
+		studentId = teacherId = "";
+		
+		if(sessionMap.get("type").toString().equals("1")){
+			teacherId = sessionMap.get("username").toString();
+		}else{
+			studentId = sessionMap.get("username").toString();
+		}
+		
+		listProModel = projectDB.getListProject("project_id", teacherId, studentId);
 		
 		return forwardText;
 	}
@@ -51,7 +73,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject("exam_number");
+		listProModel = projectDB.getListProject("exam_number", "", "");
 		
 		return forwardText;
 	}
@@ -150,6 +172,8 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 				
 				boolean isRandomAgain = true;
 				do{
+					System.out.println("min : "+listMinMax.get(0));
+					System.out.println("max : "+listMinMax.get(1));
 					int randomNumber = projectDB.getRandomInteger(listMinMax.get(0), listMinMax.get(1));
 					if(projectDB.isAvailableUseExamNumber(randomNumber)){
 						proModel = new ProjectModel();
@@ -170,7 +194,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			
 		}
 		
-		listProModel = projectDB.getListProject("exam_number");
+		listProModel = projectDB.getListProject("exam_number", "", "");
 		
 		return forwardText;
 	}
@@ -236,7 +260,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			forwardText = "success";
 		}
 		
-		listProModel = projectDB.getListProject("project_id");
+		listProModel = projectDB.getListProject("project_id" , "", "");
 		
 		return forwardText;
 	}

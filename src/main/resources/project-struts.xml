@@ -27,6 +27,10 @@
       		<result name="success">/project.jsp</result>
     	</action>
     	
+    	<action name="viewMyProject" class="smict.project.action.ProjectAction" method="viewMyProjectHeaderProject">
+      		<result name="success">/project.jsp</result>
+    	</action>
+    	
     	<action name="viewProjectDetail" class="smict.project.action.ProjectAction" method="viewProjectDetail">
       		<result name="success">/project-detail.jsp</result>
     	</action>

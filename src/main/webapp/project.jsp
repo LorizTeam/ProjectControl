@@ -36,19 +36,22 @@
 		    		</div>
 				</s:if>
 		    	<form action="#" method="post">
-			    <div class="row" >
-			    	<div class="col s12 m6">
-			    		<a class="waves-effect waves-light btn-large col s12 " href="inputProjectData">
-	      					<i class="material-icons left">add</i>Add Project
-	      				</a>
-			    	</div>
-			    	<div class="col s12 m6">
-			    		<a href="randomSequenceProject" class="waves-effect waves-light light-green darken-3 btn-large col s12">
-			    			<i class="material-icons left">shuffle</i>Random Project
-			    		</a>
-			    	</div>
-			    	
-			    </div>
+		    	<s:if test="%{#session.type == 3 }">
+		    		<div class="row" >
+				    	<div class="col s12 m6">
+				    		<a class="waves-effect waves-light btn-large col s12 " href="inputProjectData">
+		      					<i class="material-icons left">add</i>Add Project
+		      				</a>
+				    	</div>
+				    	<div class="col s12 m6">
+				    		<a href="randomSequenceProject" class="waves-effect waves-light light-green darken-3 btn-large col s12">
+				    			<i class="material-icons left">shuffle</i>Random Project
+				    		</a>
+				    	</div>
+				    	
+				    </div>
+		    	</s:if>
+			    
 			    <div class="card" style="padding:10px;">
 			    	<div class="row">
 					<div class="input-field col s12 m4 offset-m8">

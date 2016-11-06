@@ -20,8 +20,8 @@ public class ProjectData {
 	DateUtil dateUtil = new DateUtil();
 	Validate cValidate = new Validate();
 	
-	public List<ProjectModel> getListProject(String orderBy){
-		
+	public List<ProjectModel> getListProject(String orderBy, String teacherId, String studentId){
+		Validate validClass = new Validate();
 		String sql = "SELECT "
 				+ "project.project_id,"
 				+ "project.project_nameth,"
@@ -37,7 +37,15 @@ public class ProjectData {
 				+ "INNER JOIN course on course.course_id = project.course_id "
 				+ "INNER JOIN branch on branch.branch_id = course.branch_id "
 				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id "
-				+ "INNER JOIN project_status on project_status.project_status_id = project.project_status_id ";
+				+ "INNER JOIN project_status on project_status.project_status_id = project.project_status_id "
+				+ "LEFT JOIN student on project.project_id = student.project_id "
+				+ "where ";
+				
+			if(validClass.Check_String_notnull_notempty(studentId)) sql += "student_id = '"+studentId+"' and ";
+			
+			if(validClass.Check_String_notnull_notempty(teacherId)) sql += "teacher.teacher_id = '"+teacherId+"' and ";
+				
+				sql += "project.project_id != '' group by project.project_id ";
 		
 			if(cValidate.Check_String_notnull_notempty(orderBy)){
 				sql += "order by "+orderBy;
@@ -670,5 +678,32 @@ public class ProjectData {
 		int randomInt = 0;
 		randomInt = ThreadLocalRandom.current().nextInt(minInt, maxInt + 1);
 		return randomInt;
+	}
+	
+	public int getNextExamQueue(){
+		String sql ="SELECT * FROM project where exam_score = 0 ORDER BY exam_number LIMIT 1";
+		int exam_number = 0;
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				
+				exam_number = rs.getInt("exam_number");
+				
+			}
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return exam_number;
 	}
 }

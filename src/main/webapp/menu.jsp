@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="smict.project.data.ProjectData" %>
 <header>
 	<nav class="top-nav light-blue darken-3" style="padding-left:10px;">
 		<div class="nav-warpper">
@@ -14,61 +15,93 @@
 			<i class="large material-icons ">web</i><p>Project Controller</p>
 		</li>
 		<li >
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>Project List</a></li>
-	      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
-				<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
-	      	</ul>
-	      </div>
-	    </li>
-	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Student</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m2-1"><a href="viewAllStudent"><i class="material-icons">recent_actors</i>Student List</a></li>
-	      		<li class="m2-2"><a href="inputStudent"><i class="material-icons">note_add</i>Add Student</a></li>
-	      	</ul>
-	      </div>
-	    </li>
-	     <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>Teacher</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m3-1"><a href="viewAllTeacher"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
-	      		<li class="m3-2"><a href="inputTeacher"><i class="material-icons">note_add</i>Add Teacher</a></li>
-	      	</ul>
-	      </div>
-	    </li>
-	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>File</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m4-1"><a href="#"><i class="material-icons">description</i>File List</a></li>
-	      		<li class="m4-2"><a href="file-group.jsp"><i class="material-icons">work</i>File Group List</a></li>
-	      	</ul>
-	      </div>
-	    </li>
-	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m5"><i class="material-icons">assignment_ind</i>Employee</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m5-1"><a href="employee.jsp"><i class="material-icons">assignment_ind</i>Employee List</a></li>
-	      		<li class="m5-2"><a href="employee-add.jsp"><i class="material-icons">note_add</i>Add Employee</a></li>
-	      	</ul>
-	      </div>
-	    </li>
-	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m6"><i class="material-icons">settings</i>Setting</div>
-	      <div class="collapsible-body">
-	      	<ul>
-	      		<li class="m6-1"><a href="viewAllFaculty"><i class="material-icons">assignment_ind</i>Faculty</a></li>
-	      		<li class="m6-2"><a href="viewAllBranch"><i class="material-icons">assignment_ind</i>Branch</a></li>
-	      		<li class="m6-3"><a href="viewAllCourse"><i class="material-icons">note_add</i>Course</a></li>
-	      	</ul>
-	      </div>
-	    </li>
+			<%
+				ProjectData proDB = new ProjectData();
+				int exam_number = proDB.getNextExamQueue();
+			%>
+			<div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1">Next project queue: <%=exam_number %></div>
+		</li>
+		<s:if test="%{#session.type == 3 }">
+			<li >
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>Project List</a></li>
+		      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Student</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m2-1"><a href="viewAllStudent"><i class="material-icons">recent_actors</i>Student List</a></li>
+		      		<li class="m2-2"><a href="inputStudent"><i class="material-icons">note_add</i>Add Student</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		     <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>Teacher</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m3-1"><a href="viewAllTeacher"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
+		      		<li class="m3-2"><a href="inputTeacher"><i class="material-icons">note_add</i>Add Teacher</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>File</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m4-1"><a href="#"><i class="material-icons">description</i>File List</a></li>
+		      		<li class="m4-2"><a href="file-group.jsp"><i class="material-icons">work</i>File Group List</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m5"><i class="material-icons">assignment_ind</i>Employee</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m5-1"><a href="employee.jsp"><i class="material-icons">assignment_ind</i>Employee List</a></li>
+		      		<li class="m5-2"><a href="employee-add.jsp"><i class="material-icons">note_add</i>Add Employee</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m6"><i class="material-icons">settings</i>Setting</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m6-1"><a href="viewAllFaculty"><i class="material-icons">assignment_ind</i>Faculty</a></li>
+		      		<li class="m6-2"><a href="viewAllBranch"><i class="material-icons">assignment_ind</i>Branch</a></li>
+		      		<li class="m6-3"><a href="viewAllCourse"><i class="material-icons">note_add</i>Course</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		</s:if>
+		<s:elseif test="%{#session.type == 2 }">
+			<li >
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>Project List</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		</s:elseif>
+		<s:elseif test="%{#session.type == 1 }">
+			<li >
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>Project List</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		</s:elseif>
+		
+	    
 	    <li>
 	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">settings_power</i>Power</div>
 	      <div class="collapsible-body">

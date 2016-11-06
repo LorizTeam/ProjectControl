@@ -81,8 +81,10 @@
 						</div>
 				    </div>
 			      <div class="center-align">
-			     
-			      <button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
+			     <s:if test="%{#session.type == 3 }">
+			     	<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
+			     </s:if>
+			      
 			      <a href="viewProjectAll" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 			      </div>
 		    </div>
