@@ -4,10 +4,9 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
  <!-- version 1.2 -->
 <struts>
- 	
-    <constant name="struts.devMode" value="true" />
-    
+	<constant name="struts.multipart.maxSize" value="110000000" />
     <package name="SmartDental" extends="struts-default">
+    
  		<global-results>
 		    <result name="login">/login.jsp</result>
 		    <result name="noaccess">/noaccess.jsp</result>
@@ -24,7 +23,40 @@
     	<action name="Logout" class="smartict.person.action.LoginLogoutAction" method="Logout">
       		<result name="login">/login.jsp</result>
     	</action>
-    	<!-- 				++++++	 Treatment Waiting 	 ++++++	  		-->
+    	
+		<action name="Dashboard" class="smartict.person.action.DashboardAction" method="goDashBoard">
+      		<result name="success">/index.jsp</result>
+    	</action>
+    	
+    	<!-- 	++++++	 File 	 ++++++	  -->
+		<action name="FileGroup" class="smict.file.action.FileGroupAction" method="getFileGroup">
+      		<result name="success">/file-group.jsp</result>
+    	</action>
+    	
+    	<action name="deleteFileGroup" class="smict.file.action.FileGroupAction" method="deleteFileGroup">
+      		<result name="success">/file-group.jsp</result>
+    	</action>
+    	
+    	<action name="addFileGroup" class="smict.file.action.FileGroupAction" method="addFileGroup">
+      		<result name="success">/file-group.jsp</result>
+    	</action>
+    	
+    	<action name="inputFile" class="smict.file.action.FileAction" method="inputFile">
+      		<result name="success">/file-add.jsp</result>
+    	</action>
+    	
+    	<action name="addFile" class="smict.file.action.FileAction" method="addFile">
+      		<result name="success">/file-add.jsp</result>
+    	</action>
+    	
+    	<action name="deleteFile" class="smict.file.action.FileAction" method="deleteFile">
+      		<result name="success">/file-add.jsp</result>
+    	</action>
+    	
+    	<action name="getAllFile" class="smict.file.action.FileAction" method="getAllFile">
+      		<result name="success">/file-list.jsp</result>
+    	</action>
+		<!-- 	++++++	 File 	 ++++++	  -->
     	
     </package>
     <include file="person-struts.xml"></include>

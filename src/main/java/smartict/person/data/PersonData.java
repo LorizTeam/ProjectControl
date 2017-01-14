@@ -43,6 +43,37 @@ public class PersonData {
 		return persModel;
 	}
 	
+	public boolean hasUpdatePassword(String username, String password, String type){
+		boolean hasUpdate = false;
+		String tableName = "";
+		if(type.equals("1")){
+			tableName = "teacher";
+		}else if(type.equals("2")){
+			tableName = "student";
+		}else if(type.equals("3")){
+			tableName = "employee";
+		}
+		String sql = "update "+tableName+" set username = '"+username+"', password = '"+password+"' where username = '"+username+"'";
+		PersonModel persModel = new PersonModel();
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasUpdate = true;
+			}
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hasUpdate;
+	}
+	
 	public PersonModel getStudentDetail(String username, String password){
 		
 		String sql = "SELECT * FROM `student` where username = '"+username+"' and password = '"+password+"'";

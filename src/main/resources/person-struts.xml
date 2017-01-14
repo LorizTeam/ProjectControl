@@ -13,6 +13,17 @@
 		    <result name="noaccess">/noaccess.jsp</result>
 		</global-results>
 		
+		<!-- 	++++++	 All-Person 	 ++++++	  -->
+		<action name="inputChangePassword" class="smartict.person.action.PersonAction" method="inputChangePassword">
+      		<result name="success">/person-changepass.jsp</result>
+    	</action>
+    	
+    	<action name="changePassword" class="smartict.person.action.PersonAction" method="changePassword">
+      		<result name="false">/person-changepass.jsp</result>
+      		<result name="success">/person-changepass.jsp</result>
+    	</action>
+		<!-- 	++++++	 All-Person 	 ++++++	  -->
+		
 		<!-- 	++++++	 Student 	 ++++++	  -->
 		<action name="viewAllStudent" class="smartict.person.action.StudentAction" method="viewAllStudent">
       		<result name="success">/Student.jsp</result>
@@ -38,6 +49,14 @@
     	<action name="DeleteStudent" class="smartict.person.action.StudentAction" method="DeleteStudent">
       		<result name="success">/Student.jsp</result>
       		<result name="failed">/student-detail.jsp</result>
+    	</action>
+    	
+    	<action name="InputChangePasswordStudent" class="smartict.person.action.StudentAction" method="inputUpdatePassword">
+      		<result name="success">/student-change-password.jsp</result>
+    	</action>
+    	
+    	<action name="ChangePasswordStudent" class="smartict.person.action.StudentAction" method="updatePassword">
+      		<result name="success">/student-change-password.jsp</result>
     	</action>
     	<!-- 	++++++	 Student 	 ++++++	  -->
     	

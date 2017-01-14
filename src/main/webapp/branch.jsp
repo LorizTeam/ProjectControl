@@ -21,7 +21,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Branch</a>
 		      </div>
 		    </div>
@@ -53,11 +53,11 @@
 				    <table id="Branch-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">Branch ID</th>
-				    			<th data-priority="1">Branch Code</th>
-				    			<th data-priority="1">Branch Name TH</th>
-				    			<th data-priority="1">Branch Name EN</th>
-				    			<th data-priority="1">Faculty Name TH</th>
+				    			<th data-priority="1">รหัสสาขา</th>
+				    			<th data-priority="1">Code สาขา</th>
+				    			<th data-priority="1">ชื่อสาขา(TH)</th>
+				    			<th data-priority="1">ชื่อสาขา(EN)</th>
+				    			<th data-priority="1">ชื่อคณะ(TH)</th>
 				    		</tr>
 				    		
 				    	</thead>

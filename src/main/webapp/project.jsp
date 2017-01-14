@@ -21,7 +21,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Project</a>
 		      </div>
 		    </div>
@@ -63,16 +63,17 @@
 				    <table id="project-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
-				    			<th data-priority="1">Project Name TH</th>
-				    			<th data-priority="1">Project Name EN</th>
-				    			<th data-priority="2">Adviser</th>
-				    			<th data-priority="2">Score</th>
-				    			<th data-priority="2">Person Added</th>
-				    			<th data-priority="1">Status</th>
-				    			<th data-priority="3">Course</th>
-				    			<th data-priority="3">Faculty</th>
-				    			<th data-priority="3">Creation Date</th>
+				    			<th data-priority="1">ลำดับ.</th>
+				    			<th data-priority="1">ชื่อโครงการ(TH)</th>
+				    			<th data-priority="1">ชื่อโครงการ(EN)</th>
+				    			<th data-priority="2">อาจารย์ที่ปรึกษา</th>
+				    			<th data-priority="2">คะแนนเต็ม</th>
+				    			<th data-priority="2">คะแนนที่สอบได้</th>
+				    			<th data-priority="2">จำนวนคนให้คะแนน</th>
+				    			<th data-priority="1">สถานะ</th>
+				    			<th data-priority="3">วิชา</th>
+				    			<th data-priority="3">คณะ</th>
+				    			<th data-priority="3">วันที่สร้างโครงการ</th>
 				    		</tr>
 				    		
 				    	</thead>
@@ -86,7 +87,8 @@
 					    			<td><a href='<s:property value="urlLink"/>'> <s:property value="project_nameth"/></a></td>
 					    			<td><s:property value="project_nameen"/></td>
 					    			<td><s:property value="firstname"/></td>
-					    			<td><s:property value="showScoreProject"/></td>
+					    			<td><s:property value="exam_fullscore"/></td>
+					    			<td><s:property value="exam_score"/></td>
 					    			<td><s:property value="personadded"/></td>
 					    			<td><s:property value="project_status_name"/></td>
 					    			<td><s:property value="course_nameth"/></td>

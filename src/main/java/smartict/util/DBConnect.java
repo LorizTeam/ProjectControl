@@ -16,8 +16,8 @@ public class DBConnect {
 				//Class.forName ("org.gjt.mm.mysql.Driver");
 				String dbName = "projectcontrol";
 				//String hostname = "pcpnru.cre4njgwawzc.ap-southeast-1.rds.amazonaws.com";  // amazon
-				//String hostname = "smartict.ar-bro.net";  // smart server
-				String hostname = "localhost";
+				String hostname = "smartict.ar-bro.net";  // smart server
+				//String hostname = "localhost";
 				String port = "3306";
 				String dbUserName = "root";
 				//String dbPassword = "a8s5T5d4"; // amazon

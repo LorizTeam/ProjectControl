@@ -16,7 +16,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Add Project</a>
 		      </div>
 		    </div>

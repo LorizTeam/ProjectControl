@@ -21,7 +21,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Student</a>
 		      </div>
 		    </div>
@@ -54,11 +54,12 @@
 				    <table id="project-table" class="highlight  responsive" >
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">No.</th>
-				    			<th data-priority="1">Prefix Name</th>
-				    			<th data-priority="1">Student Name</th>
-				    			<th data-priority="1">Course</th>
-				    			<th data-priority="1">Faculty</th>
+				    			<th data-priority="1">ลำดับ.</th>
+				    			<th data-priority="1">คำนำหน้าชื่อ</th>
+				    			<th data-priority="1">ชื่อนักศึกษา</th>
+				    			<th data-priority="1">วิชา</th>
+				    			<th data-priority="1">คณะ</th>
+				    			<th data-priority="1">เปลี่ยนแปลง Password</th>
 				    		</tr>
 				    		
 				    	</thead>
@@ -75,6 +76,12 @@
 					    			<td><s:property value="firstname"/> <s:property value="lastname"/></td>
 					    			<td><s:property value="branch_nameth"/></td>
 					    			<td><s:property value="faculty_nameth"/></td>
+					    			<td>
+					    			<s:url action="InputChangePasswordStudent" var="inputChangePass" >
+					    				<s:param name="stdModel.username"><s:property value="student_id"/></s:param>
+					    			</s:url>
+					    			<a href='<s:property value="inputChangePass"/>'>แก้ไข Password</a>
+					    			</td>
 					    		</tr>
 				    		</s:iterator>
 				    	</tbody>

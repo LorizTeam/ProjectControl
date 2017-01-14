@@ -109,6 +109,29 @@ public class TeacherData {
 		return teaModel;
 	}
 	
+	public String countTeacher(){
+		String sql ="SELECT count(*) as numberTeacher from teacher";
+		String numberTeacher = "";
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				numberTeacher = rs.getString("numberTeacher");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return numberTeacher;
+	}
+	
 	public Map<String, String> getMapTeacher(){
 		String sql ="SELECT * FROM teacher as teach inner JOIN pre_name as pre on (teach.prename_id = pre.prename_id)";
 		Map<String, String> mapTeacher = new HashMap<String, String>();

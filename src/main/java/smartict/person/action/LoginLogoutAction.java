@@ -14,13 +14,17 @@ import com.opensymphony.xwork2.ActionSupport;
 import smartict.model.PersonModel;
 import smartict.person.data.LoginData;
 import smartict.person.data.PersonData;
+import smartict.person.data.StudentData;
+import smartict.person.data.TeacherData;
+import smict.project.data.ProjectData;
 
 public class LoginLogoutAction extends ActionSupport implements SessionAware{
 	
 	private Map<String,Object> sessionMap;
 	String username, password, firstname, lastname,
-	alertStatus, alertMessage;
-
+		alertStatus, alertMessage, numberStudent, numberTeacher, 
+		numberProject;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -111,6 +115,10 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 			alertMessage = "Username หรือ Password ผิดพลาด";
 		}
 		
+		numberStudent = new StudentData().countStudent();
+		numberTeacher = new TeacherData().countTeacher();
+		numberProject = new ProjectData().countProject();
+		
 		sessionMap.put("username", username);
 		sessionMap.put("password", password);
 		sessionMap.put("firstname", firstname);
@@ -126,5 +134,29 @@ public class LoginLogoutAction extends ActionSupport implements SessionAware{
 		alertStatus = "green green-text";
 		alertMessage = "ออกจากระบบสำเร็จ";
 		return "login";
+	}
+
+	public String getNumberStudent() {
+		return numberStudent;
+	}
+
+	public void setNumberStudent(String numberStudent) {
+		this.numberStudent = numberStudent;
+	}
+
+	public String getNumberTeacher() {
+		return numberTeacher;
+	}
+
+	public void setNumberTeacher(String numberTeacher) {
+		this.numberTeacher = numberTeacher;
+	}
+
+	public String getNumberProject() {
+		return numberProject;
+	}
+
+	public void setNumberProject(String numberProject) {
+		this.numberProject = numberProject;
 	}
 }

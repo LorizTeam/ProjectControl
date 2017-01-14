@@ -73,6 +73,41 @@ public class StudentAction extends ActionSupport implements SessionAware {
 		return forwardText;
 	}
 	
+	public String inputUpdatePassword(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		return forwardText;
+	}
+	
+	public String updatePassword(){
+		String forwardText = "success";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		if(!stdModel.getPassword().equals(stdModel.getCpassword())){
+			alertStatus = "red red-text";
+			alertMessage = "Password ที่กรอกนั้นไม่ตรงกัน";
+		}
+		boolean hasUpdate = new StudentData().hasUpdatePassword(stdModel);
+		if(hasUpdate){
+			forwardText = "success";
+			alertStatus = "green green-text";
+			alertMessage = "ทำการเปลี่ยนแปลง Password สำเร็จ";
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "ทำการเปลี่ยนแปลง Password ไม่สำเร็จ";
+		}
+		
+		return forwardText;
+	}
+	
 	public String inputStudentData(){
 		String forwardText = "success";
 		if(!sessionMap.containsKey("username")){

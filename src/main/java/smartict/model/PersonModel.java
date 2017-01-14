@@ -10,7 +10,7 @@ public class PersonModel {
 			addr_provinceid, addr_aumphurid, addr_districtid, addr_zipcode, 
 			tel_number, email, line_id, username,
 			password, identification_type_name, prename_name_short, province_name, 
-			amphur_name, district_name;
+			amphur_name, district_name, cpassword;
 	Date startdate, createdatetime;
 	int prename_id, identification_type_id;
 	
@@ -222,6 +222,14 @@ public class PersonModel {
 
 	public void setDistrict_name(String district_name) {
 		this.district_name = district_name;
+	}
+
+	public String getCpassword() {
+		return cpassword;
+	}
+
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
 	}
 	
 	

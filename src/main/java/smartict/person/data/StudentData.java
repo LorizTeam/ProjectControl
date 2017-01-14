@@ -38,10 +38,10 @@ public class StudentData {
 				hasAddStudent = true;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -62,10 +62,10 @@ public class StudentData {
 				hasUpdateStudent = true;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -84,15 +84,38 @@ public class StudentData {
 				hasDelete = true;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
 		return hasDelete;
 	}
+	
+	public boolean hasUpdatePassword(StudentModel stdModel){
+		boolean hasUpdate = false;
+		String sql ="update student set password = '"+stdModel.getPassword()+"'  where student_id = '"+stdModel.getUsername()+"'";
+		
+		
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasUpdate = true;
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		
+		return hasUpdate;
+	}
+	
 	public Map<String, String> getMapStudent(){
 		String sql ="SELECT * FROM student inner JOIN pre_name as pre on (student.prename_id = pre.prename_id)";
 		Map<String, String> mapStudent = new HashMap<String, String>();
@@ -118,6 +141,30 @@ public class StudentData {
 		}
 		
 		return mapStudent;
+	}
+	
+	public String countStudent(){
+		String sql ="SELECT count(*) as numberStudent FROM student ";
+		String numberStudent = "";
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				numberStudent = rs.getString("numberStudent");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return numberStudent;
 	}
 	
 	public List<StudentModel> getListStudentModel(){

@@ -21,7 +21,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Teacher</a>
 		      </div>
 		    </div>
@@ -54,11 +54,11 @@
 				    <table id="project-table" class=" responsive highlight" >
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">Teacher ID</th>
-				    			<th data-priority="1">Teacher Name</th>
-				    			<th data-priority="1">Email</th>
-				    			<th data-priority="1">Telephone Number</th>
-				    			<th data-priority="2">Creation Date</th>
+				    			<th data-priority="1">รหัสอาจารย์</th>
+				    			<th data-priority="1">ชื่ออาจารย์</th>
+				    			<th data-priority="1">อีเมล</th>
+				    			<th data-priority="1">เบอร์โทรศัพท์</th>
+				    			<th data-priority="2">วันที่เพิ่มข้อมูล</th>
 				    		</tr>
 				    		
 				    	</thead>

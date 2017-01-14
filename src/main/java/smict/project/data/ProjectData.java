@@ -27,7 +27,7 @@ public class ProjectData {
 				+ "project.project_nameth,"
 				+ "project.project_nameen,"
 				+ "CONCAT(pre_name.prename_name_short,' ',teacher.firstname,' ',teacher.lastname) as teachername,"
-				+ "CONCAT(project.exam_fullscore,'/',project.exam_score) as score,"
+				+ "project.exam_fullscore, project.exam_score, "
 				+ "course_nameth, project.createdatetime, faculty_nameth, (SELECT count(*) as personadded FROM project_examiner where project_id = project.project_id and addexam_statusid = 2) as personadded,"
 				+ "project_status.project_status_name "
 					+ "FROM "
@@ -36,7 +36,7 @@ public class ProjectData {
 				+ "INNER JOIN pre_name ON pre_name.prename_id = teacher.prename_id  "
 				+ "INNER JOIN course on course.course_id = project.course_id "
 				+ "INNER JOIN branch on branch.branch_id = course.branch_id "
-				+ "INNER JOIN faculty on faculty.faculty_id = branch.branch_id "
+				+ "INNER JOIN faculty on faculty.faculty_id = branch.faculty_id "
 				+ "INNER JOIN project_status on project_status.project_status_id = project.project_status_id "
 				+ "LEFT JOIN student on project.project_id = student.project_id "
 				+ "where ";
@@ -63,7 +63,8 @@ public class ProjectData {
 				proModel.setProject_nameth(rs.getString("project_nameth"));
 				proModel.setProject_nameen(rs.getString("project_nameen"));
 				proModel.setFirstname(rs.getString("teachername"));
-				proModel.setShowScoreProject(rs.getString("score"));
+				proModel.setExam_fullscore(rs.getInt("exam_fullscore"));
+				proModel.setExam_score(rs.getDouble("exam_score"));
 				proModel.setCourse_nameth(rs.getString("course_nameth"));
 				proModel.setCreatedatetime(rs.getDate("createdatetime"));
 				proModel.setFaclulty_nameth(rs.getString("faculty_nameth"));
@@ -89,9 +90,27 @@ public class ProjectData {
 	public void updateProjectStatus(ProjectModel proModel){
 		int scorePass = getScorePass(proModel);
 		int currectScore = currentProjectScore(proModel);
-		if(scorePass < currectScore){
+		int examiner = getCountProjectExamier(proModel);
+		if(scorePass < currectScore && examiner == 5){
 			
 			String sql = "update project set project_status_id = 4 where project_id = "+proModel.getProject_id();
+			
+			try {
+				Connection conn = agent.getConnectMYSql();
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sql);
+				
+				if(!stmt.isClosed()) stmt.close();
+				if(!conn.isClosed()) conn.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(scorePass > currectScore && examiner == 5){
+			String sql = "update project set project_status_id = 3 where project_id = "+proModel.getProject_id();
 			
 			try {
 				Connection conn = agent.getConnectMYSql();
@@ -135,6 +154,31 @@ public class ProjectData {
 		return scorePass;
 	}
 	
+	public String countProject(){
+		String sql = "SELECT count(*) as numberProject from project";
+		String numberProject = "";
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				numberProject = rs.getString("numberProject");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return numberProject;
+	}
+	
 	public boolean isAvailableAddExamScore(ProjectModel proModel){
 		boolean isAvailable = false;
 		if(currentProjectScore(proModel) <= 500 && !isMaxPersonAddExamScore(proModel)){
@@ -167,6 +211,33 @@ public class ProjectData {
 			e.printStackTrace();
 		}
 		return currentScore;
+	}
+	
+	public int getCountProjectExamier(ProjectModel proModel){
+		String sql = "SELECT count(*) as countExaminer from project "
+				+ "inner join project_examiner on (project.project_id = project_examiner.project_id) "
+				+ "where project.project_id = "+proModel.getProject_id()+" group by project.project_id";
+		int examiner = 0;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				examiner = rs.getInt("countExaminer");
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return examiner;
 	}
 	
 	public boolean isMaxPersonAddExamScore(ProjectModel proModel){

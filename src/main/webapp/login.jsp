@@ -25,8 +25,10 @@
 		            		<s:property value="alertMessage"/>
 		            	</div>
 					</s:if>
-		            
-		              <span class="card-title "><i class="large material-icons ">web</i><p>Project Control Login</p></span>
+	            	<div class="card-image">
+		              <img class="materialboxed" src="img/pnru.png">
+		            </div>
+		              <p>Project Control</p>
 		              <form class="row" method="post" action="Login">
 			              <div class="input-field col s12 left-align">
 					          <input id="Username" name="username" type="text" class="validate" required />

@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="smict.project.data.ProjectData" %>
 <header>
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 	<nav class="top-nav light-blue darken-3" style="padding-left:10px;">
 		<div class="nav-warpper">
 			<a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -12,7 +13,12 @@
 	</nav>
 	<ul id="slide-out" class="side-nav fixed collapsible"  data-collapsible="accordion" >
 		<li class="logo  light-blue-text text-darken-3 ">
-			<i class="large material-icons ">web</i><p>Project Controller</p>
+		  <div class="row">
+	      	<div class="col s1">
+	      		<img class="materialboxed" src="img/industrial_technology.png" width="200">
+      		</div>
+	      </div>
+	        <p>Project Controller</p>
 		</li>
 		<li >
 			<%
@@ -23,79 +29,87 @@
 		</li>
 		<s:if test="%{#session.type == 3 }">
 			<li >
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>โปรเจค</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>Project List</a></li>
-		      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>Add Project</a></li>
-					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
+		      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>เพิ่มโปรเจค</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับของโปรเจค</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>Student</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m2"><i class="material-icons">recent_actors</i>นักศึกษา</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m2-1"><a href="viewAllStudent"><i class="material-icons">recent_actors</i>Student List</a></li>
-		      		<li class="m2-2"><a href="inputStudent"><i class="material-icons">note_add</i>Add Student</a></li>
+		      		<li class="m2-1"><a href="viewAllStudent"><i class="material-icons">recent_actors</i>รายการนักศึกษา</a></li>
+		      		<li class="m2-2"><a href="inputStudent"><i class="material-icons">note_add</i>เพิ่มนักศึกษา</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		     <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>Teacher</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m3"><i class="material-icons">supervisor_account</i>อาจารย์</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m3-1"><a href="viewAllTeacher"><i class="material-icons">supervisor_account</i>Teacher List</a></li>
-		      		<li class="m3-2"><a href="inputTeacher"><i class="material-icons">note_add</i>Add Teacher</a></li>
+		      		<li class="m3-1"><a href="viewAllTeacher"><i class="material-icons">supervisor_account</i>รายการอาจารย์</a></li>
+		      		<li class="m3-2"><a href="inputTeacher"><i class="material-icons">note_add</i>เพิ่มอาจารย์</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>File</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m4-1"><a href="#"><i class="material-icons">description</i>File List</a></li>
-		      		<li class="m4-2"><a href="file-group.jsp"><i class="material-icons">work</i>File Group List</a></li>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
+		      		<li class="m4-2"><a href="inputFile"><i class="fa fa-plus-circle fa-2x"></i>จัดการไฟล์</a></li>
+		      		<li class="m4-3"><a href="FileGroup"><i class="material-icons">work</i>ข้อมูลกลุ่มไฟล์</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m5"><i class="material-icons">assignment_ind</i>Employee</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m6"><i class="material-icons">settings</i>ตั้งค่า</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m5-1"><a href="employee.jsp"><i class="material-icons">assignment_ind</i>Employee List</a></li>
-		      		<li class="m5-2"><a href="employee-add.jsp"><i class="material-icons">note_add</i>Add Employee</a></li>
-		      	</ul>
-		      </div>
-		    </li>
-		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m6"><i class="material-icons">settings</i>Setting</div>
-		      <div class="collapsible-body">
-		      	<ul>
-		      		<li class="m6-1"><a href="viewAllFaculty"><i class="material-icons">assignment_ind</i>Faculty</a></li>
-		      		<li class="m6-2"><a href="viewAllBranch"><i class="material-icons">assignment_ind</i>Branch</a></li>
-		      		<li class="m6-3"><a href="viewAllCourse"><i class="material-icons">note_add</i>Course</a></li>
+		      		<li class="m6-1"><a href="viewAllFaculty"><i class="material-icons">assignment_ind</i>คณะ</a></li>
+		      		<li class="m6-2"><a href="viewAllBranch"><i class="material-icons">assignment_ind</i>สาขา</a></li>
+		      		<li class="m6-3"><a href="viewAllCourse"><i class="material-icons">note_add</i>วิชา</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		</s:if>
 		<s:elseif test="%{#session.type == 2 }">
 			<li >
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>โปรเจค</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>Project List</a></li>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
 		      	</ul>
 		      </div>
 		    </li>
 		</s:elseif>
 		<s:elseif test="%{#session.type == 1 }">
 			<li >
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>Project</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>โปรเจค</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>Project List</a></li>
-					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>Sequence Project</a></li>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับโปรเจค</a></li>
+		      	</ul>
+		      </div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
+		      <div class="collapsible-body">
+		      	<ul>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
 		      	</ul>
 		      </div>
 		    </li>
@@ -103,12 +117,13 @@
 		
 	    
 	    <li>
-	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange"><i class="material-icons">settings_power</i>Power</div>
+	      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange person"><i class="material-icons">settings_power</i>ข้อมูลผู้ใช้งาน</div>
 	      <div class="collapsible-body">
 	      	<ul>
 	      		<li><a href="#"><i class="material-icons">perm_identity</i> <s:property value="%{#session.firstname}"/> <s:property value="%{#session.lastname}"/></a></li>
+	      		<li class="changePass"><a href="inputChangePassword"><i class="material-icons">mode_edit</i> เปลี่ยนพาสเวิร์ด</a></li>
 	      		<s:url action="Logout" var="LogoutAction" />
-	      		<li><a href='<s:property value="LogoutAction"/>'><i class="material-icons">power_settings_new</i>Logout</a></li>
+	      		<li><a href='<s:property value="LogoutAction"/>'><i class="material-icons">power_settings_new</i>ออกจากระบบ</a></li>
 	      	</ul>
 	      </div>
 	    </li>

@@ -22,7 +22,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Faculty</a>
 		      </div>
 		    </div>
@@ -54,10 +54,10 @@
 				    <table id="Faculty-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">Faculty ID</th>
-				    			<th data-priority="1">Faculty Code</th>
-				    			<th data-priority="1">Faculty Name TH</th>
-				    			<th data-priority="1">Faculty Name EN</th>
+				    			<th data-priority="1">รหัสคณะ</th>
+				    			<th data-priority="1">Code ของคณะ</th>
+				    			<th data-priority="1">ชื่อคณะ(TH)</th>
+				    			<th data-priority="1">ชื่อคณะ(EN)</th>
 				    		</tr>
 				    		
 				    	</thead>

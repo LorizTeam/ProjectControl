@@ -21,7 +21,7 @@
 		<main>
         	<div class="nav-wrapper bread">
 		      <div class="col s12 light-blue darken-1" style="padding-left:10px;">
-		        <a href="index.jsp" class="breadcrumb">Dash board</a>
+		        <a href="Dashboard" class="breadcrumb">Dash board</a>
 		        <a href="#!" class="breadcrumb">Course</a>
 		      </div>
 		    </div>
@@ -53,14 +53,12 @@
 				    <table id="Course-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			
-				    			<th data-priority="1">Course ID</th>
-				    			<th data-priority="1">Course Code</th>
-				    			<th data-priority="1">Course Name TH</th>
-				    			<th data-priority="1">Course Name EN</th>
-				    			<th data-priority="1">Branch Name TH</th>
+				    			<th data-priority="1">รหัสวิชา</th>
+				    			<th data-priority="1">Code วิชา</th>
+				    			<th data-priority="1">ชื่อวิชา(TH)</th>
+				    			<th data-priority="1">ชื่อวิชา(EN)</th>
+				    			<th data-priority="1">ชื่อสาขา(TH)</th>
 				    		</tr>
-				    		
 				    	</thead>
 				    	<tbody>
 				    		<s:iterator value="listCourseModel">
@@ -82,11 +80,7 @@
 				    	</tbody>
 				    </table>
 			    </div>
-			  
 		    </div>
-		    
-		    
-		    
 		</main>
 		<div class="fixed-action-btn horizontal click-to-toggle">
 	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
