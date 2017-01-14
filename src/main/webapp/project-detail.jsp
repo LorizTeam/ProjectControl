@@ -80,6 +80,30 @@
 							</div>
 						</div>
 				    </div>
+				    <div class="card " style="padding:10px;">
+				    	<h5 class="cyan-text text-darken-1">Project Examiner AddScore</h5>
+				    	<div class="row">
+							<div class="input-field col s12">
+							    <table>
+							        <thead>
+							          <tr>
+							              <th data-field="id">Name</th>
+							              <th data-field="score">Score</th>
+							          </tr>
+							        </thead>
+							
+							        <tbody>
+							        <s:iterator value="listTeacherExamProject">
+						        		<tr>
+								            <td><s:property value="prename_name_short"/> <s:property value="firstname"/> <s:property value="lastname"/></td>
+								            <td><s:property value="exam_score"/></td>
+							          	</tr>
+							        </s:iterator>
+							        </tbody>
+						      	</table>
+							</div>
+						</div>
+				    </div>
 			      <div class="center-align">
 			     <s:if test="%{#session.type == 3 }">
 			     	<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
@@ -92,15 +116,6 @@
 		  </div>  
 		    
 		</main>
-		<div class="fixed-action-btn horizontal click-to-toggle">
-	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
-	        <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-		    </ul>
-	    </div>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 

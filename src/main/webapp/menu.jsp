@@ -25,7 +25,7 @@
 				ProjectData proDB = new ProjectData();
 				int exam_number = proDB.getNextExamQueue();
 			%>
-			<div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1">Next project queue: <%=exam_number %></div>
+			<div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1">Next Project Exam: <%=exam_number %></div>
 		</li>
 		<s:if test="%{#session.type == 3 }">
 			<li >
@@ -82,7 +82,7 @@
 		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m1"><i class="material-icons">view_module</i>โปรเจค</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
+		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
 		      	</ul>
 		      </div>
 		    </li>

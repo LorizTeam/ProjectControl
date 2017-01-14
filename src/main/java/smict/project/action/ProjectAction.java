@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import smartict.model.CourseModel;
 import smartict.model.ProjectModel;
+import smartict.model.TeacherExamProjectModel;
 import smartict.person.data.StudentData;
 import smartict.person.data.TeacherData;
 import smartict.study.data.CourseData;
@@ -29,7 +30,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	Map<String, String> mapTeacher, mapCourse, mapStudent, mapExaminer;
 	List<ProjectModel> listProModel;
 	List<String> listExaminer, listStudent;
-	
+	List<TeacherExamProjectModel> listTeacherExamProject;
 	public String viewProjectAll(){
 		String forwardText = "success";
 		if(!sessionMap.containsKey("username")){
@@ -38,7 +39,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject("project_id", "", "");
+		listProModel = projectDB.getListProject("project_id", "", "", "");
 		
 		return forwardText;
 	}
@@ -60,7 +61,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			studentId = sessionMap.get("username").toString();
 		}
 		
-		listProModel = projectDB.getListProject("project_id", teacherId, studentId);
+		listProModel = projectDB.getListProject("project_id", teacherId, studentId, "");
 		
 		return forwardText;
 	}
@@ -73,7 +74,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject("exam_number", "", "");
+		listProModel = projectDB.getListProject("exam_number", "", "", "1");
 		
 		return forwardText;
 	}
@@ -88,6 +89,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		System.out.println("Username : "+sessionMap.get("username").toString());
 		listExaminer = projectDB.getListExaminerInProject(proModel);
 		listStudent = projectDB.getListStudentInProject(proModel);
+		listTeacherExamProject = projectDB.getListTeacherExamProjectModel(proModel);
 		proModel = projectDB.getProjectModelValue(proModel);
 		proModel.setCanAddExamScore(projectDB.isAvailableInput(sessionMap.get("username").toString(), proModel.getProject_id()));
 		getMapAddProject();
@@ -194,7 +196,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			
 		}
 		
-		listProModel = projectDB.getListProject("exam_number", "", "");
+		listProModel = projectDB.getListProject("exam_number", "", "", "");
 		
 		return forwardText;
 	}
@@ -260,7 +262,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			forwardText = "success";
 		}
 		
-		listProModel = projectDB.getListProject("project_id" , "", "");
+		listProModel = projectDB.getListProject("project_id" , "", "", "");
 		
 		return forwardText;
 	}
@@ -377,6 +379,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 	public void setListStudent(List<String> listStudent) {
 		this.listStudent = listStudent;
+	}
+
+	public List<TeacherExamProjectModel> getListTeacherExamProject() {
+		return listTeacherExamProject;
+	}
+
+	public void setListTeacherExamProject(List<TeacherExamProjectModel> listTeacherExamProject) {
+		this.listTeacherExamProject = listTeacherExamProject;
 	}
 
 }

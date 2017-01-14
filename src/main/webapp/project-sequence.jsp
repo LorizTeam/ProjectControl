@@ -53,8 +53,9 @@
 				    	<thead>
 				    		<tr>
 				    			<th data-priority="1">Queue</th>
+				    			<th data-priority="1">Project ID</th>
 				    			<th data-priority="1">Project Name TH</th>
-				    			<th data-priority="1">Student</th>
+				    			<th data-priority="1">Project Name EN</th>
 				    			<th data-priority="2">Adviser</th>
 				    			<th data-priority="3">Score</th>
 				    			<th data-priority="2">Course</th>
@@ -67,6 +68,7 @@
 				    		<s:iterator value="listProModel" status="statusList">
 				    			<tr>
 					    			<td><s:property value="#statusList.count"/> </td>
+					    			<td><s:property value="project_id"/> </td>
 					    			<s:url action="viewProjectDetail" var="urlLink">
 					    				<s:param name='proModel.project_id'><s:property value="project_id"/></s:param>
 					    			</s:url>

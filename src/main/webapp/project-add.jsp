@@ -47,6 +47,10 @@
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
+				          <s:textarea name="proModel.project_description" class="validate materialize-textarea" />
+				          <label for="last_name">Project Description (TH)</label>
+				        </div>
+				        <div class="input-field col s12">
 				          <s:textfield name="proModel.exam_fullscore" class="validate" />
 				          <label for="last_name">Full Score</label>
 				        </div>

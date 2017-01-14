@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import smartict.model.FacultyModel;
 import smartict.model.ProjectModel;
+import smartict.model.TeacherExamProjectModel;
 import smartict.util.DBConnect;
 import smartict.util.DateUtil;
 import smartict.util.Validate;
@@ -20,12 +21,56 @@ public class ProjectData {
 	DateUtil dateUtil = new DateUtil();
 	Validate cValidate = new Validate();
 	
-	public List<ProjectModel> getListProject(String orderBy, String teacherId, String studentId){
+	public List<TeacherExamProjectModel> getListTeacherExamProjectModel(ProjectModel proModel){
+		String sql = "SELECT "
+				+ "		pre_name.prename_name_short,"
+				+ "		teacher.firstname,"
+				+ "		teacher.lastname,"
+				+ "		project_examiner.add_score"
+				+ "		FROM "
+				+ "		project "
+				+ "		INNER JOIN project_examiner ON project.project_id = project_examiner.project_id "
+				+ "		INNER JOIN teacher ON project_examiner.teacher_id = teacher.teacher_id "
+				+ "		INNER JOIN pre_name on (teacher.prename_id = pre_name.prename_id) "
+				+ "		where (project.project_id = "+proModel.getProject_id()+" or project.project_id IS NULL)";
+		
+		List<TeacherExamProjectModel> listTeacherExamProject = new ArrayList<TeacherExamProjectModel>();
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				
+				TeacherExamProjectModel teacherExamProjectModel = new TeacherExamProjectModel();
+				teacherExamProjectModel.setFirstname(rs.getString("firstname"));
+				teacherExamProjectModel.setLastname(rs.getString("lastname"));
+				teacherExamProjectModel.setExam_score(rs.getDouble("add_score"));
+				teacherExamProjectModel.setPrename_name_short(rs.getString("prename_name_short"));
+				listTeacherExamProject.add(teacherExamProjectModel);
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listTeacherExamProject;
+	}
+	
+	public List<ProjectModel> getListProject(String orderBy, String teacherId, String studentId, String statusId){
 		Validate validClass = new Validate();
 		String sql = "SELECT "
 				+ "project.project_id,"
 				+ "project.project_nameth,"
 				+ "project.project_nameen,"
+				+ "project.project_description,"
 				+ "CONCAT(pre_name.prename_name_short,' ',teacher.firstname,' ',teacher.lastname) as teachername,"
 				+ "project.exam_fullscore, project.exam_score, "
 				+ "course_nameth, project.createdatetime, faculty_nameth, (SELECT count(*) as personadded FROM project_examiner where project_id = project.project_id and addexam_statusid = 2) as personadded,"
@@ -45,6 +90,8 @@ public class ProjectData {
 			
 			if(validClass.Check_String_notnull_notempty(teacherId)) sql += "teacher.teacher_id = '"+teacherId+"' and ";
 				
+			if(validClass.Check_String_notnull_notempty(statusId)) sql += "project.project_status_id = "+statusId+" and ";
+			
 				sql += "project.project_id != '' group by project.project_id ";
 		
 			if(cValidate.Check_String_notnull_notempty(orderBy)){
@@ -70,6 +117,7 @@ public class ProjectData {
 				proModel.setFaclulty_nameth(rs.getString("faculty_nameth"));
 				proModel.setPersonadded(rs.getInt("personadded"));
 				proModel.setProject_status_name(rs.getString("project_status_name"));
+				proModel.setProject_description(rs.getString("project_description"));
 				listProModel.add(proModel);
 			}
 			
@@ -578,9 +626,9 @@ public class ProjectData {
 	
 	public int addProject(ProjectModel proModel){
 		String sql = "insert into project (project_nameth, project_nameen, teacher_id,createdatetime, "
-						+ "exam_fullscore, score_pass, course_id) values "
+						+ "exam_fullscore, score_pass, course_id, project_description) values "
 					+ "('"+proModel.getProject_nameth()+"', '"+proModel.getProject_nameen()+"', '"+proModel.getTeacher_id()+"', now(),"
-						+ ""+proModel.getExam_fullscore()+", "+proModel.getScore_pass()+", "+proModel.getCourse_id()+")";
+						+ ""+proModel.getExam_fullscore()+", "+proModel.getScore_pass()+", "+proModel.getCourse_id()+", '"+proModel.getProject_description()+"')";
 		
 		int projectId = 0;
 		try {
@@ -752,7 +800,7 @@ public class ProjectData {
 	}
 	
 	public int getNextExamQueue(){
-		String sql ="SELECT * FROM project where exam_score = 0 ORDER BY exam_number LIMIT 1";
+		String sql ="SELECT * FROM project where exam_score = 0 ORDER BY exam_number LIMIT 2,3";
 		int exam_number = 0;
 		try {
 			
@@ -761,7 +809,7 @@ public class ProjectData {
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				
-				exam_number = rs.getInt("exam_number");
+				exam_number = rs.getInt("project_id");
 				
 			}
 			if(!rs.isClosed()) rs.close();

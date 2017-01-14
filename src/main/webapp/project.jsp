@@ -63,9 +63,10 @@
 				    <table id="project-table" class="responsive highlight">
 				    	<thead>
 				    		<tr>
-				    			<th data-priority="1">ลำดับ.</th>
+				    			<th data-priority="1">ID.</th>
 				    			<th data-priority="1">ชื่อโครงการ(TH)</th>
 				    			<th data-priority="1">ชื่อโครงการ(EN)</th>
+				    			<th data-priority="1">คำอธิบายโปรเจค</th>
 				    			<th data-priority="2">อาจารย์ที่ปรึกษา</th>
 				    			<th data-priority="2">คะแนนเต็ม</th>
 				    			<th data-priority="2">คะแนนที่สอบได้</th>
@@ -86,6 +87,7 @@
 					    			</s:url>
 					    			<td><a href='<s:property value="urlLink"/>'> <s:property value="project_nameth"/></a></td>
 					    			<td><s:property value="project_nameen"/></td>
+					    			<td><s:property value="project_description"/></td>
 					    			<td><s:property value="firstname"/></td>
 					    			<td><s:property value="exam_fullscore"/></td>
 					    			<td><s:property value="exam_score"/></td>

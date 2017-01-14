@@ -9,7 +9,8 @@ public class ProjectModel extends PersonModel {
 		addExamScoreStatusId, project_status_id, course_id, faclulty_id, 
 		exam_fullscore, personadded;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
-			showScoreProject, faclulty_nameth, faclulty_nameen, project_status_name;
+			showScoreProject, faclulty_nameth, faclulty_nameen, project_status_name,
+			project_description;
 	Double exam_score;
 	DateTime createdatetime;
 	boolean canAddExamScore;
@@ -189,6 +190,14 @@ public class ProjectModel extends PersonModel {
 
 	public void setProject_status_name(String project_status_name) {
 		this.project_status_name = project_status_name;
+	}
+
+	public String getProject_description() {
+		return project_description;
+	}
+
+	public void setProject_description(String project_description) {
+		this.project_description = project_description;
 	}
 	
 }
