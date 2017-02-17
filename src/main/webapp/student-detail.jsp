@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -91,6 +91,29 @@
 						</div>
 					</div>
 				</div>
+				<div class="card " style="padding:10px;">
+					<h5 class="cyan-text text-darken-1">Section</h5>
+					    <table id="sectionTable" class="highlight  responsive" >
+					    	<thead>
+					    		<tr>
+					    			<th data-priority="1">เซคชั่น</th>
+					    			<th data-priority="1">ปี</th>
+					    			<th data-priority="1">จัดการ</th>
+					    		</tr>
+					    		
+					    	</thead>
+					    	<tbody>
+					    		<s:iterator value="listStudentSection">
+					    			<tr>
+						    			<td><s:property value="sectionName"/></td>
+						    			<td><s:property value="year"/></td>
+						    			<td><s:property value="sectionId"/></td>
+						    		</tr>
+					    		</s:iterator>
+					    	</tbody>
+					    </table>
+					</div>
+				</div>
 				<div class="center-align">
 					<button id="btn-e" type="button" class="modal-action modal-close waves-effect waves-orange  orange btn " value="0">Edit</button>
 					<s:url action="DeleteStudent" var="delLink">
@@ -112,26 +135,26 @@
 		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
 		    </ul>
 	    </div>
+	    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m2').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Student Detail');
 			 $('select').material_select();
-			 
-			 
+			 var table =  $('#sectionTable').DataTable();
 			 $('#btn-e').on('click',function(){
-				 if($('#btn-e').val()==0){
-						$('.ip').removeAttr('readonly');
-						$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
+			 if($('#btn-e').val()==0){
+					$('.ip').removeAttr('readonly');
+					$('#btn-e').removeClass('orange waves-orange').addClass('waves-green').text('Save').val(1);
 
-					}else{
-						
-						$('.ip').attr('readonly','true');
-						$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
-						$('#btn-e').attr('type','submit');
-					}
-				});
+				}else{
+					
+					$('.ip').attr('readonly','true');
+					$('#btn-e').removeClass('waves-green').addClass('orange waves-orange').text('Edit').val(0);
+					$('#btn-e').attr('type','submit');
+				}
+			});
 			 
 		});
 		</script>

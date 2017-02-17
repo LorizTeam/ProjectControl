@@ -204,6 +204,59 @@ public class StudentData {
 		return listStudentModel;
 	}
 	
+	public List<StudentSectionModel> getListStudentSectionModel(String studentId){
+		String sql ="SELECT "
+				+ "student_section.student_id,"
+				+ "student_section.section_id,"
+				+ "student_section.is_study,"
+				+ "student.firstname,"
+				+ "student.lastname,"
+				+ "section.`name`,"
+				+ "section.`year`,"
+				+ "section.`is_active` "
+				+ "FROM "
+				+ "student_section "
+				+ "INNER JOIN student ON student.student_id = student_section.student_id "
+				+ "INNER JOIN section ON section.id = student_section.section_id "
+				+ "where ";
+		
+			if(cValidate.Check_String_notnull_notempty(studentId))
+				sql += "student.student_id = '"+studentId+"' and ";
+			
+			sql += "section.id > 0 ";
+		List<StudentSectionModel> listStudentModel = new ArrayList<StudentSectionModel>(); 
+		
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				StudentSectionModel stdModel = new StudentSectionModel();
+				/*stdModel.setPrename_name_short(rs.getString("prename_name_short"));
+				stdModel.setStudent_id(rs.getString("student_id"));
+				stdModel.setFirstname(rs.getString("firstname"));
+				stdModel.setLastname(rs.getString("lastname"));
+				stdModel.setBranch_nameth(rs.getString("branch_nameth"));
+				stdModel.setFaculty_nameth(rs.getString("faculty_nameth"));*/
+				stdModel.setSectionId(rs.getInt("section_id") );
+				stdModel.setSectionName(rs.getString("name"));
+				stdModel.setYear(rs.getInt("year"));
+				listStudentModel.add(stdModel);
+				
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listStudentModel;
+	}
+	
 	public StudentModel getStudentDetail(StudentModel stdModel){
 		String sql ="SELECT student.student_id, student.firstname, student.lastname, pre.prename_name_short, "
 							+ "bra.branch_nameth, student.tel_number, student.email, student.line_id,"

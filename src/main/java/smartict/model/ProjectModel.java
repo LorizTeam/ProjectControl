@@ -13,7 +13,7 @@ public class ProjectModel extends PersonModel {
 			project_description;
 	Double exam_score;
 	DateTime createdatetime;
-	boolean canAddExamScore;
+	boolean canAddExamScore, isNow;
 	List<StudentModel> listStudent;
 	
 	public ProjectModel() {
@@ -198,6 +198,14 @@ public class ProjectModel extends PersonModel {
 
 	public void setProject_description(String project_description) {
 		this.project_description = project_description;
+	}
+
+	public boolean isNow() {
+		return isNow;
+	}
+
+	public void setNow(boolean isNow) {
+		this.isNow = isNow;
 	}
 	
 }

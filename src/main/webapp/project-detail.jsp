@@ -80,6 +80,7 @@
 							</div>
 						</div>
 				    </div>
+				    <s:if test="%{#session.type != 2 }">
 				    <div class="card " style="padding:10px;">
 				    	<h5 class="cyan-text text-darken-1">Project Examiner AddScore</h5>
 				    	<div class="row">
@@ -104,9 +105,14 @@
 							</div>
 						</div>
 				    </div>
+				 </s:if>
 			      <div class="center-align">
 			     <s:if test="%{#session.type == 3 }">
 			     	<button value="0" type="button" id="btn-e" class="modal-action modal-close waves-effect waves-orange  orange btn ">Edit</button>
+			     	<s:url action="deleteProject" var="deleteLink">
+	   					<s:param name='proModel.project_id'><s:property value="proModel.project_id"/></s:param>
+	   				</s:url>
+	   				<a href='<s:property value="deleteLink"/>' class="waves-effect waves-red  red btn">Delete</a>
 			     </s:if>
 			      
 			      <a href="viewProjectAll" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>

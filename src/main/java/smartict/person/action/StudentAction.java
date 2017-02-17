@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import smartict.model.BranchModel;
 import smartict.model.StudentModel;
+import smartict.model.StudentSectionModel;
 import smartict.person.data.PersonData;
 import smartict.person.data.StudentData;
 import smartict.study.data.BranchData;
@@ -17,6 +18,7 @@ public class StudentAction extends ActionSupport implements SessionAware {
 	private Map<String,Object> sessionMap;
 	String alertStatus, alertMessage;
 	List<StudentModel> listStudent;
+	List<StudentSectionModel> listStudentSection;
 	Map<String, String> mapBranch, mapPrename;
 	StudentModel stdModel;
 	
@@ -44,6 +46,7 @@ public class StudentAction extends ActionSupport implements SessionAware {
 		
 		StudentData stdDB = new StudentData();
 		stdModel = stdDB.getStudentDetail(stdModel);
+		listStudentSection = stdDB.getListStudentSectionModel(stdModel.getStudent_id());
 		buildMapPrename();
 		buildMapBranch();
 		
@@ -236,6 +239,14 @@ public class StudentAction extends ActionSupport implements SessionAware {
 
 	public void setMapPrename(Map<String, String> mapPrename) {
 		this.mapPrename = mapPrename;
+	}
+
+	public List<StudentSectionModel> getListStudentSection() {
+		return listStudentSection;
+	}
+
+	public void setListStudentSection(List<StudentSectionModel> listStudentSection) {
+		this.listStudentSection = listStudentSection;
 	}
 	
 }

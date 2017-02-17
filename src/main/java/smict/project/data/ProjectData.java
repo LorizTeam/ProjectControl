@@ -90,7 +90,7 @@ public class ProjectData {
 			
 			if(validClass.Check_String_notnull_notempty(teacherId)) sql += "teacher.teacher_id = '"+teacherId+"' and ";
 				
-			if(validClass.Check_String_notnull_notempty(statusId)) sql += "project.project_status_id = "+statusId+" and ";
+			if(validClass.Check_String_notnull_notempty(statusId)) sql += "project.project_status_id IN ( "+statusId+") and ";
 			
 				sql += "project.project_id != '' group by project.project_id ";
 		
@@ -138,8 +138,11 @@ public class ProjectData {
 	public void updateProjectStatus(ProjectModel proModel){
 		int scorePass = getScorePass(proModel);
 		int currectScore = currentProjectScore(proModel);
+		proModel.setNow(false);
 		int examiner = getCountProjectExamier(proModel);
-		if(scorePass < currectScore && examiner == 5){
+		proModel.setNow(true);
+		int nowExaminer = getCountProjectExamier(proModel);
+		if(scorePass < currectScore && examiner == nowExaminer){
 			
 			String sql = "update project set project_status_id = 4 where project_id = "+proModel.getProject_id();
 			
@@ -157,7 +160,7 @@ public class ProjectData {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(scorePass > currectScore && examiner == 5){
+		}else if(scorePass > currectScore && examiner == nowExaminer){
 			String sql = "update project set project_status_id = 3 where project_id = "+proModel.getProject_id();
 			
 			try {
@@ -264,7 +267,11 @@ public class ProjectData {
 	public int getCountProjectExamier(ProjectModel proModel){
 		String sql = "SELECT count(*) as countExaminer from project "
 				+ "inner join project_examiner on (project.project_id = project_examiner.project_id) "
-				+ "where project.project_id = "+proModel.getProject_id()+" group by project.project_id";
+				+ "where project.project_id = "+proModel.getProject_id();
+				
+		if(proModel.isNow()) sql += " and project_examiner.addexam_statusid = 2 ";
+			
+				sql += " group by project.project_id";
 		int examiner = 0;
 		try {
 			Connection conn = agent.getConnectMYSql();
@@ -648,6 +655,29 @@ public class ProjectData {
 			e.printStackTrace();
 		}
 		return projectId;
+	}
+	
+	public boolean deletedProject(ProjectModel proModel){
+		String sql = "delete from project where project_id = "+proModel.getProject_id();
+		
+		boolean isDeleted = false;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				isDeleted = true;
+			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isDeleted;
 	}
 	
 	public int addProjectExamScore(ProjectModel proModel){

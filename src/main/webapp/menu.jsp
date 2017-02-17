@@ -34,7 +34,7 @@
 		      	<ul>
 		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewProjectAll"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
 		      		<li class="m1-2"><a class="waves-effect waves-light" href="inputProjectData"><i class="material-icons">playlist_add</i>เพิ่มโปรเจค</a></li>
-					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับของโปรเจค</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับการสอบ</a></li>
 		      	</ul>
 		      </div>
 		    </li>
@@ -101,7 +101,7 @@
 		      <div class="collapsible-body">
 		      	<ul>
 		      		<li class="m1-1"><a class="waves-effect waves-light" href="viewMyProject"><i class="material-icons">view_list</i>รายการโปรเจค</a></li>
-					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับโปรเจค</a></li>
+					<li class="m1-3"><a class="waves-effect waves-light" href="viewProjectSequence"><i class="material-icons">shuffle</i>ลำดับการสอบ</a></li>
 		      	</ul>
 		      </div>
 		    </li>

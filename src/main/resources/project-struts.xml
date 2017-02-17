@@ -52,7 +52,9 @@
       		<result name="success" type="redirectAction">viewProjectAll</result>
     	</action>
     	
-    	
+    	<action name="deleteProject" class="smict.project.action.ProjectAction" method="deleteProject">
+      		<result name="success" type="redirectAction">viewProjectAll</result>
+    	</action>
     	<!-- 	++++++	 Project 	 ++++++	  -->
     	
     </package>

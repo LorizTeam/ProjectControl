@@ -74,7 +74,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listProModel = projectDB.getListProject("exam_number", "", "", "1");
+		listProModel = projectDB.getListProject("exam_number", "", "", "1,2,3");
 		
 		return forwardText;
 	}
@@ -265,6 +265,17 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		listProModel = projectDB.getListProject("project_id" , "", "", "");
 		
 		return forwardText;
+	}
+	
+	public String deleteProject(){
+		
+		boolean isDeleted = projectDB.deletedProject(proModel);
+		if(isDeleted){
+			alertStatus = "green green-text";
+			alertMessage = "ลบข้อมูล Project สำเร็จ";
+		}
+		listProModel = projectDB.getListProject("project_id" , "", "", "");
+		return SUCCESS;
 	}
 	
 	public void getMapAddProject(){
