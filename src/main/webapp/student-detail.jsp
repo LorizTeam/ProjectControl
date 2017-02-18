@@ -38,6 +38,10 @@
 							<s:select list="mapBranch" name="stdModel.branchId" value="stdModel.branchId" class="validate ip" readonly="true"></s:select>
 							<label>Branch</label>
 						</div>
+						<div class="input-field col s6">
+							<s:textfield name="stdModel.receiveYear" class="validate ip" readonly="true" maxlength="4"/>
+							<label for="receiveYear">รุ่น </label>
+						</div>
 					</div>
 				</div>
 				<div class="card " style="padding:10px;">
@@ -126,15 +130,6 @@
 		  </div>  
 		    
 		</main>
-		<div class="fixed-action-btn horizontal click-to-toggle">
-	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
-	        <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-		    </ul>
-	    </div>
 	    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){

@@ -2,7 +2,7 @@ package smartict.model;
 
 public class StudentModel extends PersonModel{
 	String student_id, branch_nameth, faculty_nameth, branchId,
-			oldstudent_id;
+			oldstudent_id, receiveYear;
 	
 	public StudentModel() {
 		super();
@@ -46,6 +46,14 @@ public class StudentModel extends PersonModel{
 
 	public void setOldstudent_id(String oldstudent_id) {
 		this.oldstudent_id = oldstudent_id;
+	}
+
+	public String getReceiveYear() {
+		return receiveYear;
+	}
+
+	public void setReceiveYear(String receiveYear) {
+		this.receiveYear = receiveYear;
 	}
 	
 }

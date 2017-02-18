@@ -57,12 +57,12 @@
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>เอกสารแบบฟอร์ม</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
-		      		<li class="m4-2"><a href="inputFile"><i class="fa fa-plus-circle fa-2x"></i>จัดการไฟล์</a></li>
-		      		<li class="m4-3"><a href="FileGroup"><i class="material-icons">work</i>ข้อมูลกลุ่มไฟล์</a></li>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการเอกสารแบบฟอร์ม</a></li>
+		      		<li class="m4-2"><a href="inputFile"><i class="fa fa-plus-circle fa-2x"></i>จัดการเอกสารแบบฟอร์ม</a></li>
+		      		<li class="m4-3"><a href="FileGroup"><i class="material-icons">work</i>ข้อมูลกลุ่มเอกสารแบบฟอร์ม</a></li>
 		      	</ul>
 		      </div>
 		    </li>
@@ -87,10 +87,10 @@
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>เอกสารแบบฟอร์ม</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการเอกสารแบบฟอร์ม</a></li>
 		      	</ul>
 		      </div>
 		    </li>
@@ -106,10 +106,10 @@
 		      </div>
 		    </li>
 		    <li>
-		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>ไฟล์</div>
+		      <div class="collapsible-header light-blue-text text-darken-4 waves-effect waves-orange m4"><i class="material-icons">description</i>เอกสารแบบฟอร์ม</div>
 		      <div class="collapsible-body">
 		      	<ul>
-		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการไฟล์</a></li>
+		      		<li class="m4-1"><a href="getAllFile"><i class="material-icons">description</i>รายการเอกสารแบบฟอร์ม</a></li>
 		      	</ul>
 		      </div>
 		    </li>

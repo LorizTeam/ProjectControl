@@ -7,7 +7,8 @@ import org.joda.time.DateTime;
 public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
 		addExamScoreStatusId, project_status_id, course_id, faclulty_id, 
-		exam_fullscore, personadded;
+		exam_fullscore, personadded, score1, score2,
+		score3;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
 			showScoreProject, faclulty_nameth, faclulty_nameen, project_status_name,
 			project_description;
@@ -18,7 +19,7 @@ public class ProjectModel extends PersonModel {
 	
 	public ProjectModel() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public ProjectModel(int project_id, int teacher_id, int exam_number, int score_pass, int project_status_id,
@@ -206,6 +207,30 @@ public class ProjectModel extends PersonModel {
 
 	public void setNow(boolean isNow) {
 		this.isNow = isNow;
+	}
+
+	public int getScore1() {
+		return score1;
+	}
+
+	public void setScore1(int score1) {
+		this.score1 = score1;
+	}
+
+	public int getScore2() {
+		return score2;
+	}
+
+	public void setScore2(int score2) {
+		this.score2 = score2;
+	}
+
+	public int getScore3() {
+		return score3;
+	}
+
+	public void setScore3(int score3) {
+		this.score3 = score3;
 	}
 	
 }

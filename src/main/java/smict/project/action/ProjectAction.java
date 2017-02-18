@@ -219,16 +219,6 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณากรอกข้อมูลชื่อ Project ภาษาอังกฤษ";
 			getMapAddProject();
 			return "input";
-		}else if(!cValidate.checkIntegerNotZero(proModel.getExam_fullscore())){
-			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลคะแนนเต็ม";
-			getMapAddProject();
-			return "input";
-		}else if(!cValidate.checkIntegerNotZero(proModel.getScore_pass())){
-			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกคะแนนที่ทำให้สามารถผ่านโปรเจคได้";
-			getMapAddProject();
-			return "input";
 		}else if(!cValidate.checkIntegerNotZero(proModel.getTeacher_id())){
 			alertStatus = "red red-text";
 			alertMessage = "กรุณากรอกข้อมูลอาจารย์ที่ปรึกษา";

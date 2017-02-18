@@ -51,14 +51,17 @@
 				          <label for="last_name">Project Description (TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.exam_fullscore" class="validate" />
-				          <label for="last_name">Full Score</label>
+				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" />
+				          <label for="last_name">คะแนน รูปเล่ม</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score_pass" id="scorepass" class="validate" />
-				          <label for="last_name">Score Pass</label>
+				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3"/>
+				          <label for="last_name">คะแนน ความรู้</label>
 				        </div>
-				        
+				        <div class="input-field col s12">
+				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3"/>
+				          <label for="last_name">คะแนน ตอบคำถาม</label>
+				        </div>
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>
 							<s:select style="width: 100%"  list="mapCourse" name="proModel.course_id"></s:select>
@@ -100,15 +103,6 @@
 		  </div>  
 		    
 		</main>
-		<div class="fixed-action-btn horizontal click-to-toggle">
-	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
-	        <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-		    </ul>
-	    </div>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 

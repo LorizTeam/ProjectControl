@@ -23,12 +23,12 @@ public class StudentData {
 		String sql ="insert into student (student_id, firstname, lastname, identification, "
 				+ "identification_type, tel_number, email, line_id, "
 				+ "createdatetime, username, password, branch_id, "
-				+ "prename_id) "
+				+ "prename_id, receive_year) "
 				+ "values "
 				+ "('"+stdModel.getStudent_id()+"','"+stdModel.getFirstname()+"','"+stdModel.getLastname()+"','"+stdModel.getIdentification()+"',"
 				+ "'"+stdModel.getIdentification_type_id()+"','"+stdModel.getTel_number()+"','"+stdModel.getEmail()+"','"+stdModel.getLine_id()+"',"
 				+ "now(),'"+stdModel.getStudent_id()+"','12345','"+stdModel.getBranchId()+"',"
-				+ "'"+stdModel.getPrename_id()+"')";
+				+ "'"+stdModel.getPrename_id()+"', "+stdModel.getReceiveYear()+")";
 		
 		
 		try {
@@ -52,7 +52,9 @@ public class StudentData {
 		boolean hasUpdateStudent = false;
 		String sql ="update student set student_id = '"+stdModel.getStudent_id()+"', firstname = '"+stdModel.getFirstname()+"', lastname = '"+stdModel.getLastname()+"', identification = '"+stdModel.getIdentification()+"', "
 				+ "identification_type = '"+stdModel.getIdentification_type_id()+"', tel_number = '"+stdModel.getTel_number()+"', email = '"+stdModel.getEmail()+"', line_id = '"+stdModel.getLine_id()+"', "
-				+ "branch_id = '"+stdModel.getBranchId()+"',prename_id = '"+stdModel.getPrename_id()+"' where student_id = '"+stdModel.getOldstudent_id()+"'";
+				+ "branch_id = '"+stdModel.getBranchId()+"',prename_id = '"+stdModel.getPrename_id()+"', "
+				+ "receive_year = "+stdModel.getReceiveYear()+" "
+				+ "where student_id = '"+stdModel.getOldstudent_id()+"'";
 		
 		
 		try {
@@ -169,7 +171,7 @@ public class StudentData {
 	
 	public List<StudentModel> getListStudentModel(){
 		String sql ="SELECT student.student_id, student.firstname, student.lastname, pre.prename_name_short, "
-							+ "bra.branch_nameth, fac.faculty_nameth "
+							+ "bra.branch_nameth, fac.faculty_nameth, student.receive_year "
 				+ "FROM student "
 				+ "inner JOIN pre_name as pre on (student.prename_id = pre.prename_id) "
 				+ "inner join branch as bra on (student.branch_id = bra.branch_id) "
@@ -189,6 +191,7 @@ public class StudentData {
 				stdModel.setLastname(rs.getString("lastname"));
 				stdModel.setBranch_nameth(rs.getString("branch_nameth"));
 				stdModel.setFaculty_nameth(rs.getString("faculty_nameth"));
+				stdModel.setReceiveYear("รุ่น "+rs.getString("receive_year"));
 				listStudentModel.add(stdModel);
 				
 			}
@@ -260,7 +263,7 @@ public class StudentData {
 	public StudentModel getStudentDetail(StudentModel stdModel){
 		String sql ="SELECT student.student_id, student.firstname, student.lastname, pre.prename_name_short, "
 							+ "bra.branch_nameth, student.tel_number, student.email, student.line_id,"
-							+ "student.identification, student.prename_id "
+							+ "student.identification, student.prename_id, receive_year "
 				+ "FROM student "
 				+ "inner JOIN pre_name as pre on (student.prename_id = pre.prename_id) "
 				+ "inner join branch as bra on (student.branch_id = bra.branch_id) "
@@ -282,6 +285,7 @@ public class StudentData {
 				stdModel.setTel_number(rs.getString("tel_number"));
 				stdModel.setLine_id(rs.getString("line_id"));
 				stdModel.setPrename_id(rs.getInt("prename_id"));
+				stdModel.setReceiveYear(rs.getString("receive_year"));
 			}
 			
 			if(!rs.isClosed()) rs.close();

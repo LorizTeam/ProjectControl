@@ -57,7 +57,8 @@
 				    			<th data-priority="1">ลำดับ.</th>
 				    			<th data-priority="1">คำนำหน้าชื่อ</th>
 				    			<th data-priority="1">ชื่อนักศึกษา</th>
-				    			<th data-priority="1">วิชา</th>
+				    			<th data-priority="1">สาขา</th>
+				    			<th data-priority="1">รุ่น</th>
 				    			<th data-priority="1">คณะ</th>
 				    			<th data-priority="1">เปลี่ยนแปลง Password</th>
 				    		</tr>
@@ -75,6 +76,7 @@
 					    			<td><s:property value="prename_name_short"/></td>
 					    			<td><s:property value="firstname"/> <s:property value="lastname"/></td>
 					    			<td><s:property value="branch_nameth"/></td>
+					    			<td><s:property value="receiveYear"/></td>
 					    			<td><s:property value="faculty_nameth"/></td>
 					    			<td>
 					    			<s:url action="InputChangePasswordStudent" var="inputChangePass" >
