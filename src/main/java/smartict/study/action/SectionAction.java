@@ -50,7 +50,7 @@ public class SectionAction extends ActionSupport implements SessionAware{
 		secModel.setId(couModel.getId());
 		if(secDB.addSection(secModel)){
 			alertStatus = "green green-text";
-			alertMessage = "เพิ่มรายการ Section สำเร็จ";
+			alertMessage = "เพิ่มรายการ Section สำเร็จ";	
 			
 		}else{
 			alertStatus = "red red-text";
@@ -58,6 +58,39 @@ public class SectionAction extends ActionSupport implements SessionAware{
 		}
 		listSectionModel = secDB.getListSection(secModel.getId());
 		secModel.clearSecModel();
+		
+		return "input";
+	}
+	
+	public String deleteSection(){
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		couModel = new CourseModel(couModel.getId(), "", "", "", 0, "", "", "");
+		listCourseModel = courseDB.getListcourse(couModel);
+		
+		if(listCourseModel.size() > 0){
+			couModel = (CourseModel) listCourseModel.get(0);
+		}
+		
+		BranchModel BraModel = new BranchModel(0, "", "", "");
+		mapBraModel = branchDB.getMapBranch(BraModel);
+		
+		secModel.setId(couModel.getId());
+		
+		
+		if(secDB.delete(secModel)){
+			alertStatus = "green green-text";
+			alertMessage = "ลบรายการ Section สำเร็จ";	
+			
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "ลบรายการ Section ไม่สำเร็จ";
+		}
+		listSectionModel = secDB.getListSection(secModel.getId());
 		
 		return "input";
 	}

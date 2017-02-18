@@ -197,6 +197,9 @@ public class CourseAction extends ActionSupport implements SessionAware{
 		
 		BranchModel BraModel = new BranchModel(0, "", "", "");
 		mapBraModel = branchDB.getMapBranch(BraModel);
+		
+		listSectionModel = secDB.getListSection(couModel.getId());
+		
 		return forwardText;
 	}
 	

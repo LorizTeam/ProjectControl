@@ -45,16 +45,16 @@ public class SectionData {
 		return hasAdd;
 	}
 	
-	public boolean deleteBranch(BranchModel braModel){
-		String sql = "delete from branch where branch_id = '"+braModel.getId()+"'";
+	public boolean delete(SectionModel secModel){
+		String sql = "delete from section where id = '"+secModel.getSectionId()+"'";
 						
 		
-		boolean hasDeleteBranch = false;
+		boolean hasDeleted = false;
 		try {
 			Connection conn = agent.getConnectMYSql();
 			Statement stmt = conn.createStatement();
 			if(stmt.executeUpdate(sql) > 0){
-				hasDeleteBranch = true;
+				hasDeleted = true;
 			}
 			
 			if(!stmt.isClosed()) stmt.close();
@@ -66,7 +66,7 @@ public class SectionData {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return hasDeleteBranch;
+		return hasDeleted;
 	}
 	
 	public List<SectionModel> getListSection(int courseId){

@@ -105,7 +105,11 @@
 					    			<tr>
 						    			<td><s:property value="sectionName"/></td>
 						    			<td><s:property value="sectionYear"/></td>
-						    			<td><s:property value="sectionId"/></td>
+						    			<s:url action="deleteSection" var="urlLink" escapeAmp="false">
+					    				<s:param name="couModel.id"><s:property value="couModel.id" /></s:param>
+					    				<s:param name="secModel.sectionId"><s:property value="sectionId" /></s:param>
+					    				</s:url>
+						    			<td><a href='<s:property value="urlLink"/>' ><i class="material-icons">delete</i></a></td>
 						    		</tr>
 					    		</s:iterator>
 					    	</tbody>
