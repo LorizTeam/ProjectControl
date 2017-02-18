@@ -224,6 +224,21 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณากรอกข้อมูลอาจารย์ที่ปรึกษา";
 			getMapAddProject();
 			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getScore1())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลคะแนน รูปเล่ม";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getScore2())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลคะแนน ความรู้";
+			getMapAddProject();
+			return "input";
+		}else if(!cValidate.checkIntegerNotZero(proModel.getScore3())){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณากรอกข้อมูลคะแนน ตอบคำถาม";
+			getMapAddProject();
+			return "input";
 		}else if(!cValidate.checkIntegerNotZero(proModel.getCourse_id())){
 			alertStatus = "red red-text";
 			alertMessage = "กรุณากรอกข้อมูลคอร์สการเรียนให้แก่โปรเจค";

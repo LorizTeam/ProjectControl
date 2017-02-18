@@ -394,8 +394,9 @@ public class ProjectData {
 				proModel.setProject_nameth(rs.getString("project_nameth"));
 				proModel.setProject_nameen(rs.getString("project_nameen"));
 				proModel.setTeacher_id(rs.getInt("teacher_id"));
-				proModel.setExam_fullscore(rs.getInt("exam_fullscore"));
-				proModel.setScore_pass(rs.getInt("score_pass"));
+				proModel.setScore1(rs.getInt("score1"));
+				proModel.setScore2(rs.getInt("score2"));
+				proModel.setScore3(rs.getInt("score3"));
 				proModel.setCourse_id(rs.getInt("course_id"));
 				proModel.setCreatedatetime(rs.getDate("createdatetime"));
 			}
@@ -633,9 +634,11 @@ public class ProjectData {
 	
 	public int addProject(ProjectModel proModel){
 		String sql = "insert into project (project_nameth, project_nameen, teacher_id,createdatetime, "
-						+ "exam_fullscore, score_pass, course_id, project_description) values "
+						+ "course_id, project_description, score1, score2, "
+						+ "score3) values "
 					+ "('"+proModel.getProject_nameth()+"', '"+proModel.getProject_nameen()+"', '"+proModel.getTeacher_id()+"', now(),"
-						+ ""+proModel.getExam_fullscore()+", "+proModel.getScore_pass()+", "+proModel.getCourse_id()+", '"+proModel.getProject_description()+"')";
+						+ ""+proModel.getCourse_id()+", '"+proModel.getProject_description()+"', "+proModel.getScore1()+", "+proModel.getScore2()+","
+						+ ""+proModel.getScore3()+")";
 		
 		int projectId = 0;
 		try {

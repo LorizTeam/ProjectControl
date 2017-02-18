@@ -52,15 +52,15 @@
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" />
-				          <label for="last_name">คะแนน รูปเล่ม</label>
+				          <label for="score1">คะแนน รูปเล่ม</label>
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3"/>
-				          <label for="last_name">คะแนน ความรู้</label>
+				          <label for="score2">คะแนน ความรู้</label>
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3"/>
-				          <label for="last_name">คะแนน ตอบคำถาม</label>
+				          <label for="score3">คะแนน ตอบคำถาม</label>
 				        </div>
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>

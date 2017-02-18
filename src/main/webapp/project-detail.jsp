@@ -45,12 +45,16 @@
 				          <label for="last_name">Project Name (EN)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.exam_fullscore" class="validate ip" />
-				          <label for="last_name">Full Score</label>
+				          <s:textfield name="proModel.score1" class="validate ip" maxlength="3" />
+				          <label for="score1">คะแนน รูปเล่ม</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score_pass" class="validate ip" />
-				          <label for="last_name">Score Pass</label>
+				          <s:textfield name="proModel.score2" class="validate ip" maxlength="3"/>
+				          <label for="score2">คะแนน ความรู้</label>
+				        </div>
+				        <div class="input-field col s12">
+				          <s:textfield name="proModel.score3" class="validate ip" maxlength="3"/>
+				          <label for="score3">คะแนน ตอบคำถาม</label>
 				        </div>
 				        <div class="input-field col s12">
 						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" value="proModel.course_id" readonly="true"></s:select>
