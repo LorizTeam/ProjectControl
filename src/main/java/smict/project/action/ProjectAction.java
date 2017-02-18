@@ -244,24 +244,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณากรอกข้อมูลคอร์สการเรียนให้แก่โปรเจค";
 			getMapAddProject();
 			return "input";
-		}else if(!cValidate.Check_String_notnull_notempty(inputStudentId)){
-			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลนักเรียนที่อยู่ในโปรเจค";
-			getMapAddProject();
-			return "input";
-		}else if(!cValidate.Check_String_notnull_notempty(inputTeacherId)){
-			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลอาจารย์ผู้คุมสอบ";
-			getMapAddProject();
-			return "input";
 		}
 		
 		int projectId = projectDB.addProject(proModel);
 		if( projectId > 0 ){
-			
+			/*
 			projectDB.updateProjectToStudent(projectId, inputStudentId.split(","));
 			projectDB.addProjectExaminer(projectId, inputTeacherId.split(","));
-			
+			*/
 			alertStatus = "green green-text";
 			alertMessage = "เพิ่มข้อมูล Project สำเร็จ";
 			forwardText = "success";

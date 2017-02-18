@@ -51,15 +51,15 @@
 				          <label for="last_name">Project Description (TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" />
+				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" autocomplete="off" />
 				          <label for="score1">คะแนน รูปเล่ม</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3"/>
+				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3" autocomplete="off"/>
 				          <label for="score2">คะแนน ความรู้</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3"/>
+				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3" autocomplete="off"/>
 				          <label for="score3">คะแนน ตอบคำถาม</label>
 				        </div>
 				        <div class="col s12">
@@ -76,7 +76,7 @@
 				  </div>
 			     
 		    </div>
-		    <div class="card " style="padding:10px;">
+		    <%-- <div class="card " style="padding:10px;">
 		    	<h5 class="cyan-text text-darken-1">Student</h5>
 		    	<div class="row">
 					<div class="input-field col s12">
@@ -93,7 +93,7 @@
 					  
 					</div>
 				</div>
-		    </div>
+		    </div> --%>
 		     <div class="center-align">
 		      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
 		      <a href="viewProjectAll" type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</a>
