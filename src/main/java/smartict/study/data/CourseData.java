@@ -44,7 +44,7 @@ public class CourseData {
 	
 	public boolean updateCourse(CourseModel couModel){
 		String sql = "update course set course_code = '"+couModel.getCode()+"', course_nameth = '"+couModel.getNameth()+"', "
-						+ "course_nameen = '"+couModel.getNameen()+"', course_id = "+couModel.getBranchId()+" where course_id = '"+couModel.getId()+"'";
+						+ "course_nameen = '"+couModel.getNameen()+"', branch_id = "+couModel.getBranchId()+" where course_id = '"+couModel.getId()+"'";
 						
 		
 		boolean hasAddFaculty = false;

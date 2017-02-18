@@ -89,5 +89,11 @@
     	</action>
     	<!-- 			Course			 -->
     	
+    	<!-- 			Section			 -->
+    	<action name="addSection" class="smartict.study.action.SectionAction" method="addSection">
+      		<result name="input">/course-detail.jsp</result>
+    	</action>
+    	<!-- 			Section			 -->
+    	
     </package>
 </struts>

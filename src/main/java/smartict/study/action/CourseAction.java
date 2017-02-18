@@ -10,8 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import smartict.model.BranchModel;
 import smartict.model.CourseModel;
 import smartict.model.FacultyModel;
+import smartict.model.SectionModel;
 import smartict.study.data.BranchData;
 import smartict.study.data.CourseData;
+import smartict.study.data.SectionData;
 import smartict.util.Validate;
 
 public class CourseAction extends ActionSupport implements SessionAware{
@@ -23,6 +25,8 @@ public class CourseAction extends ActionSupport implements SessionAware{
 	List<CourseModel> listCourseModel;
 	String alertStatus, alertMessage;
 	CourseModel couModel;
+	List<SectionModel> listSectionModel;
+	SectionData secDB = new SectionData();
 	
 	public CourseModel getCouModel() {
 		return couModel;
@@ -172,6 +176,9 @@ public class CourseAction extends ActionSupport implements SessionAware{
 		
 		BranchModel BraModel = new BranchModel(0, "", "", "");
 		mapBraModel = branchDB.getMapBranch(BraModel);
+		
+		listSectionModel = secDB.getListSection(couModel.getId());
+		
 		return forwardText;
 	}
 	
@@ -213,5 +220,13 @@ public class CourseAction extends ActionSupport implements SessionAware{
 		listCourseModel = courseDB.getListcourse(couModel);
 		
 		return forwardText;
+	}
+
+	public List<SectionModel> getListSectionModel() {
+		return listSectionModel;
+	}
+
+	public void setListSectionModel(List<SectionModel> listSectionModel) {
+		this.listSectionModel = listSectionModel;
 	}
 }

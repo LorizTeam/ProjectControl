@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -69,24 +69,61 @@
 			    	<a href="viewAllCourse" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 				</div>
 		    </form>
+		    <form class="container" action="addSection" method="post">
+				<s:hidden name="couModel.id" />
+				<div class="card " style="padding:10px;">
+					<h5 class="cyan-text text-darken-1">Section </h5>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<s:textfield id="sectionName" type="text"  class="validate ip" name="secModel.sectionName"/>
+							<label for="sectionName">Section Name</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<s:textfield id="sectionYear" type="text"  class="validate ip" name="secModel.sectionYear"/>
+							<label for="sectionYear">Section Year</label>
+						</div>
+					</div>
+					<div class="center-align">
+				      	<button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Add Section</button>
+			      	</div>
+			      	
+				</div>
+				<div class="card " style="padding:10px;">
+					<h5 class="cyan-text text-darken-1">Section List</h5>
+					<div class="row">
+						<table id="sectionTable" class="highlight  responsive" >
+					    	<thead>
+					    		<tr>
+					    			<th data-priority="1">เซคชั่น</th>
+					    			<th data-priority="1">ปี</th>
+					    			<th data-priority="1">จัดการ</th>
+					    		</tr>
+					    		
+					    	</thead>
+					    	<tbody>
+					    		<s:iterator value="listSectionModel">
+					    			<tr>
+						    			<td><s:property value="sectionName"/></td>
+						    			<td><s:property value="sectionYear"/></td>
+						    			<td><s:property value="sectionId"/></td>
+						    		</tr>
+					    		</s:iterator>
+					    	</tbody>
+					    </table>
+					</div>
+				</div>
+		    </form>
 		  </div>  
 		    
 		</main>
-		<div class="fixed-action-btn horizontal click-to-toggle">
-	        <a class="btn-floating btn-large" href="#"><i class="material-icons">more_vert</i></a>
-	        <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-		    </ul>
-	    </div>
+		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 $('.m6').addClass('active');
 			 $('.m6-3').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Course Detail');
+			 $('#sectionTable').DataTable();
 			 $('select').material_select();
 			 $('#btn-e').on('click',function(){
 			 	if($('#btn-e').val()==0){
