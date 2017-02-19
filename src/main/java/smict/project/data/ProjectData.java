@@ -14,12 +14,14 @@ import smartict.model.ProjectModel;
 import smartict.model.TeacherExamProjectModel;
 import smartict.util.DBConnect;
 import smartict.util.DateUtil;
+import smartict.util.SmartSetParameter;
 import smartict.util.Validate;
 
 public class ProjectData {
 	DBConnect agent = new DBConnect();
 	DateUtil dateUtil = new DateUtil();
 	Validate cValidate = new Validate();
+	SmartSetParameter setParam = new SmartSetParameter();
 	
 	public List<TeacherExamProjectModel> getListTeacherExamProjectModel(ProjectModel proModel){
 		String sql = "SELECT "
@@ -733,7 +735,7 @@ public class ProjectData {
 	
 	
 	public void updateProjectToStudent(int projectId, String[] arrayStudentId){
-		
+		clearProjectFromStudent(projectId);
 		for(String studentId : arrayStudentId){
 			studentId = studentId.trim();
 			String sql = "update student set project_id = "+projectId+" where student_id = '"+studentId+"'";
@@ -755,6 +757,67 @@ public class ProjectData {
 		}
 	}
 	
+	public boolean clearProjectFromStudent(int ProjectId){
+		
+		boolean isUpdated = false;
+		String sql = "update student set project_id = null where student_id = "+ProjectId;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			
+			if(stmt.executeUpdate(sql) > 0) isUpdated = true;
+				
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return isUpdated;
+	}
+	
+	public boolean updateProject(ProjectModel projModel){
+		
+		projModel.setProject_nameth(setParam.StringIsNullOrEmpty(projModel.getProject_nameth()));
+		projModel.setProject_nameen(setParam.StringIsNullOrEmpty(projModel.getProject_nameen()));
+		
+		String score1, score2, score3, teacherId;
+		score1 = setParam.checkIntegerNotZero(projModel.getScore1());
+		score2 = setParam.checkIntegerNotZero(projModel.getScore2());
+		score3 = setParam.checkIntegerNotZero(projModel.getScore3());
+		teacherId = setParam.checkIntegerNotZero(projModel.getTeacher_id());
+		boolean isUpdated = false;
+		String sql = "update project set "
+				+ "project_nameth =  IFNULL("+projModel.getProject_nameth()+",project_nameth),"
+				+ "project_nameen =  IFNULL("+projModel.getProject_nameen()+",project_nameen),"
+				+ "teacher_id = IFNULL("+teacherId+",teacher_id),"
+				+ "score1 = IFNULL("+score1+",score1),"
+				+ "score2 = IFNULL("+score2+",score2),"
+				+ "score3 = IFNULL("+score3+",score3) "
+				+ "where project_id = "+projModel.getProject_id();
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			
+			if(stmt.executeUpdate(sql) > 0) isUpdated = true;
+				
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return isUpdated;
+	}
+
 	public void updateProjectExamNumber(ProjectModel proModel){
 		
 		String sql = "update project set exam_number = "+proModel.getExam_number()+" where project_id = '"+proModel.getProject_id()+"'";
@@ -777,7 +840,7 @@ public class ProjectData {
 	}
 	
 	public void addProjectExaminer(int projectId, String[] arrayTeacherId){
-		
+		clearProjectExaminer(projectId);
 		String sql = "insert into project_examiner (project_id, teacher_id) values ";
 		int count = 0;
 		for(String teacherId : arrayTeacherId){
@@ -801,6 +864,29 @@ public class ProjectData {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean clearProjectExaminer(int ProjectId){
+		
+		boolean isDeleted = false;
+		String sql = "delete from project_examiner where project_id = "+ProjectId;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			
+			if(stmt.executeUpdate(sql) > 0) isDeleted = true;
+				
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return isDeleted;
 	}
 	
 	public int getProjectId(){

@@ -145,6 +145,36 @@ public class StudentData {
 		return mapStudent;
 	}
 	
+	public Map<String, String> getMapStudent(int sectionId){
+		String sql ="SELECT * FROM student "
+				+ "inner JOIN pre_name as pre on (student.prename_id = pre.prename_id) "
+				+ "inner join student_section on (student_section.student_id = student.student_id) "
+				+ "where student_section.section_id = "+sectionId;
+		Map<String, String> mapStudent = new HashMap<String, String>();
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+				mapStudent.put("", "Choose your option");
+			while (rs.next()) {
+				
+				mapStudent.put(rs.getString("student_id"), rs.getString("prename_name_short")+" "+rs.getString("firstname")+" "+rs.getString("lastname"));
+				
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mapStudent;
+	}
+	
 	public String countStudent(){
 		String sql ="SELECT count(*) as numberStudent FROM student ";
 		String numberStudent = "";

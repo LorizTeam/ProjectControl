@@ -22,7 +22,17 @@
 		    </div>
 		    <div class="div-container ">
 			   <div class="container"> 
+			   <s:if test="alertStatus != null ">
+		    		<div class="row" >
+		    			<div class="col s12 m12">
+			            	<div id="alertMessage" class='card-panel lighten-3 text-darken-4 <s:property value="alertStatus"/> '> 
+			            		<s:property value="alertMessage"/>
+			            	</div>
+		            	</div>
+		    		</div>
+				</s:if>
 			   <h4 class="center-align light-blue-text text-darken-1">Project Details</h4>
+			   <form class="col s12" action="updateProject" method="post">
 			   
 			    <div class="card " style="padding:10px;">
 			    <s:url action="viewProjectDetailExam" var="urlLink">
@@ -34,7 +44,7 @@
 				    </s:if>
 			    </h5><br>
 			      <div class="row">
-				    <form class="col s12">
+				      <s:hidden name='proModel.project_id' />
 				      <div class="row">
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.project_nameth" id="project_nameth" class="validate ip" readonly="true"/>
@@ -70,7 +80,7 @@
 						    <label>Teacher Adviser</label>
 						</div>
 				      </div>
-				    </form>
+				    
 				  </div>
 				  <div class="card " style="padding:10px;">
 				    	<h5 class="cyan-text text-darken-1">Student</h5>
@@ -126,7 +136,9 @@
 			      
 			      <a href="viewProjectAll" class="modal-action modal-close waves-effect waves-light grey lighten-1 btn ">Close</a>
 			      </div>
+			      
 		    </div>
+		    </form>
 		    </div>
 		  </div>  
 		    

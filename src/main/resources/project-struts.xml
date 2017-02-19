@@ -18,6 +18,10 @@
       		<result name="success">/project-add.jsp</result>
     	</action>
     	
+    	<action name="updateProject" class="smict.project.action.ProjectAction" method="updateProject">
+      		<result name="success">/project-detail.jsp</result>
+    	</action>
+    	
     	<action name="addProject" class="smict.project.action.ProjectAction" method="addProject">
       		<result name="success">/project.jsp</result>
       		<result name="input">/project-add.jsp</result>

@@ -268,6 +268,36 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		return forwardText;
 	}
 	
+	public String updateProject(){
+		String forwardText = "";
+		if(!sessionMap.containsKey("username")){
+			alertStatus = "red red-text";
+			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
+			return "login";
+		}
+		
+		if(projectDB.updateProject(proModel)){
+			projectDB.updateProjectToStudent(proModel.getProject_id(), inputStudentId.split(","));
+			projectDB.addProjectExaminer(proModel.getProject_id(), inputTeacherId.split(","));
+			alertStatus = "green green-text";
+			alertMessage = "Update รายการสำเร็จ";
+		}else{
+			alertStatus = "red red-text";
+			alertMessage = "Update รายการไม่สำเร็จ";
+		}
+		
+		
+		
+		listExaminer = projectDB.getListExaminerInProject(proModel);
+		listStudent = projectDB.getListStudentInProject(proModel);
+		listTeacherExamProject = projectDB.getListTeacherExamProjectModel(proModel);
+		proModel = projectDB.getProjectModelValue(proModel);
+		proModel.setCanAddExamScore(projectDB.isAvailableInput(sessionMap.get("username").toString(), proModel.getProject_id()));
+		getMapAddProject();
+		
+		return SUCCESS;
+	}
+	
 	public String deleteProject(){
 		
 		boolean isDeleted = projectDB.deletedProject(proModel);
@@ -283,7 +313,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		mapTeacher = teachDB.getMapTeacher();
 		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
 		mapCourse = courseDB.getMapCourse(couModel);
-		mapStudent = studentDB.getMapStudent();
+		mapStudent = studentDB.getMapStudent(proModel.getSectionId());
 		mapExaminer = teachDB.getMapTeacherForMultiselect();
 		mapSection = secDB.getMapSection(proModel.getCourse_id());
 	}
