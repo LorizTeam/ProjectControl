@@ -59,6 +59,7 @@
 				    			<th data-priority="2">Adviser</th>
 				    			<th data-priority="3">Score</th>
 				    			<th data-priority="2">Course</th>
+				    			<th data-priority="2">Section</th>
 				    			<th data-priority="3">Faculty</th>
 				    			<th data-priority="3">Creation Date</th>
 				    		</tr>
@@ -77,6 +78,7 @@
 					    			<td><s:property value="firstname"/></td>
 					    			<td><s:property value="showScoreProject"/></td>
 					    			<td><s:property value="course_nameth"/></td>
+					    			<td><s:property value="sectionName"/></td>
 					    			<td><s:property value="faclulty_nameth"/></td>
 					    			<td><s:property value="createdatetime"/></td>
 					    		</tr>

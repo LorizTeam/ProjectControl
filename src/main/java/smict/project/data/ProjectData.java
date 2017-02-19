@@ -74,7 +74,7 @@ public class ProjectData {
 				+ "CONCAT(pre_name.prename_name_short,' ',teacher.firstname,' ',teacher.lastname) as teachername,"
 				+ "project.exam_fullscore, project.exam_score, "
 				+ "course_nameth, project.createdatetime, faculty_nameth, (SELECT count(*) as personadded FROM project_examiner where project_id = project.project_id and addexam_statusid = 2) as personadded,"
-				+ "project_status.project_status_name "
+				+ "project_status.project_status_name, sec.id section_id, sec.name section_name "
 					+ "FROM "
 				+ "project "
 				+ "INNER JOIN teacher ON teacher.teacher_id = project.teacher_id "
@@ -83,6 +83,7 @@ public class ProjectData {
 				+ "INNER JOIN branch on branch.branch_id = course.branch_id "
 				+ "INNER JOIN faculty on faculty.faculty_id = branch.faculty_id "
 				+ "INNER JOIN project_status on project_status.project_status_id = project.project_status_id "
+				+ "INNER JOIN section sec on (sec.id = project.section_id) "
 				+ "LEFT JOIN student on project.project_id = student.project_id "
 				+ "where ";
 				
@@ -118,6 +119,8 @@ public class ProjectData {
 				proModel.setPersonadded(rs.getInt("personadded"));
 				proModel.setProject_status_name(rs.getString("project_status_name"));
 				proModel.setProject_description(rs.getString("project_description"));
+				proModel.setSectionId(rs.getInt("section_id"));
+				proModel.setSectionName(rs.getString("section_name"));
 				listProModel.add(proModel);
 			}
 			
@@ -635,10 +638,10 @@ public class ProjectData {
 	public int addProject(ProjectModel proModel){
 		String sql = "insert into project (project_nameth, project_nameen, teacher_id,createdatetime, "
 						+ "course_id, project_description, score1, score2, "
-						+ "score3) values "
+						+ "score3, section_id) values "
 					+ "('"+proModel.getProject_nameth()+"', '"+proModel.getProject_nameen()+"', '"+proModel.getTeacher_id()+"', now(),"
 						+ ""+proModel.getCourse_id()+", '"+proModel.getProject_description()+"', "+proModel.getScore1()+", "+proModel.getScore2()+","
-						+ ""+proModel.getScore3()+")";
+						+ ""+proModel.getScore3()+", "+proModel.getSectionId()+")";
 		
 		int projectId = 0;
 		try {

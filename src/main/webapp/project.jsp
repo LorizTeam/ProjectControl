@@ -68,11 +68,10 @@
 				    			<th data-priority="1">ชื่อโครงการ(EN)</th>
 				    			<th data-priority="1">คำอธิบายโปรเจค</th>
 				    			<th data-priority="2">อาจารย์ที่ปรึกษา</th>
-				    			<th data-priority="2">คะแนนเต็ม</th>
-				    			<th data-priority="2">คะแนนที่สอบได้</th>
 				    			<th data-priority="2">จำนวนคนให้คะแนน</th>
 				    			<th data-priority="1">สถานะ</th>
 				    			<th data-priority="3">วิชา</th>
+				    			<th data-priority="3">Section</th>
 				    			<th data-priority="3">คณะ</th>
 				    			<th data-priority="3">วันที่สร้างโครงการ</th>
 				    		</tr>
@@ -89,11 +88,10 @@
 					    			<td><s:property value="project_nameen"/></td>
 					    			<td><s:property value="project_description"/></td>
 					    			<td><s:property value="firstname"/></td>
-					    			<td><s:property value="exam_fullscore"/></td>
-					    			<td><s:property value="exam_score"/></td>
 					    			<td><s:property value="personadded"/></td>
 					    			<td><s:property value="project_status_name"/></td>
 					    			<td><s:property value="course_nameth"/></td>
+					    			<td><s:property value="sectionName"/></td>
 					    			<td><s:property value="faclulty_nameth"/></td>
 					    			<td><s:property value="createdatetime"/></td>
 					    		</tr>

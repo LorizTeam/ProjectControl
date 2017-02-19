@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/select2.css">
-	
+		<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -52,50 +52,38 @@
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" autocomplete="off" />
-				          <label for="score1">คะแนน รูปเล่ม</label>
+				          <label for="score1">คะแนนเต็ม รูปเล่ม</label>
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3" autocomplete="off"/>
-				          <label for="score2">คะแนน ความรู้</label>
+				          <label for="score2">คะแนนเต็ม ความรู้</label>
 				        </div>
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3" autocomplete="off"/>
-				          <label for="score3">คะแนน ตอบคำถาม</label>
+				          <label for="score3">คะแนนเต็ม ตอบคำถาม</label>
 				        </div>
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>
-							<s:select style="width: 100%"  list="mapCourse" name="proModel.course_id"></s:select>
+							<s:select style="width: 100%" list="mapCourse" name="proModel.course_id" id="course_id"></s:select>
+						 </div>
+						 <div class="col s12">
+				        	<p style="margin-bottom: 0; color:#26a69a !important;">Section</p>
+				        	<select id="ddlSection" name="proModel.sectionId">
+								<option  value="">Select an option</option>
+							</select>
 						 </div>
 				        <div class=" col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Teacher Adviser</p>
-						    <s:select style="width: 100%" list="mapTeacher" name="proModel.teacher_id"></s:select>
+						    <s:select style="width: 100%" list="mapTeacher" name="proModel.teacher_id" id="teacher_id"></s:select>
+						    
 						</div>
-						
 				      </div>
 				    </div>
 				  </div>
 			     
 		    </div>
-		    <%-- <div class="card " style="padding:10px;">
-		    	<h5 class="cyan-text text-darken-1">Student</h5>
-		    	<div class="row">
-					<div class="input-field col s12">
-					  <s:select style="width: 100%" list="mapStudent" id="ddl_student" name="inputStudentId" multiple="true"></s:select>
-					  
-					</div>
-				</div>
-		    </div>
-		    <div class="card " style="padding:10px;">
-		    	<h5 class="cyan-text text-darken-1">Project Examiner</h5>
-		    	<div class="row">
-					<div class="input-field col s12">
-					  <s:select style="width: 100%" list="mapExaminer" id="ddl_examiner" name="inputTeacherId" multiple="true"></s:select>
-					  
-					</div>
-				</div>
-		    </div> --%>
 		     <div class="center-align">
-		      <button type="submit" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
+		      <button type="submit" id="save" class="modal-action modal-close waves-effect waves-green btn ">Submit</button>
 		      <a href="viewProjectAll" type="button" class="modal-action modal-close waves-effect waves-yellow orange btn ">Cancel</a>
 		      </div>
 		      </form>
@@ -103,6 +91,7 @@
 		  </div>  
 		    
 		</main>
+		<script type="text/javascript" src="js/sweetalert2.min.js"></script>
 		<script type="text/javascript">
 		 $(document).ready(function(){
 			 
@@ -110,11 +99,49 @@
 			 $('.m1-2').addClass('active');
 			 $('.collapsible').collapsible();
 			 $('.page-title').text('Add Project');
-			 $("#ddl_student option:first").attr('disabled', 'disabled');
-			 $("#ddl_examiner option:first").attr('disabled', 'disabled');
-			 $('select').material_select();
+			 $('#course_id, #teacher_id').select2();
+			 $('#save').click(function(e){
+				if($('#ddlSection').val() == ''){
+					swal(
+					  'ไม่สามารถเพิ่มข้อมูล Project',
+					  'กรุณาเลือกข้อมูล Section ให้แก่ Project',
+					  'warning'
+					)
+					e.preventDefault();
+				}
+			});
 			 
+			 $('#course_id').change(function(){
+				$('#ddlSection').val("").trigger("change");
+			 });
 			 
+			 $("#ddlSection").select2({
+					ajax: {
+					    url: "ajax/getSection.jsp",
+					    delay: 1000,
+					    data: function (params) {
+					      return {
+					        q: params.term, // search term
+					        courseId:$('#course_id').val()
+					      };
+					    },
+					    processResults: function (data, params) {
+					      // parse the results into the format expected by Select2
+					      // since we are using custom formatting functions we do not need to
+					      // alter the remote JSON data, except to indicate that infinite
+					      // scrolling can be used
+					      params.page = params.page || 1;
+
+					      return {
+					        results: data.results,
+					        pagination: {
+					          more: (params.page * 30) < data.total_count
+					        }
+					      };
+					    },
+					    cache: true
+				  	}
+			  	});
 			 //$("#target option:first").attr('selected','selected');
 		});
 		</script>

@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
+
 import smartict.model.BranchModel;
 import smartict.model.FacultyModel;
 import smartict.model.SectionModel;
@@ -67,6 +70,41 @@ public class SectionData {
 			e.printStackTrace();
 		}
 		return hasDeleted;
+	}
+	
+	public JSONArray getJsonArraySection(SectionModel secModel){
+		String sql ="select "
+				+ "	* "
+				+ "from section sec "
+				+ "where ("+secModel.getId()+" is null or course_id = "+secModel.getId()+") ";
+		
+		sql += "order by name";
+		
+		JSONArray jsonArray = new JSONArray();
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs =  stmt.executeQuery(sql);
+			while(rs.next()){
+				JSONObject jsonOBJ = new JSONObject();
+				jsonOBJ.put("id", rs.getString("id"));
+				jsonOBJ.put("text", rs.getString("name"));
+				jsonArray.put(jsonOBJ);
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();				
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonArray;
 	}
 	
 	public List<SectionModel> getListSection(int courseId){

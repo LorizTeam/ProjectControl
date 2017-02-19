@@ -3,6 +3,18 @@ package smartict.util;
 import java.util.List;
 
 public class Validate {
+	
+	public boolean StringIsNullOrEmpty(String value){
+		boolean resultcheck = true;
+		if(value == null){
+			resultcheck = true;
+		}else if(!value.equals("")){
+			resultcheck = false;
+		}
+		
+		return resultcheck;
+	}
+	
 	public boolean checkIntegerNotZero(int receiveInt){
 		
 		if(receiveInt > 0) return true;

@@ -8,10 +8,10 @@ public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
 		addExamScoreStatusId, project_status_id, course_id, faclulty_id, 
 		exam_fullscore, personadded, score1, score2,
-		score3;
+		score3, sectionId;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
 			showScoreProject, faclulty_nameth, faclulty_nameen, project_status_name,
-			project_description;
+			project_description, sectionName;
 	Double exam_score;
 	DateTime createdatetime;
 	boolean canAddExamScore, isNow;
@@ -231,6 +231,22 @@ public class ProjectModel extends PersonModel {
 
 	public void setScore3(int score3) {
 		this.score3 = score3;
+	}
+
+	public int getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
+	}
+
+	public String getSectionName() {
+		return sectionName;
+	}
+
+	public void setSectionName(String sectionName) {
+		this.sectionName = sectionName;
 	}
 	
 }
