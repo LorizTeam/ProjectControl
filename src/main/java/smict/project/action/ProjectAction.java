@@ -313,9 +313,13 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		mapTeacher = teachDB.getMapTeacher();
 		CourseModel couModel = new CourseModel(0, "", "", "", 0, "", "", "");
 		mapCourse = courseDB.getMapCourse(couModel);
-		mapStudent = studentDB.getMapStudent(proModel.getSectionId());
 		mapExaminer = teachDB.getMapTeacherForMultiselect();
-		mapSection = secDB.getMapSection(proModel.getCourse_id());
+		
+		if(proModel != null){
+			mapStudent = studentDB.getMapStudent(proModel.getSectionId());
+			mapSection = secDB.getMapSection(proModel.getCourse_id());
+		}
+		
 	}
 	
 	

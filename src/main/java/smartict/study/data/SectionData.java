@@ -15,6 +15,7 @@ import org.codehaus.jettison.json.JSONObject;
 import smartict.model.BranchModel;
 import smartict.model.FacultyModel;
 import smartict.model.SectionModel;
+import smartict.model.StudentModel;
 import smartict.util.DBConnect;
 import smartict.util.DateUtil;
 import smartict.util.Validate;
@@ -27,6 +28,53 @@ public class SectionData {
 	public boolean addSection(SectionModel secModel){
 		String sql = "insert into section (name, year, course_id) values "
 						+ "('"+secModel.getSectionName()+"', '"+secModel.getSectionYear()+"', "+secModel.getId()+")";
+		
+		boolean hasAdd = false;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasAdd = true;
+			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hasAdd;
+	}
+	
+	public boolean addStudentSection(StudentModel stdModel){
+		String sql = "insert into student_section (student_id, section_id) values "
+						+ "('"+stdModel.getStudent_id()+"', "+stdModel.getSectionId()+")";
+		
+		boolean hasAdd = false;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			if(stmt.executeUpdate(sql) > 0){
+				hasAdd = true;
+			}
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hasAdd;
+	}
+	
+	public boolean deleteStudentSection(StudentModel stdModel){
+		String sql = "delete from student_section where id = "+stdModel.getStudentSectionId();
 		
 		boolean hasAdd = false;
 		try {
@@ -79,6 +127,45 @@ public class SectionData {
 				+ "where ("+secModel.getId()+" is null or course_id = "+secModel.getId()+") ";
 		
 		sql += "order by name";
+		
+		JSONArray jsonArray = new JSONArray();
+		try {
+			
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs =  stmt.executeQuery(sql);
+			while(rs.next()){
+				JSONObject jsonOBJ = new JSONObject();
+				jsonOBJ.put("id", rs.getString("id"));
+				jsonOBJ.put("text", rs.getString("name"));
+				jsonArray.put(jsonOBJ);
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();				
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonArray;
+	}
+	
+	public JSONArray getJsonArrayStudentSection(SectionModel secModel){
+		String sql ="select "
+				+ "* "
+				+ "from section "
+				+ "where not EXISTS (select section_id from student_section "
+				+ "					where section.id = student_section.section_id "
+				+ "					and student_section.student_id = '"+secModel.getStudentId()+"' "
+				+ "					) "
+				+ "and course_id = "+secModel.getId();
+		
+		sql += " order by name";
 		
 		JSONArray jsonArray = new JSONArray();
 		try {

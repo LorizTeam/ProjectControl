@@ -68,7 +68,7 @@
 						 </div>
 						 <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Section</p>
-				        	<select id="ddlSection" name="proModel.sectionId">
+				        	<select style="width: 100%" id="ddlSection" name="proModel.sectionId">
 								<option  value="">Select an option</option>
 							</select>
 						 </div>
@@ -109,7 +109,7 @@
 					)
 					e.preventDefault();
 				}
-			});
+			 });
 			 
 			 $('#course_id').change(function(){
 				$('#ddlSection').val("").trigger("change");

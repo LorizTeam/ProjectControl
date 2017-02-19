@@ -4,6 +4,8 @@ public class StudentModel extends PersonModel{
 	String student_id, branch_nameth, faculty_nameth, branchId,
 			oldstudent_id, receiveYear;
 	
+	int sectionId,studentSectionId;
+	
 	public StudentModel() {
 		super();
 	}
@@ -54,6 +56,22 @@ public class StudentModel extends PersonModel{
 
 	public void setReceiveYear(String receiveYear) {
 		this.receiveYear = receiveYear;
+	}
+
+	public int getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
+	}
+
+	public int getStudentSectionId() {
+		return studentSectionId;
+	}
+
+	public void setStudentSectionId(int studentSectionId) {
+		this.studentSectionId = studentSectionId;
 	}
 	
 }

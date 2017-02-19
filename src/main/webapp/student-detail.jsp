@@ -96,13 +96,18 @@
 					</div>
 				</div>
 				<div class="card " style="padding:10px;">
-					<h5 class="cyan-text text-darken-1">Section</h5>
+					<s:url action="manageStudentSection" var="mangeSection" escapeAmp="false">
+		   				<s:param name="stdModel.student_id"><s:property value="stdModel.student_id"/></s:param>
+		   				<s:param name="stdModel.branchId"><s:property value="stdModel.branchId"/></s:param>
+		   			</s:url>
+		   			
+					<h5 class="cyan-text text-darken-1">Section <a href='<s:property value="mangeSection"/>' class="waves-effect waves-red  green btn ">Manage</a></h5> 
+					
 					    <table id="sectionTable" class="highlight  responsive" >
 					    	<thead>
 					    		<tr>
 					    			<th data-priority="1">เซคชั่น</th>
 					    			<th data-priority="1">ปี</th>
-					    			<th data-priority="1">จัดการ</th>
 					    		</tr>
 					    		
 					    	</thead>
@@ -111,7 +116,6 @@
 					    			<tr>
 						    			<td><s:property value="sectionName"/></td>
 						    			<td><s:property value="year"/></td>
-						    			<td><s:property value="sectionId"/></td>
 						    		</tr>
 					    		</s:iterator>
 					    	</tbody>

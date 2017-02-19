@@ -2,7 +2,7 @@ package smartict.model;
 
 public class SectionModel extends CourseModel {
 	int sectionId, sectionYear, isActive;
-	String sectionName;
+	String sectionName, studentId;
 	
 	public SectionModel() {
 		super();
@@ -36,5 +36,13 @@ public class SectionModel extends CourseModel {
 	}
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
+	}
+
+	public String getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 }

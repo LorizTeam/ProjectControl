@@ -242,6 +242,7 @@ public class StudentData {
 				+ "student_section.student_id,"
 				+ "student_section.section_id,"
 				+ "student_section.is_study,"
+				+ "student_section.id,"
 				+ "student.firstname,"
 				+ "student.lastname,"
 				+ "section.`name`,"
@@ -275,6 +276,7 @@ public class StudentData {
 				stdModel.setSectionId(rs.getInt("section_id") );
 				stdModel.setSectionName(rs.getString("name"));
 				stdModel.setYear(rs.getInt("year"));
+				stdModel.setStudentSectionId(rs.getInt("id"));
 				listStudentModel.add(stdModel);
 				
 			}
@@ -293,7 +295,7 @@ public class StudentData {
 	public StudentModel getStudentDetail(StudentModel stdModel){
 		String sql ="SELECT student.student_id, student.firstname, student.lastname, pre.prename_name_short, "
 							+ "bra.branch_nameth, student.tel_number, student.email, student.line_id,"
-							+ "student.identification, student.prename_id, receive_year "
+							+ "student.identification, student.prename_id, receive_year,student.branch_id "
 				+ "FROM student "
 				+ "inner JOIN pre_name as pre on (student.prename_id = pre.prename_id) "
 				+ "inner join branch as bra on (student.branch_id = bra.branch_id) "
@@ -316,6 +318,7 @@ public class StudentData {
 				stdModel.setLine_id(rs.getString("line_id"));
 				stdModel.setPrename_id(rs.getInt("prename_id"));
 				stdModel.setReceiveYear(rs.getString("receive_year"));
+				stdModel.setBranchId(rs.getString("branch_id"));
 			}
 			
 			if(!rs.isClosed()) rs.close();

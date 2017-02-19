@@ -58,6 +58,19 @@
     	<action name="ChangePasswordStudent" class="smartict.person.action.StudentAction" method="updatePassword">
       		<result name="success">/student-change-password.jsp</result>
     	</action>
+    	
+    	<action name="manageStudentSection" class="smartict.person.action.StudentSectionAction" method="inputStudentSection">
+      		<result name="success">/student-section-manage.jsp</result>
+    	</action>
+    	
+    	<action name="addStudentSection" class="smartict.person.action.StudentSectionAction" method="addStudentSection">
+      		<result name="success">/student-section-manage.jsp</result>
+    	</action>
+    	
+    	<action name="deleteStudentSection" class="smartict.person.action.StudentSectionAction" method="deleteStudentSection">
+      		<result name="success">/student-section-manage.jsp</result>
+    	</action>
+    	
     	<!-- 	++++++	 Student 	 ++++++	  -->
     	
     	<!-- 	++++++	 Teacher 	 ++++++	  -->
