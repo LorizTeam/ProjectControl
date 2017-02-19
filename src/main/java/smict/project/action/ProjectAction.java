@@ -10,10 +10,12 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import smartict.model.CourseModel;
 import smartict.model.ProjectModel;
+import smartict.model.SectionModel;
 import smartict.model.TeacherExamProjectModel;
 import smartict.person.data.StudentData;
 import smartict.person.data.TeacherData;
 import smartict.study.data.CourseData;
+import smartict.study.data.SectionData;
 import smartict.util.Validate;
 import smict.project.data.ProjectData;
 
@@ -25,12 +27,15 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	TeacherData teachDB = new TeacherData();
 	StudentData studentDB = new StudentData();
 	CourseData courseDB = new CourseData();
+	SectionData secDB = new SectionData();
 	String inputStudentId, inputTeacherId, alertStatus, alertMessage;
 	Validate cValidate = new Validate();
-	Map<String, String> mapTeacher, mapCourse, mapStudent, mapExaminer;
+	Map<String, String> mapTeacher, mapCourse, mapStudent, mapExaminer, mapSection;
 	List<ProjectModel> listProModel;
 	List<String> listExaminer, listStudent;
 	List<TeacherExamProjectModel> listTeacherExamProject;
+	List<SectionModel> listSectionModel;
+	
 	public String viewProjectAll(){
 		String forwardText = "success";
 		if(!sessionMap.containsKey("username")){
@@ -86,13 +91,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
 			return "login";
 		}
-		System.out.println("Username : "+sessionMap.get("username").toString());
+
 		listExaminer = projectDB.getListExaminerInProject(proModel);
 		listStudent = projectDB.getListStudentInProject(proModel);
 		listTeacherExamProject = projectDB.getListTeacherExamProjectModel(proModel);
 		proModel = projectDB.getProjectModelValue(proModel);
 		proModel.setCanAddExamScore(projectDB.isAvailableInput(sessionMap.get("username").toString(), proModel.getProject_id()));
 		getMapAddProject();
+		
 		return forwardText;
 	}
 	
@@ -279,7 +285,10 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		mapCourse = courseDB.getMapCourse(couModel);
 		mapStudent = studentDB.getMapStudent();
 		mapExaminer = teachDB.getMapTeacherForMultiselect();
+		mapSection = secDB.getMapSection(proModel.getCourse_id());
 	}
+	
+	
 	//GetSet
 	public Map<String, String> getMapTeacher() {
 		return mapTeacher;
@@ -393,6 +402,22 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 	public void setListTeacherExamProject(List<TeacherExamProjectModel> listTeacherExamProject) {
 		this.listTeacherExamProject = listTeacherExamProject;
+	}
+
+	public List<SectionModel> getListSectionModel() {
+		return listSectionModel;
+	}
+
+	public void setListSectionModel(List<SectionModel> listSectionModel) {
+		this.listSectionModel = listSectionModel;
+	}
+
+	public Map<String, String> getMapSection() {
+		return mapSection;
+	}
+
+	public void setMapSection(Map<String, String> mapSection) {
+		this.mapSection = mapSection;
 	}
 
 }

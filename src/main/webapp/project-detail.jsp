@@ -60,6 +60,11 @@
 						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" value="proModel.course_id" readonly="true"></s:select>
 						    <label>Course</label>
 						</div>
+						<div class="input-field col s12">
+						    <s:select list="mapSection" name="proModel.sectionId" class="validate ip" value="proModel.sectionId" readonly="true"></s:select>
+						    <label>Course</label>
+						</div>
+						
 				        <div class="input-field col s12">
 						    <s:select list="mapTeacher" name="proModel.teacher_id" class="validate ip" value="proModel.teacher_id"  readonly="true"></s:select>
 						    <label>Teacher Adviser</label>

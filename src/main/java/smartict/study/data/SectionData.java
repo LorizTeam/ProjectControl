@@ -143,6 +143,38 @@ public class SectionData {
 		return listBraModel;
 	}
 	
+	public Map<String, String> getMapSection(int courseId){
+		
+		String sql = "select * from section "
+				+ "where "
+				+ "id > 0 ";
+		if(cValidate.checkIntegerNotZero(courseId)) sql += "and course_id = "+courseId;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				
+				map.put(rs.getString("id"), rs.getString("name"));
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
 	public Map<String, String> getMapBranch(BranchModel braModel){
 		
 		String sql = "select * from branch where ";

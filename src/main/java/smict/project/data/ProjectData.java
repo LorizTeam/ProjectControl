@@ -402,6 +402,7 @@ public class ProjectData {
 				proModel.setScore3(rs.getInt("score3"));
 				proModel.setCourse_id(rs.getInt("course_id"));
 				proModel.setCreatedatetime(rs.getDate("createdatetime"));
+				proModel.setSectionId(rs.getInt("section_id"));
 			}
 			
 			if(!rs.isClosed()) rs.close();
