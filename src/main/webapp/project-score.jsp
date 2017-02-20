@@ -8,7 +8,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="css/materialize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		
+		<style>
+		.errorMessage {
+			color: red;
+		}
+		</style>
 	</head>
 	<body>
 		<%@include file="menu.jsp" %>
@@ -29,9 +33,20 @@
 				    	<h5 class="cyan-text text-darken-1">Project Score</h5>
 				    	<div class="row">
 					    	<div class="input-field col s12">
-					          <s:textfield name="proModel.exam_score" id="exam_score" class="validate ip"/>
-					          
-					          <label for="score">Project Score</label>
+					          <s:textfield name="addScore1" id="addScore1" required="true" class="validate ip"/>
+					          <label for="score">คะแนน รูปเล่ม</label>
+					        </div>
+				        </div>
+				        <div class="row">
+					    	<div class="input-field col s12">
+					          <s:textfield name="addScore2" id="addScore2" required="true" class="validate ip"/>
+					          <label for="score">คะแนน ความรู้</label>
+					        </div>
+				        </div>
+				        <div class="row">
+					    	<div class="input-field col s12">
+					          <s:textfield name="addScore3" id="addScore3" required="true" class="validate ip"/>
+					          <label for="score">คะแนน การตอบคำถาม</label>
 					        </div>
 				        </div>
 				    	<div class="center-align">
@@ -52,14 +67,6 @@
 				        <div class="input-field col s12">
 				          <s:textfield name="proModel.project_nameen" id="project_nameen" class="validate ip" readonly="true"/>
 				          <label for="last_name">Project Name (EN)</label>
-				        </div>
-				        <div class="input-field col s12">
-				          <s:textfield name="proModel.exam_fullscore" class="validate ip" />
-				          <label for="last_name">Full Score</label>
-				        </div>
-				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score_pass" class="validate ip" />
-				          <label for="last_name">Score Pass</label>
 				        </div>
 				        <div class="input-field col s12">
 						    <s:select list="mapCourse" name="proModel.course_id" class="validate ip" value="proModel.course_id" readonly="true"></s:select>

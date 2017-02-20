@@ -57,7 +57,6 @@
 				    			<th data-priority="1">Project Name TH</th>
 				    			<th data-priority="1">Project Name EN</th>
 				    			<th data-priority="2">Adviser</th>
-				    			<th data-priority="3">Score</th>
 				    			<th data-priority="2">Course</th>
 				    			<th data-priority="2">Section</th>
 				    			<th data-priority="3">Faculty</th>
@@ -76,7 +75,6 @@
 					    			<td><a href='<s:property value="urlLink"/>'> <s:property value="project_nameth"/></a></td>
 					    			<td><s:property value="project_nameen"/></td>
 					    			<td><s:property value="firstname"/></td>
-					    			<td><s:property value="showScoreProject"/></td>
 					    			<td><s:property value="course_nameth"/></td>
 					    			<td><s:property value="sectionName"/></td>
 					    			<td><s:property value="faclulty_nameth"/></td>

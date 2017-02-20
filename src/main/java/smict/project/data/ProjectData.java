@@ -28,7 +28,10 @@ public class ProjectData {
 				+ "		pre_name.prename_name_short,"
 				+ "		teacher.firstname,"
 				+ "		teacher.lastname,"
-				+ "		project_examiner.add_score"
+				+ "		project_examiner.add_score,"
+				+ "		project_examiner.score1,"
+				+ "		project_examiner.score2,"
+				+ "		project_examiner.score3 "
 				+ "		FROM "
 				+ "		project "
 				+ "		INNER JOIN project_examiner ON project.project_id = project_examiner.project_id "
@@ -49,6 +52,9 @@ public class ProjectData {
 				teacherExamProjectModel.setLastname(rs.getString("lastname"));
 				teacherExamProjectModel.setExam_score(rs.getDouble("add_score"));
 				teacherExamProjectModel.setPrename_name_short(rs.getString("prename_name_short"));
+				teacherExamProjectModel.setScore1(rs.getInt("score1"));
+				teacherExamProjectModel.setScore2(rs.getInt("score2"));
+				teacherExamProjectModel.setScore3(rs.getInt("score3"));
 				listTeacherExamProject.add(teacherExamProjectModel);
 			}
 			
@@ -141,32 +147,21 @@ public class ProjectData {
 	}
 	
 	public void updateProjectStatus(ProjectModel proModel){
-		int scorePass = getScorePass(proModel);
-		int currectScore = currentProjectScore(proModel);
+		
 		proModel.setNow(false);
 		int examiner = getCountProjectExamier(proModel);
 		proModel.setNow(true);
 		int nowExaminer = getCountProjectExamier(proModel);
-		if(scorePass < currectScore && examiner == nowExaminer){
+		
+		if(examiner == nowExaminer){
+			int scorePass = getScorePass(proModel);
 			
-			String sql = "update project set project_status_id = 4 where project_id = "+proModel.getProject_id();
-			
-			try {
-				Connection conn = agent.getConnectMYSql();
-				Statement stmt = conn.createStatement();
-				stmt.executeUpdate(sql);
-				
-				if(!stmt.isClosed()) stmt.close();
-				if(!conn.isClosed()) conn.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String sql = "";
+			if(isOverScorePass(scorePass, proModel.getProject_id())) {
+				sql += "update project set project_status_id = 4 where project_id = "+proModel.getProject_id();
+			}else{
+				sql += "update project set project_status_id = 3 where project_id = "+proModel.getProject_id();
 			}
-		}else if(scorePass > currectScore && examiner == nowExaminer){
-			String sql = "update project set project_status_id = 3 where project_id = "+proModel.getProject_id();
 			
 			try {
 				Connection conn = agent.getConnectMYSql();
@@ -185,8 +180,86 @@ public class ProjectData {
 		}
 	}
 	
+	public boolean isOverScorePass(int score_pass, int projectId){
+		boolean isPass = false;
+		
+		List<String> listScore = getScoreProjectModel(projectId);
+		double sumscore1 = Double.parseDouble(listScore.get(0)), sumscore2 = Double.parseDouble(listScore.get(1)),
+				sumscore3 = Double.parseDouble(listScore.get(2)), maxScore1 = Double.parseDouble(listScore.get(3)),
+				maxScore2 = Double.parseDouble(listScore.get(4)), maxScore3 = Double.parseDouble(listScore.get(5));
+		
+		double percent1 = sumscore1 * 100  / maxScore1, 
+				percent2 = sumscore2 * 100  / maxScore2, 
+				percent3 = sumscore3 * 100  / maxScore3;
+		
+		double realScore1 = maxScore1 * percent1 / 100, 
+				realScore2 = maxScore2 * percent2 / 100, 
+				realScore3 = maxScore3 * percent3 / 100;
+		
+		double summaryScore = realScore1+realScore2+realScore3;
+		
+		String sql = "update project set exam_score = "+summaryScore+" where project_id = "+projectId;
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(summaryScore > score_pass) isPass = true;
+		
+		return isPass;
+	}
+	
+	public List<String> getScoreProjectModel(int projectId){
+		String sql = "SELECT "
+				+ "	sum(project_examiner.score1) sumscore1, "
+				+ "	sum(project_examiner.score2) sumscore2,"
+				+ "	sum(project_examiner.score3) sumscore3,"
+				+ "(project.score1 * COUNT(project_examiner.teacher_id)) as maxscore1,"
+				+ "(project.score2 * COUNT(project_examiner.teacher_id)) as maxscore2,"
+				+ "(project.score3 * COUNT(project_examiner.teacher_id)) as maxscore3 "
+				+ "FROM project_examiner "
+				+ "INNER JOIN project on (project.project_id = project_examiner.project_id) "
+				+ "where project.project_id = "+projectId;
+		List<String> listScore = new ArrayList<String>(); 
+		try {
+			Connection conn = agent.getConnectMYSql();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				listScore.add(rs.getString("sumscore1"));
+				listScore.add(rs.getString("sumscore2"));
+				listScore.add(rs.getString("sumscore3"));
+				listScore.add(rs.getString("maxscore1"));
+				listScore.add(rs.getString("maxscore2"));
+				listScore.add(rs.getString("maxscore3"));
+			}
+			
+			if(!rs.isClosed()) rs.close();
+			if(!stmt.isClosed()) stmt.close();
+			if(!conn.isClosed()) conn.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return listScore;
+	}
+	
 	public int getScorePass(ProjectModel proModel){
-		String sql = "SELECT * from project where project_id = "+proModel.getProject_id();
+		String sql = "SELECT (score1+score2+score3) / 2 as score_pass from project where project_id = "+proModel.getProject_id();
 		int scorePass = 0;
 		try {
 			Connection conn = agent.getConnectMYSql();
@@ -713,7 +786,10 @@ public class ProjectData {
 	}
 	
 	public void updateProjectExaminer(ProjectModel proModel){
-		String sql = "update project_examiner set addexam_statusid = 2,add_score = "+proModel.getExam_score()+" "
+		String sql = "update project_examiner set "
+				+ "addexam_statusid = 2,score1 = "+proModel.getScore1()+","
+				+ "score2 = "+proModel.getScore2()+","
+				+ "score3 = "+proModel.getScore3()+" "
 				+ "where project_id = "+proModel.getProject_id()+" and teacher_id = "+proModel.getTeacher_id();
 		
 		int projectId = 0;

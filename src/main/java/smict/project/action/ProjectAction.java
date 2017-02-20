@@ -35,6 +35,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	List<String> listExaminer, listStudent;
 	List<TeacherExamProjectModel> listTeacherExamProject;
 	List<SectionModel> listSectionModel;
+	int addScore1, addScore2, addScore3;
 	
 	public String viewProjectAll(){
 		String forwardText = "success";
@@ -91,11 +92,12 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณาทำการ Login ก่อนทำรายการ";
 			return "login";
 		}
-
+		
+		proModel = projectDB.getProjectModelValue(proModel);
 		listExaminer = projectDB.getListExaminerInProject(proModel);
 		listStudent = projectDB.getListStudentInProject(proModel);
 		listTeacherExamProject = projectDB.getListTeacherExamProjectModel(proModel);
-		proModel = projectDB.getProjectModelValue(proModel);
+		
 		proModel.setCanAddExamScore(projectDB.isAvailableInput(sessionMap.get("username").toString(), proModel.getProject_id()));
 		getMapAddProject();
 		
@@ -132,18 +134,32 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			return "login";
 		}
 		
-		listExaminer = projectDB.getListExaminerInProject(proModel);
-		listStudent = projectDB.getListStudentInProject(proModel);
-		proModel = projectDB.getProjectModelValue(proModel);
 		proModel = projectDB.getTeacherAddExamScoreStatus(proModel);
-		projectDB.addProjectExamScore(proModel);
+		//projectDB.addProjectExamScore(proModel);
 		proModel.setTeacher_id(Integer.parseInt(sessionMap.get("username").toString()));
+		proModel.setScore1(addScore1);
+		proModel.setScore2(addScore2);
+		proModel.setScore3(addScore3);
 		projectDB.updateProjectExaminer(proModel);
 		projectDB.updateProjectStatus(proModel);
-		getMapAddProject();
+		
 		
 		
 		return forwardText;
+	}
+	
+	public void validateAddExamScore(){
+		
+		proModel = projectDB.getProjectModelValue(proModel);
+		listExaminer = projectDB.getListExaminerInProject(proModel);
+		listStudent = projectDB.getListStudentInProject(proModel);
+		getMapAddProject();
+		
+		if(addScore1 > proModel.getScore1()) addFieldError("addScore1", "ไม่สามารถเพิ่มคะแนนเกิน "+ proModel.getScore1() +" ได้");
+		
+		if(addScore2 > proModel.getScore2()) addFieldError("addScore2", "ไม่สามารถเพิ่มคะแนนเกิน "+ proModel.getScore2() +" ได้");
+		
+		if(addScore3 > proModel.getScore3()) addFieldError("addScore3", "ไม่สามารถเพิ่มคะแนนเกิน "+ proModel.getScore3() +" ได้");
 	}
 		
 	public String inputProjectData(){
@@ -453,5 +469,31 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 	public void setMapSection(Map<String, String> mapSection) {
 		this.mapSection = mapSection;
 	}
+
+	public int getAddScore1() {
+		return addScore1;
+	}
+
+	public void setAddScore1(int addScore1) {
+		this.addScore1 = addScore1;
+	}
+
+	public int getAddScore2() {
+		return addScore2;
+	}
+
+	public void setAddScore2(int addScore2) {
+		this.addScore2 = addScore2;
+	}
+
+	public int getAddScore3() {
+		return addScore3;
+	}
+
+	public void setAddScore3(int addScore3) {
+		this.addScore3 = addScore3;
+	}
+	
+	
 
 }

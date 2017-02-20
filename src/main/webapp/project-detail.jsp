@@ -108,7 +108,9 @@
 							        <thead>
 							          <tr>
 							              <th data-field="id">Name</th>
-							              <th data-field="score">Score</th>
+							              <th data-field="score1">คะแนนรูปเล่ม</th>
+							              <th data-field="score2">คะแนนความรู้</th>
+							              <th data-field="score3">คะแนนตอบคำถาม</th>
 							          </tr>
 							        </thead>
 							
@@ -116,7 +118,9 @@
 							        <s:iterator value="listTeacherExamProject">
 						        		<tr>
 								            <td><s:property value="prename_name_short"/> <s:property value="firstname"/> <s:property value="lastname"/></td>
-								            <td><s:property value="exam_score"/></td>
+								            <td><s:property value="score1"/></td>
+								            <td><s:property value="score2"/></td>
+								            <td><s:property value="score3"/></td>
 							          	</tr>
 							        </s:iterator>
 							        </tbody>
