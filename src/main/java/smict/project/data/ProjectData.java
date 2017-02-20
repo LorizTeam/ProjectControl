@@ -177,6 +177,23 @@ public class ProjectData {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else{
+			String sql = "update project set project_status_id = 2 where project_id = "+proModel.getProject_id();
+			
+			try {
+				Connection conn = agent.getConnectMYSql();
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sql);
+				
+				if(!stmt.isClosed()) stmt.close();
+				if(!conn.isClosed()) conn.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -229,7 +246,7 @@ public class ProjectData {
 				+ "(project.score1 * COUNT(project_examiner.teacher_id)) as maxscore1,"
 				+ "(project.score2 * COUNT(project_examiner.teacher_id)) as maxscore2,"
 				+ "(project.score3 * COUNT(project_examiner.teacher_id)) as maxscore3,"
-				+ "score1,score2,score3 "
+				+ "project.score1,project.score2,project.score3 "
 				+ "FROM project_examiner "
 				+ "INNER JOIN project on (project.project_id = project_examiner.project_id) "
 				+ "where project.project_id = "+projectId;
