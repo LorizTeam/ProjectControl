@@ -186,15 +186,17 @@ public class ProjectData {
 		List<String> listScore = getScoreProjectModel(projectId);
 		double sumscore1 = Double.parseDouble(listScore.get(0)), sumscore2 = Double.parseDouble(listScore.get(1)),
 				sumscore3 = Double.parseDouble(listScore.get(2)), maxScore1 = Double.parseDouble(listScore.get(3)),
-				maxScore2 = Double.parseDouble(listScore.get(4)), maxScore3 = Double.parseDouble(listScore.get(5));
+				maxScore2 = Double.parseDouble(listScore.get(4)), maxScore3 = Double.parseDouble(listScore.get(5)),
+				score1 = Double.parseDouble(listScore.get(6)), score2 = Double.parseDouble(listScore.get(7)), 
+				score3 = Double.parseDouble(listScore.get(8));
 		
 		double percent1 = sumscore1 * 100  / maxScore1, 
 				percent2 = sumscore2 * 100  / maxScore2, 
 				percent3 = sumscore3 * 100  / maxScore3;
 		
-		double realScore1 = maxScore1 * percent1 / 100, 
-				realScore2 = maxScore2 * percent2 / 100, 
-				realScore3 = maxScore3 * percent3 / 100;
+		double realScore1 = score1 * percent1 / 100, 
+				realScore2 = score2 * percent2 / 100, 
+				realScore3 = score3 * percent3 / 100;
 		
 		double summaryScore = realScore1+realScore2+realScore3;
 		
@@ -226,7 +228,8 @@ public class ProjectData {
 				+ "	sum(project_examiner.score3) sumscore3,"
 				+ "(project.score1 * COUNT(project_examiner.teacher_id)) as maxscore1,"
 				+ "(project.score2 * COUNT(project_examiner.teacher_id)) as maxscore2,"
-				+ "(project.score3 * COUNT(project_examiner.teacher_id)) as maxscore3 "
+				+ "(project.score3 * COUNT(project_examiner.teacher_id)) as maxscore3,"
+				+ "score1,score2,score3 "
 				+ "FROM project_examiner "
 				+ "INNER JOIN project on (project.project_id = project_examiner.project_id) "
 				+ "where project.project_id = "+projectId;
@@ -243,6 +246,9 @@ public class ProjectData {
 				listScore.add(rs.getString("maxscore1"));
 				listScore.add(rs.getString("maxscore2"));
 				listScore.add(rs.getString("maxscore3"));
+				listScore.add(rs.getString("score1"));
+				listScore.add(rs.getString("score2"));
+				listScore.add(rs.getString("score3"));
 			}
 			
 			if(!rs.isClosed()) rs.close();
