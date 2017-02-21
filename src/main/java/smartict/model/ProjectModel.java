@@ -8,7 +8,7 @@ public class ProjectModel extends PersonModel {
 	int project_id, teacher_id, exam_number, score_pass,
 		addExamScoreStatusId, project_status_id, course_id, faclulty_id, 
 		exam_fullscore, personadded, score1, score2,
-		score3, sectionId;
+		score3, score4, sectionId;
 	String project_nameth, project_nameen, course_nameth, course_nameen,
 			showScoreProject, faclulty_nameth, faclulty_nameen, project_status_name,
 			project_description, sectionName;
@@ -247,6 +247,14 @@ public class ProjectModel extends PersonModel {
 
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
+	}
+
+	public int getScore4() {
+		return score4;
+	}
+
+	public void setScore4(int score4) {
+		this.score4 = score4;
 	}
 	
 }

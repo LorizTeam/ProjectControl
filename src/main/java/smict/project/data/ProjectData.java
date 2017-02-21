@@ -205,7 +205,7 @@ public class ProjectData {
 				sumscore3 = Double.parseDouble(listScore.get(2)), maxScore1 = Double.parseDouble(listScore.get(3)),
 				maxScore2 = Double.parseDouble(listScore.get(4)), maxScore3 = Double.parseDouble(listScore.get(5)),
 				score1 = Double.parseDouble(listScore.get(6)), score2 = Double.parseDouble(listScore.get(7)), 
-				score3 = Double.parseDouble(listScore.get(8));
+				score3 = Double.parseDouble(listScore.get(8)), exam_score = Double.parseDouble(listScore.get(9));
 		
 		double percent1 = sumscore1 * 100  / maxScore1, 
 				percent2 = sumscore2 * 100  / maxScore2, 
@@ -215,7 +215,7 @@ public class ProjectData {
 				realScore2 = score2 * percent2 / 100, 
 				realScore3 = score3 * percent3 / 100;
 		
-		double summaryScore = realScore1+realScore2+realScore3;
+		double summaryScore = realScore1+realScore2+realScore3+exam_score;
 		
 		String sql = "update project set exam_score = "+summaryScore+" where project_id = "+projectId;
 		try {
@@ -246,7 +246,7 @@ public class ProjectData {
 				+ "(project.score1 * COUNT(project_examiner.teacher_id)) as maxscore1,"
 				+ "(project.score2 * COUNT(project_examiner.teacher_id)) as maxscore2,"
 				+ "(project.score3 * COUNT(project_examiner.teacher_id)) as maxscore3,"
-				+ "project.score1,project.score2,project.score3 "
+				+ "project.score1,project.score2,project.score3, project.exam_score "
 				+ "FROM project_examiner "
 				+ "INNER JOIN project on (project.project_id = project_examiner.project_id) "
 				+ "where project.project_id = "+projectId;
@@ -266,6 +266,7 @@ public class ProjectData {
 				listScore.add(rs.getString("score1"));
 				listScore.add(rs.getString("score2"));
 				listScore.add(rs.getString("score3"));
+				listScore.add(rs.getString("exam_score"));
 			}
 			
 			if(!rs.isClosed()) rs.close();
@@ -282,7 +283,7 @@ public class ProjectData {
 	}
 	
 	public int getScorePass(ProjectModel proModel){
-		String sql = "SELECT (score1+score2+score3) / 2 as score_pass from project where project_id = "+proModel.getProject_id();
+		String sql = "SELECT (score1+score2+score3+30) / 2 as score_pass from project where project_id = "+proModel.getProject_id();
 		int scorePass = 0;
 		try {
 			Connection conn = agent.getConnectMYSql();
@@ -501,6 +502,7 @@ public class ProjectData {
 				proModel.setCourse_id(rs.getInt("course_id"));
 				proModel.setCreatedatetime(rs.getDate("createdatetime"));
 				proModel.setSectionId(rs.getInt("section_id"));
+				proModel.setExam_score(rs.getDouble("exam_score"));
 			}
 			
 			if(!rs.isClosed()) rs.close();
@@ -737,10 +739,10 @@ public class ProjectData {
 	public int addProject(ProjectModel proModel){
 		String sql = "insert into project (project_nameth, project_nameen, teacher_id,createdatetime, "
 						+ "course_id, project_description, score1, score2, "
-						+ "score3, section_id) values "
+						+ "score3, section_id, score4, exam_score) values "
 					+ "('"+proModel.getProject_nameth()+"', '"+proModel.getProject_nameen()+"', '"+proModel.getTeacher_id()+"', now(),"
 						+ ""+proModel.getCourse_id()+", '"+proModel.getProject_description()+"', "+proModel.getScore1()+", "+proModel.getScore2()+","
-						+ ""+proModel.getScore3()+", "+proModel.getSectionId()+")";
+						+ ""+proModel.getScore3()+", "+proModel.getSectionId()+", "+proModel.getScore4()+", "+proModel.getScore4()+")";
 		
 		int projectId = 0;
 		try {

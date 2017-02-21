@@ -69,6 +69,7 @@
 				    			<th data-priority="1">คำอธิบายโปรเจค</th>
 				    			<th data-priority="2">อาจารย์ที่ปรึกษา</th>
 				    			<th data-priority="2">จำนวนคนให้คะแนน</th>
+				    			<th data-priority="1">คะแนนที่ได้รับ</th>
 				    			<th data-priority="1">สถานะ</th>
 				    			<th data-priority="3">วิชา</th>
 				    			<th data-priority="3">Section</th>
@@ -89,6 +90,7 @@
 					    			<td><s:property value="project_description"/></td>
 					    			<td><s:property value="firstname"/></td>
 					    			<td><s:property value="personadded"/></td>
+					    			<td><s:property value="exam_score"/></td>
 					    			<td><s:property value="project_status_name"/></td>
 					    			<td><s:property value="course_nameth"/></td>
 					    			<td><s:property value="sectionName"/></td>

@@ -51,16 +51,8 @@
 				          <label for="last_name">Project Description (TH)</label>
 				        </div>
 				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score1" class="validate" required="true" maxlength="3" autocomplete="off" />
-				          <label for="score1">คะแนนเต็ม รูปเล่ม</label>
-				        </div>
-				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score2" class="validate" required="true" maxlength="3" autocomplete="off"/>
-				          <label for="score2">คะแนนเต็ม ความรู้</label>
-				        </div>
-				        <div class="input-field col s12">
-				          <s:textfield name="proModel.score3" class="validate" required="true" maxlength="3" autocomplete="off"/>
-				          <label for="score3">คะแนนเต็ม ตอบคำถาม</label>
+				          <s:textfield name="proModel.score4" class="validate" required="true" maxlength="3" autocomplete="off" />
+				          <label for="score4">คะแนนสอบครั้งที่ 1</label>
 				        </div>
 				        <div class="col s12">
 				        	<p style="margin-bottom: 0; color:#26a69a !important;">Course</p>

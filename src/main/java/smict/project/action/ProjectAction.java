@@ -246,19 +246,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			alertMessage = "กรุณากรอกข้อมูลอาจารย์ที่ปรึกษา";
 			getMapAddProject();
 			return "input";
-		}else if(!cValidate.checkIntegerNotZero(proModel.getScore1())){
+		}else if(!cValidate.checkIntegerNotZero(proModel.getScore4())){
 			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลคะแนน รูปเล่ม";
+			alertMessage = "กรุณากรอกข้อมูลคะแนน สอบครั้งที่ 1";
 			getMapAddProject();
 			return "input";
-		}else if(!cValidate.checkIntegerNotZero(proModel.getScore2())){
+		}else if(proModel.getScore4() > 40){
 			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลคะแนน ความรู้";
-			getMapAddProject();
-			return "input";
-		}else if(!cValidate.checkIntegerNotZero(proModel.getScore3())){
-			alertStatus = "red red-text";
-			alertMessage = "กรุณากรอกข้อมูลคะแนน ตอบคำถาม";
+			alertMessage = "ไม่สามารถให้คะแนนการสอบครั้งที่ 1 ได้มากกว่า 40 คะแนน";
 			getMapAddProject();
 			return "input";
 		}else if(!cValidate.checkIntegerNotZero(proModel.getCourse_id())){
@@ -267,6 +262,10 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			getMapAddProject();
 			return "input";
 		}
+		
+		proModel.setScore1(30);
+		proModel.setScore2(20);
+		proModel.setScore3(20);
 		
 		int projectId = projectDB.addProject(proModel);
 		if( projectId > 0 ){
@@ -283,7 +282,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		
 		return forwardText;
 	}
-	
+		
 	public String updateProject(){
 		String forwardText = "";
 		if(!sessionMap.containsKey("username")){
